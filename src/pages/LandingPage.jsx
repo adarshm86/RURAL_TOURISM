@@ -13,14 +13,33 @@ const LEAVES = [
   { left: '92%', delay: 1.5, duration: 12, emoji: '🌿' },
 ]
 
-const GALLERY_DATA = [
-  { id: 1, img: "https://plus.unsplash.com/premium_photo-1697730504977-26847b1f1f91?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8a2FybmF0YWthJTIwdG91cmlzbXxlbnwwfHwwfHx8MA%3D%3D", slogan: "ಹಸಿರು ಸಿರಿಯ ನಾಡು, ಕರುನಾಡು.", sub: "The land of eternal greenery." },
-  { id: 2, img: "https://media.istockphoto.com/id/172124032/photo/mysore-palace-at-dusk.jpg?s=612x612&w=0&k=20&c=paO74C_dVsY14IbK0RNqs0TD-lSteQy-AW5CnQFEb_4=", slogan: "ಕಲೆ ಮತ್ತು ಸಂಸ್ಕೃತಿಯ ತವರು.", sub: "The cradle of art and culture." },
-  { id: 3, img: "https://media.istockphoto.com/id/1382803490/photo/indian-temple.jpg?s=1024x1024&w=is&k=20&c=h3ThITHDomPVOenJS56XSnKjybA541zYZ6gglpogIlY=", slogan: "ಶಿಲ್ಪಕಲೆಯ ಸೌಂದರ್ಯ, ಬೇಲೂರು ಹಳೇಬೀಡು.", sub: "Where stones speak poetry." },
-  { id: 4, img: "https://media.istockphoto.com/id/916270810/photo/single-tusk-elephant-in-dubare-elephant-camp-coorg-india.jpg?s=612x612&w=0&k=20&c=NGj-BcgRkj-UaQk4UuPD6mGHa6_Xk5_-tJY7s7J7aNc=", slogan: "ಮಲೆನಾಡಿನ ಮಡಿಲಲ್ಲಿ ಅಡಗಿದ ಸೌಂದರ್ಯ.", sub: "Hidden gems in the heart of Malnad." },
-  { id: 5, img: "https://media.istockphoto.com/id/136232473/photo/achyuta-raya-temple-hampi-karnataka-india.jpg?s=612x612&w=0&k=20&c=iyApv09FCVZU1KitHzw0WyAsEoGEt4xE4ZsEjEQG8tQ=", slogan: "ಕರಾವಳಿಯ ಕಡಲ ತೀರದ ಸೊಬಗು.", sub: "The majestic charm of the coast." },
-  { id: 6, img: "https://media.istockphoto.com/id/514856110/photo/woman-working-on-the-rice-field.jpg?s=612x612&w=0&k=20&c=h-8t0o176V0dzGoZPubJOciolhqvTIYY-S7otdytY7Y=", slogan: "ಗ್ರಾಮೀಣ ಬದುಕಿನ ಸರಳತೆ ಮತ್ತು ಸತ್ಯ.", sub: "Simplicity and truth of rural life." },
-]
+// const GALLERY_DATA = [
+//   { id: 1, img: "https://plus.unsplash.com/premium_photo-1697730504977-26847b1f1f91?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8a2FybmF0YWthJTIwdG91cmlzbXxlbnwwfHwwfHx8MA%3D%3D", slogan: "ಹಸಿರು ಸಿರಿಯ ನಾಡು, ಕರುನಾಡು.", sub: "The land of eternal greenery." },
+//   { id: 2, img: "https://media.istockphoto.com/id/172124032/photo/mysore-palace-at-dusk.jpg?s=612x612&w=0&k=20&c=paO74C_dVsY14IbK0RNqs0TD-lSteQy-AW5CnQFEb_4=", slogan: "ಕಲೆ ಮತ್ತು ಸಂಸ್ಕೃತಿಯ ತವರು.", sub: "The cradle of art and culture." },
+//   { id: 3, img: "https://media.istockphoto.com/id/1382803490/photo/indian-temple.jpg?s=1024x1024&w=is&k=20&c=h3ThITHDomPVOenJS56XSnKjybA541zYZ6gglpogIlY=", slogan: "ಶಿಲ್ಪಕಲೆಯ ಸೌಂದರ್ಯ, ಬೇಲೂರು ಹಳೇಬೀಡು.", sub: "Where stones speak poetry." },
+//   { id: 4, img: "https://media.istockphoto.com/id/916270810/photo/single-tusk-elephant-in-dubare-elephant-camp-coorg-india.jpg?s=612x612&w=0&k=20&c=NGj-BcgRkj-UaQk4UuPD6mGHa6_Xk5_-tJY7s7J7aNc=", slogan: "ಮಲೆನಾಡಿನ ಮಡಿಲಲ್ಲಿ ಅಡಗಿದ ಸೌಂದರ್ಯ.", sub: "Hidden gems in the heart of Malnad." },
+//   { id: 5, img: "https://media.istockphoto.com/id/136232473/photo/achyuta-raya-temple-hampi-karnataka-india.jpg?s=612x612&w=0&k=20&c=iyApv09FCVZU1KitHzw0WyAsEoGEt4xE4ZsEjEQG8tQ=", slogan: "ಕರಾವಳಿಯ ಕಡಲ ತೀರದ ಸೊಬಗು.", sub: "The majestic charm of the coast." },
+//   { id: 6, img: "https://media.istockphoto.com/id/514856110/photo/woman-working-on-the-rice-field.jpg?s=612x612&w=0&k=20&c=h-8t0o176V0dzGoZPubJOciolhqvTIYY-S7otdytY7Y=", slogan: "ಗ್ರಾಮೀಣ ಬದುಕಿನ ಸರಳತೆ ಮತ್ತು ಸತ್ಯ.", sub: "Simplicity and truth of rural life." },
+// ]
+
+
+const COLUMN_1_DATA = [
+  { id: 101, img: "https://images.unsplash.com/photo-1600132806608-231446b2e7af?q=80&w=400", slogan: "ಹಸಿರು ಸಿರಿಯ ನಾಡು, ಕರುನಾಡು.", sub: "The land of eternal greenery." },
+  { id: 102, img: "https://images.unsplash.com/photo-1590496793907-4001df5e9757?q=80&w=400", slogan: "ಮಲೆನಾಡಿನ ಮಡಿಲಲ್ಲಿ ಅಡಗಿದ ಸೌಂದರ್ಯ.", sub: "Hidden gems in the heart of Malnad." },
+  { id: 103, img: "https://images.unsplash.com/photo-1542115160-55e54d852024?q=80&w=400", slogan: "ಪಶ್ಚಿಮ ಘಟ್ಟಗಳ ವೈಭವ.", sub: "The majesty of the Western Ghats." },
+];
+
+const COLUMN_2_DATA = [
+  { id: 201, img: "https://images.unsplash.com/photo-1625316708582-7c3873423ade?q=80&w=400", slogan: "ಶಿಲ್ಪಕಲೆಯ ಸೌಂದರ್ಯ, ಬೇಲೂರು.", sub: "Where stones speak poetry." },
+  { id: 202, img: "https://images.unsplash.com/photo-1580193330559-002f2369666c?q=80&w=400", slogan: "ಐತಿಹಾಸಿಕ ಹಂಪಿಯ ವೈಭವ.", sub: "The glory of historical Hampi." },
+  { id: 203, img: "https://images.unsplash.com/photo-1623157292723-88846c439f04?q=80&w=400", slogan: "ಕಲೆ ಮತ್ತು ಸಂಸ್ಕೃತಿಯ ತವರು.", sub: "The cradle of art and culture." },
+];
+
+const COLUMN_3_DATA = [
+  { id: 301, img: "https://images.unsplash.com/photo-1506461883276-594a12b11cf3?q=80&w=400", slogan: "ಗ್ರಾಮೀಣ ಬದುಕಿನ ಸರಳತೆ.", sub: "Simplicity of rural life." },
+  { id: 302, img: "https://images.unsplash.com/photo-1616422301389-702302e75e96?q=80&w=400", slogan: "ಕರಾವಳಿಯ ಕಡಲ ತೀರದ ಸೊಬಗು.", sub: "The majestic charm of the coast." },
+  { id: 303, img: "https://images.unsplash.com/photo-1567101455243-7f7223699c85?q=80&w=400", slogan: "ಬಯಲು ಸೀಮೆಯ ಬದುಕು.", sub: "Life in the open plains." },
+];
 
 const seasonalData = [
   {
@@ -72,8 +91,9 @@ const ScrollingColumn = ({ images, reverse, onHover }) => (
     <motion.div 
       className="flex flex-col gap-4 py-4"
       animate={{ y: reverse ? [0, -1200] : [-1200, 0] }}
-      transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
+      transition={{ repeat: Infinity, duration: 50, ease: "linear" }}
     >
+      {/* Triple the data to ensure smooth infinite scroll with different images */}
       {[...images, ...images, ...images].map((item, idx) => (
         <motion.div
           key={`${item.id}-${idx}`}
@@ -93,7 +113,7 @@ export default function LandingPage() {
   const navigate = useNavigate()
   const videoRef = useRef(null)
   const [scrollY, setScrollY] = useState(0)
-  const [activeGalleryItem, setActiveGalleryItem] = useState(GALLERY_DATA[0])
+  const [activeGalleryItem, setActiveGalleryItem] = useState(COLUMN_1_DATA[0])
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
@@ -338,53 +358,55 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section className="relative h-screen bg-black flex overflow-hidden border-y border-white/5">
+        {/* ── Moving Photo Cards Gallery (WITH UNIQUE IMAGES) ── */}
+      <section className="relative h-[120vh] bg-black flex overflow-hidden border-y border-white/5">
         {/* Left Panel: Branding */}
         <div className="hidden lg:flex w-1/4 flex-col justify-center px-12 z-20 bg-black">
           <h2 className="text-white text-3xl font-display font-semibold tracking-wide">
-            <span className="font-kannada block text-earth-300 text-5xl mb-2">ಕರ್ನಾಟಕ</span>
-            <span className="font-light opacity-60">Rural Experience</span>
+            <span className="font-kannada block text-earth-300 text-6xl mb-4 leading-tight">ಕರ್ನಾಟಕ</span>
+            <span className="font-light opacity-60 text-xl tracking-[0.3em] uppercase">Rural Heritage</span>
           </h2>
-          <div className="w-12 h-1 bg-earth-500 mt-6" />
+          <div className="w-16 h-1 bg-earth-500 mt-8" />
         </div>
 
-        {/* Center: Moving Columns */}
-        <div className="flex-1 grid grid-cols-3 gap-4 h-full px-4 py-8">
-          <ScrollingColumn images={GALLERY_DATA} reverse={true} onHover={setActiveGalleryItem} />
-          <ScrollingColumn images={GALLERY_DATA} reverse={false} onHover={setActiveGalleryItem} />
-          <ScrollingColumn images={GALLERY_DATA} reverse={true} onHover={setActiveGalleryItem} />
+        {/* Center: Moving Columns with UNIQUE DATA */}
+        <div className="flex-1 grid grid-cols-3 gap-6 h-full px-6 py-12">
+          <ScrollingColumn images={COLUMN_1_DATA} reverse={true} onHover={setActiveGalleryItem} />
+          <ScrollingColumn images={COLUMN_2_DATA} reverse={false} onHover={setActiveGalleryItem} />
+          <ScrollingColumn images={COLUMN_3_DATA} reverse={true} onHover={setActiveGalleryItem} />
         </div>
 
         {/* Right Panel: Dynamic Slogans */}
-        <div className="w-1/3 lg:w-1/4 flex flex-col justify-center px-8 lg:px-12 z-20 bg-black/80 backdrop-blur-md border-l border-white/5">
+        <div className="w-1/3 lg:w-1/4 flex flex-col justify-center px-8 lg:px-12 z-20 bg-black/80 backdrop-blur-lg border-l border-white/5 shadow-2xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeGalleryItem.id}
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.4 }}
+              exit={{ opacity: 0, x: -30 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              <p className="font-kannada text-earth-300 text-3xl md:text-4xl leading-relaxed">
+              <p className="font-kannada text-earth-300 text-4xl md:text-5xl leading-[1.4]">
                 {activeGalleryItem.slogan}
               </p>
-              <p className="mt-4 text-white/40 font-body text-sm uppercase tracking-[0.2em]">
+              <div className="w-8 h-[1px] bg-white/20 my-6" />
+              <p className="text-white/40 font-body text-sm uppercase tracking-[0.25em] font-medium italic">
                 {activeGalleryItem.sub}
               </p>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        {/* Shadow Fades */}
-        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-black to-transparent z-10 pointer-events-none" />
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none" />
+        {/* Cinematic Fades */}
+        <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-b from-black via-black/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black via-black/80 to-transparent z-10 pointer-events-none" />
       </section>
 
       {/* ── Seasonal Highlights Section ── */}
       <section className="bg-[#062c1d] py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-earth-300 font-kannada text-2xl mb-2">ಋತುಮಾನದ ಸಡಗರ</h2>
+            <h2 className="text-earth-300 font-kannada text-3xl mb-4">ಋತುಮಾನದ ಸಡಗರ</h2>
             <h3 className="text-4xl md:text-5xl font-display font-bold text-white uppercase tracking-tight">Seasonal Highlights</h3>
           </div>
 
@@ -411,6 +433,7 @@ export default function LandingPage() {
           </div>
         </div>
       </section>
+      
     </div>
   )
 }

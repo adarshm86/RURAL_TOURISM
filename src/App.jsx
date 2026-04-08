@@ -20,7 +20,6 @@ function App() {
           <Route path="/district/:id" element={<DistrictPage darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/about" element={<About />} />
           <Route path="/calendar" element={<Calendar />} />
-          <Route path="/" element={<LandingPage />} />
           {/* ✅ Add the route for /aboutus here */}
           <Route path="/aboutus" element={<AboutUs />} />
           
