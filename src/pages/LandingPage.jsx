@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 // Leaf configurations
 const LEAVES = [
@@ -11,6 +11,42 @@ const LEAVES = [
   { left: '65%', delay: 0.5, duration: 10, emoji: '🍂' },
   { left: '80%', delay: 2.5, duration: 8.5, emoji: '🍃' },
   { left: '92%', delay: 1.5, duration: 12, emoji: '🌿' },
+]
+
+const GALLERY_DATA = [
+  { id: 1, img: "https://plus.unsplash.com/premium_photo-1697730504977-26847b1f1f91?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8a2FybmF0YWthJTIwdG91cmlzbXxlbnwwfHwwfHx8MA%3D%3D", slogan: "ಹಸಿರು ಸಿರಿಯ ನಾಡು, ಕರುನಾಡು.", sub: "The land of eternal greenery." },
+  { id: 2, img: "https://media.istockphoto.com/id/172124032/photo/mysore-palace-at-dusk.jpg?s=612x612&w=0&k=20&c=paO74C_dVsY14IbK0RNqs0TD-lSteQy-AW5CnQFEb_4=", slogan: "ಕಲೆ ಮತ್ತು ಸಂಸ್ಕೃತಿಯ ತವರು.", sub: "The cradle of art and culture." },
+  { id: 3, img: "https://media.istockphoto.com/id/1382803490/photo/indian-temple.jpg?s=1024x1024&w=is&k=20&c=h3ThITHDomPVOenJS56XSnKjybA541zYZ6gglpogIlY=", slogan: "ಶಿಲ್ಪಕಲೆಯ ಸೌಂದರ್ಯ, ಬೇಲೂರು ಹಳೇಬೀಡು.", sub: "Where stones speak poetry." },
+  { id: 4, img: "https://media.istockphoto.com/id/916270810/photo/single-tusk-elephant-in-dubare-elephant-camp-coorg-india.jpg?s=612x612&w=0&k=20&c=NGj-BcgRkj-UaQk4UuPD6mGHa6_Xk5_-tJY7s7J7aNc=", slogan: "ಮಲೆನಾಡಿನ ಮಡಿಲಲ್ಲಿ ಅಡಗಿದ ಸೌಂದರ್ಯ.", sub: "Hidden gems in the heart of Malnad." },
+  { id: 5, img: "https://media.istockphoto.com/id/136232473/photo/achyuta-raya-temple-hampi-karnataka-india.jpg?s=612x612&w=0&k=20&c=iyApv09FCVZU1KitHzw0WyAsEoGEt4xE4ZsEjEQG8tQ=", slogan: "ಕರಾವಳಿಯ ಕಡಲ ತೀರದ ಸೊಬಗು.", sub: "The majestic charm of the coast." },
+  { id: 6, img: "https://media.istockphoto.com/id/514856110/photo/woman-working-on-the-rice-field.jpg?s=612x612&w=0&k=20&c=h-8t0o176V0dzGoZPubJOciolhqvTIYY-S7otdytY7Y=", slogan: "ಗ್ರಾಮೀಣ ಬದುಕಿನ ಸರಳತೆ ಮತ್ತು ಸತ್ಯ.", sub: "Simplicity and truth of rural life." },
+]
+
+const seasonalData = [
+  {
+    month: 'January',
+    event: 'Pongal Harvest Trails',
+    slogan: 'ಸೂರ್ಯನ ಬೆಳಕಲ್ಲಿ ಹಬ್ಬದ ಹೆಜ್ಜೆ',
+    desc: 'Celebrate village harvest traditions, folk music, and farm-to-table food experiences.',
+    image:
+      'https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
+    month: 'August',
+    event: 'Monsoon Malnad Escapes',
+    slogan: 'ಮಳೆಯ ಮಂಜಿನಲ್ಲಿ ಹಸಿರಿನ ಹಾದಿ',
+    desc: 'Walk through misty forest villages, waterfalls, and traditional homestays in the Western Ghats.',
+    image:
+      'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80',
+  },
+  {
+    month: 'October',
+    event: 'Coastal Temple Routes',
+    slogan: 'ಸಮುದ್ರದ ತೀರದಲ್ಲಿ ಸಂಸ್ಕೃತಿಯ ಸ್ಪರ್ಶ',
+    desc: 'Explore coastal shrines, craft markets, and local seafood festivals across rural shores.',
+    image:
+      'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80',
+  },
 ]
 
 function FallingLeaf({ left, delay, duration, emoji }) {
@@ -31,10 +67,33 @@ function FallingLeaf({ left, delay, duration, emoji }) {
   )
 }
 
+const ScrollingColumn = ({ images, reverse, onHover }) => (
+  <div className="overflow-hidden h-full">
+    <motion.div 
+      className="flex flex-col gap-4 py-4"
+      animate={{ y: reverse ? [0, -1200] : [-1200, 0] }}
+      transition={{ repeat: Infinity, duration: 40, ease: "linear" }}
+    >
+      {[...images, ...images, ...images].map((item, idx) => (
+        <motion.div
+          key={`${item.id}-${idx}`}
+          onMouseEnter={() => onHover(item)}
+          className="relative aspect-[3/4] w-full rounded-xl overflow-hidden cursor-pointer border border-white/10 group"
+          whileHover={{ scale: 1.02, borderColor: "rgba(196, 160, 114, 0.5)", zIndex: 10 }}
+        >
+          <img src={item.img} alt="Rural Karnataka" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+          <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
+        </motion.div>
+      ))}
+    </motion.div>
+  </div>
+);
+
 export default function LandingPage() {
   const navigate = useNavigate()
   const videoRef = useRef(null)
   const [scrollY, setScrollY] = useState(0)
+  const [activeGalleryItem, setActiveGalleryItem] = useState(GALLERY_DATA[0])
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
@@ -63,6 +122,8 @@ export default function LandingPage() {
             <span className="font-kannada">ಕರ್ನಾಟಕ</span>{' '}
             <span className="font-light text-earth-300">Rural</span>
           </motion.div>
+
+
 
           <motion.div
             initial={{ opacity: 0, x: 20 }}
@@ -224,6 +285,132 @@ export default function LandingPage() {
           "Every village in Karnataka holds a story waiting to be discovered."
         </motion.p>
       </div>
+
+      <section className="bg-[#062c1d] pb-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-earth-300 font-kannada text-2xl mb-2">ಋತುಮಾನದ ಸಡಗರ</h2>
+            <h3 className="text-4xl md:text-5xl font-display font-bold text-white uppercase tracking-tight">Seasonal Highlights</h3>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {seasonalData.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                whileHover={{ y: -10 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.2 }}
+                className="group relative rounded-2xl overflow-hidden bg-black/40 border border-white/10 shadow-2xl"
+              >
+                <div className="h-72 overflow-hidden relative">
+                  <img 
+                    src={item.image} 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100" 
+                    alt={item.event}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+                </div>
+
+                <div className="p-6 relative">
+                  <span className="text-earth-500 text-xs font-bold tracking-[0.2em] uppercase">{item.month}</span>
+                  <h4 className="text-2xl font-display font-bold text-white mt-1">{item.event}</h4>
+                  <p className="font-kannada text-earth-300/80 text-sm mt-3 mb-4">{item.slogan}</p>
+                  <p className="text-white/50 text-sm italic">"{item.desc}"</p>
+                  
+                  <motion.button 
+                    whileHover={{ x: 5 }}
+                    onClick={() => navigate('/calendar')}
+                    className="mt-6 text-earth-300 text-xs font-bold flex items-center gap-2 uppercase tracking-widest"
+                  >
+                    Learn More <span>→</span>
+                  </motion.button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative h-screen bg-black flex overflow-hidden border-y border-white/5">
+        {/* Left Panel: Branding */}
+        <div className="hidden lg:flex w-1/4 flex-col justify-center px-12 z-20 bg-black">
+          <h2 className="text-white text-3xl font-display font-semibold tracking-wide">
+            <span className="font-kannada block text-earth-300 text-5xl mb-2">ಕರ್ನಾಟಕ</span>
+            <span className="font-light opacity-60">Rural Experience</span>
+          </h2>
+          <div className="w-12 h-1 bg-earth-500 mt-6" />
+        </div>
+
+        {/* Center: Moving Columns */}
+        <div className="flex-1 grid grid-cols-3 gap-4 h-full px-4 py-8">
+          <ScrollingColumn images={GALLERY_DATA} reverse={true} onHover={setActiveGalleryItem} />
+          <ScrollingColumn images={GALLERY_DATA} reverse={false} onHover={setActiveGalleryItem} />
+          <ScrollingColumn images={GALLERY_DATA} reverse={true} onHover={setActiveGalleryItem} />
+        </div>
+
+        {/* Right Panel: Dynamic Slogans */}
+        <div className="w-1/3 lg:w-1/4 flex flex-col justify-center px-8 lg:px-12 z-20 bg-black/80 backdrop-blur-md border-l border-white/5">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeGalleryItem.id}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              transition={{ duration: 0.4 }}
+            >
+              <p className="font-kannada text-earth-300 text-3xl md:text-4xl leading-relaxed">
+                {activeGalleryItem.slogan}
+              </p>
+              <p className="mt-4 text-white/40 font-body text-sm uppercase tracking-[0.2em]">
+                {activeGalleryItem.sub}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* Shadow Fades */}
+        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-black to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent z-10 pointer-events-none" />
+      </section>
+
+      {/* ── Seasonal Highlights Section ── */}
+      <section className="bg-[#062c1d] py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-earth-300 font-kannada text-2xl mb-2">ಋತುಮಾನದ ಸಡಗರ</h2>
+            <h3 className="text-4xl md:text-5xl font-display font-bold text-white uppercase tracking-tight">Seasonal Highlights</h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {seasonalData.map((item, index) => (
+              <motion.div
+                key={index}
+                whileHover={{ y: -10 }}
+                className="group relative rounded-2xl overflow-hidden bg-black/40 border border-white/10 shadow-2xl"
+              >
+                <div className="h-72 overflow-hidden relative">
+                  <img src={item.image} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100" alt={item.event} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
+                </div>
+                <div className="p-6">
+                  <span className="text-earth-500 text-xs font-bold tracking-[0.2em] uppercase">{item.month}</span>
+                  <h4 className="text-2xl font-display font-bold text-white mt-1">{item.event}</h4>
+                  <p className="font-kannada text-earth-300/80 text-sm mt-3 mb-4">{item.slogan}</p>
+                  <p className="text-white/50 text-sm italic">"{item.desc}"</p>
+                  <button onClick={() => navigate('/calendar')} className="mt-6 text-earth-300 text-xs font-bold flex items-center gap-2 uppercase tracking-widest">Learn More →</button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
