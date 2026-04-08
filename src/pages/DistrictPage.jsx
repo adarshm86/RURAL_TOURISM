@@ -162,9 +162,9 @@ export default function DistrictPage() {
         "Visiting Chaudayyadanapura offers a perfect blend of natural beauty and historical exploration. The temple's flawless proportions and the serene riverbank make it an ideal spot for meditation and photography. It stands as a silent witness to the rich literary and spiritual revolution that swept across Karnataka centuries ago."
       ],
       "images": [
-        "https://s7ap1.scene7.com/is/image/incredibleindia/mukteshwara-temple-bhubaneshwar-odisha-1-attr-hero?qlt=82&ts=1742184824686",
-        "https://s7ap1.scene7.com/is/image/incredibleindia/mukteshwara-temple-bhubaneshwar-odisha-2-attr-hero?qlt=82&ts=1742169434672",
-        "https://odishatourism.gov.in/content/dam/tourism/home/discover/attractions/temples-&-monuments/mukteswar-temple/mukteswar%20corosal1.jpg"
+        "https://upload.wikimedia.org/wikipedia/commons/a/a5/Chaudayyadanapura_Mukteshwara_temple_9.jpg",
+        "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjFHbVrzgvFI6v-0aWE1M4eHqV7DD_Xtw48prd4HtPi9UEFEZYylcziku-H9B3Pl64zv5WOiUdPX7ORrbn5IiT6Lf3bfEa7HxhbDVdEf0XN3CDIG2Z2ltHlWfjNnLGHNzW3123BBYlhkzc/s1600/05+Chaudayyadanapura+Muktesvara+Temple.jpg",
+        "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/13/da/9a/76/mukteswara-temple.jpg?w=1200&h=1200&s=1"
       ]
     },
     "9": {

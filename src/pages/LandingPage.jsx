@@ -15,12 +15,17 @@ const LEAVES = [
 
 const GALLERY_DATA = [
   { id: 1, img: "https://plus.unsplash.com/premium_photo-1697730504977-26847b1f1f91?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8a2FybmF0YWthJTIwdG91cmlzbXxlbnwwfHwwfHx8MA%3D%3D", slogan: "ಹಸಿರು ಸಿರಿಯ ನಾಡು, ಕರುನಾಡು.", sub: "The land of eternal greenery." },
-  { id: 2, img: "https://media.istockphoto.com/id/172124032/photo/mysore-palace-at-dusk.jpg?s=612x612&w=0&k=20&c=paO74C_dVsY14IbK0RNqs0TD-lSteQy-AW5CnQFEb_4=", slogan: "ಕಲೆ ಮತ್ತು ಸಂಸ್ಕೃತಿಯ ತವರು.", sub: "The cradle of art and culture." },
-  { id: 3, img: "https://media.istockphoto.com/id/1382803490/photo/indian-temple.jpg?s=1024x1024&w=is&k=20&c=h3ThITHDomPVOenJS56XSnKjybA541zYZ6gglpogIlY=", slogan: "ಶಿಲ್ಪಕಲೆಯ ಸೌಂದರ್ಯ, ಬೇಲೂರು ಹಳೇಬೀಡು.", sub: "Where stones speak poetry." },
+  { id: 2, img: "https://images.pexels.com/photos/34738142/pexels-photo-34738142.jpeg", slogan: "ಕಲೆ ಮತ್ತು ಸಂಸ್ಕೃತಿಯ ತವರು.", sub: "The cradle of art and culture." },
+  { id: 3, img: "https://images.pexels.com/photos/33013758/pexels-photo-33013758.jpeg", slogan: "ಶಿಲ್ಪಕಲೆಯ ಸೌಂದರ್ಯ, ಬೇಲೂರು ಹಳೇಬೀಡು.", sub: "Where stones speak poetry." },
   { id: 4, img: "https://media.istockphoto.com/id/916270810/photo/single-tusk-elephant-in-dubare-elephant-camp-coorg-india.jpg?s=612x612&w=0&k=20&c=NGj-BcgRkj-UaQk4UuPD6mGHa6_Xk5_-tJY7s7J7aNc=", slogan: "ಮಲೆನಾಡಿನ ಮಡಿಲಲ್ಲಿ ಅಡಗಿದ ಸೌಂದರ್ಯ.", sub: "Hidden gems in the heart of Malnad." },
-  { id: 5, img: "https://media.istockphoto.com/id/136232473/photo/achyuta-raya-temple-hampi-karnataka-india.jpg?s=612x612&w=0&k=20&c=iyApv09FCVZU1KitHzw0WyAsEoGEt4xE4ZsEjEQG8tQ=", slogan: "ಕರಾವಳಿಯ ಕಡಲ ತೀರದ ಸೊಬಗು.", sub: "The majestic charm of the coast." },
+  { id: 5, img: "https://images.pexels.com/photos/31355441/pexels-photo-31355441.jpeg", slogan: "ಕರಾವಳಿಯ ಕಡಲ ತೀರದ ಸೊಬಗು.", sub: "The majestic charm of the coast." },
   { id: 6, img: "https://media.istockphoto.com/id/514856110/photo/woman-working-on-the-rice-field.jpg?s=612x612&w=0&k=20&c=h-8t0o176V0dzGoZPubJOciolhqvTIYY-S7otdytY7Y=", slogan: "ಗ್ರಾಮೀಣ ಬದುಕಿನ ಸರಳತೆ ಮತ್ತು ಸತ್ಯ.", sub: "Simplicity and truth of rural life." },
+  {id:  7, img: "https://images.pexels.com/photos/32547425/pexels-photo-32547425.jpeg",slogan: "ಕರಾವಳಿಯ ಕಡಲ ತೀರದ ಸೊಬಗು.", sub: "The majestic charm of the coast."},
+  { id: 8, img: "https://media.istockphoto.com/id/514856110/photo/woman-working-on-the-rice-field.jpg?s=612x612&w=0&k=20&c=h-8t0o176V0dzGoZPubJOciolhqvTIYY-S7otdytY7Y=", slogan: "ಗ್ರಾಮೀಣ ಬದುಕಿನ ಸರಳತೆ ಮತ್ತು ಸತ್ಯ.", sub: "Simplicity and truth of rural life." },
+  { id: 9, img: "https://images.pexels.com/photos/33543027/pexels-photo-33543027.jpeg", slogan: "ಗ್ರಾಮೀಣ ಬದುಕಿನ ಸರಳತೆ ಮತ್ತು ಸತ್ಯ.", sub: "Simplicity and truth of rural life." }
+  
 ]
+
 
 const seasonalData = [
   {
