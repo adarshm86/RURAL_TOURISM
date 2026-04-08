@@ -52,7 +52,7 @@ export default function LandingPage() {
         {/* Falling Leaves */}
         {LEAVES.map((l, i) => <FallingLeaf key={i} {...l} />)}
 
-        {/* Navbar */}
+        {/* Navbar (FIXED ROUTING HERE) */}
         <nav className="absolute top-0 left-0 w-full z-20 px-6 md:px-12 py-5 flex items-center justify-between">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -70,12 +70,28 @@ export default function LandingPage() {
             transition={{ duration: 0.8 }}
             className="flex items-center space-x-6 text-white"
           >
-            <a href="#" className="hover:text-earth-300 transition font-body text-sm tracking-widest uppercase">
+            {/* Swapped <a> for <button> to use React Router */}
+            <button 
+              onClick={() => navigate('/explore')} 
+              className="hover:text-earth-300 transition font-body text-sm tracking-widest uppercase"
+            >
               Explore
-            </a>
-            <a href="#" className="hover:text-earth-300 transition font-body text-sm tracking-widest uppercase">
+            </button>
+            <button 
+              onClick={() => navigate('/about')} 
+              className="hover:text-earth-300 transition font-body text-sm tracking-widest uppercase"
+            >
               About
-            </a>
+            </button>
+            
+            {/* Added Contact Us button */}
+            <button 
+              onClick={() => navigate('/aboutus')} 
+              className="hover:text-earth-300 transition font-body text-sm tracking-widest uppercase"
+            >
+              Contact Us
+            </button>
+
             <button
               onClick={() => navigate('/explore')}
               className="px-5 py-2 border border-white/60 rounded-full text-sm hover:bg-white hover:text-black transition-all duration-300 tracking-wider font-body"
@@ -92,34 +108,20 @@ export default function LandingPage() {
           muted
           loop
           playsInline
-          className="absolute w-full h-full object-cover"
+          className="absolute w-full h-full object-cover z-0"
         >
           <source src="/myvedcomp.mp4" type="video/mp4" />
-          {/* Fallback gradient if video not present */}
         </video>
 
-        {/* Fallback gradient (always visible, video overlays it) */}
-{/* Video BG */}
-<video
-  ref={videoRef}
-  autoPlay
-  muted
-  loop
-  playsInline
-  className="absolute w-full h-full object-cover z-0"
->
-  <source src="/myvedcomp.mp4" type="video/mp4" />
-</video>
-
-{/* DARK OVERLAY ONLY (remove gradient) */}
-<div
-  className="absolute inset-0 z-10"
-  style={{ background: "rgba(0,0,0,0.5)" }}
-/>
+        {/* DARK OVERLAY ONLY (remove gradient) */}
+        <div
+          className="absolute inset-0 z-10"
+          style={{ background: "rgba(0,0,0,0.5)" }}
+        />
 
         {/* Overlay darkens on scroll */}
         <div
-          className="absolute inset-0 transition-all duration-100"
+          className="absolute inset-0 transition-all duration-100 z-10"
           style={{ background: `rgba(0,0,0,${overlayOpacity})` }}
         />
 

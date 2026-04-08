@@ -26,18 +26,19 @@ export default function Navbar({ darkMode, setDarkMode }) {
       <div className="flex items-center gap-6">
         {[
           { label: 'Explore', path: '/explore' },
-          { label: 'About', path: '/about' }
+          { label: 'About', path: '/about' },
+          { label: 'Contactus', path: '/aboutus' }
         ].map(({ label, path }) => (
-<button
-  type="button"   // ✅ ADD THIS
-  key={label}
-  onClick={() => navigate(path)}
-  className={`text-sm font-body tracking-widest uppercase transition ${
-    location.pathname === path ? 'text-earth-300' : 'text-white/60 hover:text-white'
-  }`}
->
-  {label}
-</button>
+          <button
+            type="button"   // ✅ ADD THIS
+            key={label}
+            onClick={() => navigate(path)}
+            className={`text-sm font-body tracking-widest uppercase transition ${
+              location.pathname === path ? 'text-earth-300' : 'text-white/60 hover:text-white'
+            }`}
+          >
+            {label}
+          </button>
         ))}
 
         {/* Dark mode toggle */}
