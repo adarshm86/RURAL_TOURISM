@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --ochre: #c8793a;
+  --sandstone: #e8d5b0;
+  --deepgreen: #1a3d2b;
+  --forest: #2d6a4f;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #0a0a0a;
+  color: #f0ece4;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ochre);
+  border-radius: 3px;
+}
+
+/* Leaflet overrides */
+.leaflet-container {
+  background: #1a2e1a !important;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.leaflet-popup-content-wrapper {
+  background: #1a2e1a;
+  border: 1px solid var(--ochre);
+  border-radius: 12px;
+  color: #f0ece4;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+.leaflet-popup-tip {
+  background: #1a2e1a;
+}
+
+.leaflet-popup-content {
+  margin: 12px 16px;
+}
+
+/* District tooltip */
+.district-tooltip {
+  background: rgba(26, 46, 26, 0.95) !important;
+  border: 1px solid var(--ochre) !important;
+  border-radius: 8px !important;
+  color: #f0ece4 !important;
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 13px !important;
+  padding: 8px 12px !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.4) !important;
+}
+
+.district-tooltip::before {
+  display: none;
+}
+
+/* Animations */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.shimmer {
+  background: linear-gradient(90deg, #1a2e1a 25%, #2d4a2d 50%, #1a2e1a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Custom marker pulse */
+@keyframes markerPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.7; }
+}
+
+.marker-pulse {
+  animation: markerPulse 2s ease-in-out infinite;
+}
+
+/* Panel slide */
+@keyframes panelSlideUp {
+  from { transform: translateY(100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.panel-slide-up {
+  animation: panelSlideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Grain texture overlay */
+.grain::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
