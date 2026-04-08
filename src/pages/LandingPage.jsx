@@ -20,9 +20,9 @@ const GALLERY_DATA = [
   { id: 4, img: "https://media.istockphoto.com/id/916270810/photo/single-tusk-elephant-in-dubare-elephant-camp-coorg-india.jpg?s=612x612&w=0&k=20&c=NGj-BcgRkj-UaQk4UuPD6mGHa6_Xk5_-tJY7s7J7aNc=", slogan: "ಮಲೆನಾಡಿನ ಮಡಿಲಲ್ಲಿ ಅಡಗಿದ ಸೌಂದರ್ಯ.", sub: "Hidden gems in the heart of Malnad." },
   { id: 5, img: "https://images.pexels.com/photos/31355441/pexels-photo-31355441.jpeg", slogan: "ಕರಾವಳಿಯ ಕಡಲ ತೀರದ ಸೊಬಗು.", sub: "The majestic charm of the coast." },
   { id: 6, img: "https://media.istockphoto.com/id/514856110/photo/woman-working-on-the-rice-field.jpg?s=612x612&w=0&k=20&c=h-8t0o176V0dzGoZPubJOciolhqvTIYY-S7otdytY7Y=", slogan: "ಗ್ರಾಮೀಣ ಬದುಕಿನ ಸರಳತೆ ಮತ್ತು ಸತ್ಯ.", sub: "Simplicity and truth of rural life." },
-  {id:  7, img: "https://images.pexels.com/photos/32547425/pexels-photo-32547425.jpeg",slogan: "ಕರಾವಳಿಯ ಕಡಲ ತೀರದ ಸೊಬಗು.", sub: "The majestic charm of the coast."},
+  {id:  7, img: "https://images.pexels.com/photos/33543027/pexels-photo-33543027.jpeg",slogan: "ಕರಾವಳಿಯ ಕಡಲ ತೀರದ ಸೊಬಗು.", sub: "The majestic charm of the coast."},
   { id: 8, img: "https://media.istockphoto.com/id/514856110/photo/woman-working-on-the-rice-field.jpg?s=612x612&w=0&k=20&c=h-8t0o176V0dzGoZPubJOciolhqvTIYY-S7otdytY7Y=", slogan: "ಗ್ರಾಮೀಣ ಬದುಕಿನ ಸರಳತೆ ಮತ್ತು ಸತ್ಯ.", sub: "Simplicity and truth of rural life." },
-  { id: 9, img: "https://images.pexels.com/photos/33543027/pexels-photo-33543027.jpeg", slogan: "ಗ್ರಾಮೀಣ ಬದುಕಿನ ಸರಳತೆ ಮತ್ತು ಸತ್ಯ.", sub: "Simplicity and truth of rural life." }
+  { id: 9, img: "https://images.pexels.com/photos/32547425/pexels-photo-32547425.jpeg", slogan: "ಗ್ರಾಮೀಣ ಬದುಕಿನ ಸರಳತೆ ಮತ್ತು ಸತ್ಯ.", sub: "Simplicity and truth of rural life." }
   
 ]
 
