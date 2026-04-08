@@ -13,33 +13,6 @@ const LEAVES = [
   { left: '92%', delay: 1.5, duration: 12, emoji: '🌿' },
 ]
 
-// const GALLERY_DATA = [
-//   { id: 1, img: "https://plus.unsplash.com/premium_photo-1697730504977-26847b1f1f91?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8a2FybmF0YWthJTIwdG91cmlzbXxlbnwwfHwwfHx8MA%3D%3D", slogan: "ಹಸಿರು ಸಿರಿಯ ನಾಡು, ಕರುನಾಡು.", sub: "The land of eternal greenery." },
-//   { id: 2, img: "https://media.istockphoto.com/id/172124032/photo/mysore-palace-at-dusk.jpg?s=612x612&w=0&k=20&c=paO74C_dVsY14IbK0RNqs0TD-lSteQy-AW5CnQFEb_4=", slogan: "ಕಲೆ ಮತ್ತು ಸಂಸ್ಕೃತಿಯ ತವರು.", sub: "The cradle of art and culture." },
-//   { id: 3, img: "https://media.istockphoto.com/id/1382803490/photo/indian-temple.jpg?s=1024x1024&w=is&k=20&c=h3ThITHDomPVOenJS56XSnKjybA541zYZ6gglpogIlY=", slogan: "ಶಿಲ್ಪಕಲೆಯ ಸೌಂದರ್ಯ, ಬೇಲೂರು ಹಳೇಬೀಡು.", sub: "Where stones speak poetry." },
-//   { id: 4, img: "https://media.istockphoto.com/id/916270810/photo/single-tusk-elephant-in-dubare-elephant-camp-coorg-india.jpg?s=612x612&w=0&k=20&c=NGj-BcgRkj-UaQk4UuPD6mGHa6_Xk5_-tJY7s7J7aNc=", slogan: "ಮಲೆನಾಡಿನ ಮಡಿಲಲ್ಲಿ ಅಡಗಿದ ಸೌಂದರ್ಯ.", sub: "Hidden gems in the heart of Malnad." },
-//   { id: 5, img: "https://media.istockphoto.com/id/136232473/photo/achyuta-raya-temple-hampi-karnataka-india.jpg?s=612x612&w=0&k=20&c=iyApv09FCVZU1KitHzw0WyAsEoGEt4xE4ZsEjEQG8tQ=", slogan: "ಕರಾವಳಿಯ ಕಡಲ ತೀರದ ಸೊಬಗು.", sub: "The majestic charm of the coast." },
-//   { id: 6, img: "https://media.istockphoto.com/id/514856110/photo/woman-working-on-the-rice-field.jpg?s=612x612&w=0&k=20&c=h-8t0o176V0dzGoZPubJOciolhqvTIYY-S7otdytY7Y=", slogan: "ಗ್ರಾಮೀಣ ಬದುಕಿನ ಸರಳತೆ ಮತ್ತು ಸತ್ಯ.", sub: "Simplicity and truth of rural life." },
-// ]
-
-
-const COLUMN_1_DATA = [
-  { id: 101, img: "https://images.unsplash.com/photo-1600132806608-231446b2e7af?q=80&w=400", slogan: "ಹಸಿರು ಸಿರಿಯ ನಾಡು, ಕರುನಾಡು.", sub: "The land of eternal greenery." },
-  { id: 102, img: "https://images.unsplash.com/photo-1590496793907-4001df5e9757?q=80&w=400", slogan: "ಮಲೆನಾಡಿನ ಮಡಿಲಲ್ಲಿ ಅಡಗಿದ ಸೌಂದರ್ಯ.", sub: "Hidden gems in the heart of Malnad." },
-  { id: 103, img: "https://images.unsplash.com/photo-1542115160-55e54d852024?q=80&w=400", slogan: "ಪಶ್ಚಿಮ ಘಟ್ಟಗಳ ವೈಭವ.", sub: "The majesty of the Western Ghats." },
-];
-
-const COLUMN_2_DATA = [
-  { id: 201, img: "https://images.unsplash.com/photo-1625316708582-7c3873423ade?q=80&w=400", slogan: "ಶಿಲ್ಪಕಲೆಯ ಸೌಂದರ್ಯ, ಬೇಲೂರು.", sub: "Where stones speak poetry." },
-  { id: 202, img: "https://images.unsplash.com/photo-1580193330559-002f2369666c?q=80&w=400", slogan: "ಐತಿಹಾಸಿಕ ಹಂಪಿಯ ವೈಭವ.", sub: "The glory of historical Hampi." },
-  { id: 203, img: "https://images.unsplash.com/photo-1623157292723-88846c439f04?q=80&w=400", slogan: "ಕಲೆ ಮತ್ತು ಸಂಸ್ಕೃತಿಯ ತವರು.", sub: "The cradle of art and culture." },
-];
-
-const COLUMN_3_DATA = [
-  { id: 301, img: "https://images.unsplash.com/photo-1506461883276-594a12b11cf3?q=80&w=400", slogan: "ಗ್ರಾಮೀಣ ಬದುಕಿನ ಸರಳತೆ.", sub: "Simplicity of rural life." },
-  { id: 302, img: "https://images.unsplash.com/photo-1616422301389-702302e75e96?q=80&w=400", slogan: "ಕರಾವಳಿಯ ಕಡಲ ತೀರದ ಸೊಬಗು.", sub: "The majestic charm of the coast." },
-  { id: 303, img: "https://images.unsplash.com/photo-1567101455243-7f7223699c85?q=80&w=400", slogan: "ಬಯಲು ಸೀಮೆಯ ಬದುಕು.", sub: "Life in the open plains." },
-];
 
 const seasonalData = [
   {
