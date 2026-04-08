@@ -6,6 +6,7 @@ import DistrictPage from './pages/DistrictPage'
 import About from './pages/About'
 // ✅ Import your new AboutUs component here
 import AboutUs from './pages/Aboutus' 
+import Calendar from './pages/Calendar'
 
 function App() {
   const [darkMode, setDarkMode] = useState(true)
@@ -18,7 +19,8 @@ function App() {
           <Route path="/explore" element={<ExplorePage darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/district/:id" element={<DistrictPage darkMode={darkMode} setDarkMode={setDarkMode} />} />
           <Route path="/about" element={<About />} />
-          
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/" element={<LandingPage />} />
           {/* ✅ Add the route for /aboutus here */}
           <Route path="/aboutus" element={<AboutUs />} />
           

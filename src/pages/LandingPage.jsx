@@ -160,7 +160,7 @@ export default function LandingPage() {
             transition={{ duration: 1, delay: 0.8 }}
             className="mt-6 text-base md:text-lg text-white/70 font-body max-w-md"
           >
-            Ancient temples, misty peaks, golden sands, and the warmth of Karnataka's villages — all in one journey.
+            Ancient temples, misty peaks, golden sands, and the warmth of Karnataka's villages all in one journey.
           </motion.p>
 
           <motion.div
@@ -175,8 +175,8 @@ export default function LandingPage() {
             >
               Start Exploring →
             </button>
-            <button className="px-8 py-3 border border-white/30 text-white rounded-full hover:border-earth-400 hover:text-earth-300 transition-all duration-300 font-body font-medium tracking-wide">
-              Watch Story
+            <button onClick={()=> navigate('/calendar')} className="px-8 py-3 border border-white/30 text-white rounded-full hover:border-earth-400 hover:text-earth-300 transition-all duration-300 font-body font-medium tracking-wide">
+              Watch Calendar
             </button>
           </motion.div>
 

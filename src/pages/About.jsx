@@ -44,17 +44,17 @@ export default function About() {
         <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
 
           <p>
-            Travel today is often reduced to checklists — famous cities, crowded landmarks, and curated experiences.
-            But beyond that lies a quieter, more authentic side of Karnataka — where life follows tradition, not trends.
+            Travel today is often reduced to checklists famous cities, crowded landmarks, and curated experiences.
+            But beyond that lies a quieter, more authentic side of Karnataka where life follows tradition, not trends.
           </p>
 
           <p>
-            In villages, festivals are not events put on for visitors — they are deeply rooted practices passed down through generations.
+            In villages, festivals are not events put on for visitorsthey are deeply rooted practices passed down through generations.
             From fire rituals to harvest dances, each celebration reflects the identity of the community that keeps it alive.
           </p>
 
           <p>
-            This platform maps those lived experiences — connecting temples, jatres, and seasonal festivals —
+            This platform maps those lived experiences connecting temples, jatres, and seasonal festivals
             so exploration becomes more meaningful, not just visual.
           </p>
 
@@ -81,12 +81,12 @@ export default function About() {
         <div className="space-y-6 text-gray-300 text-lg leading-relaxed">
 
           <p>
-            Exploring rural destinations is not just about discovering new places — it directly supports local livelihoods
+            Exploring rural destinations is not just about discovering new places it directly supports local livelihoods
             and helps preserve cultural practices that are slowly fading.
           </p>
 
           <p>
-            By connecting travel with timing — festivals, rituals, and seasonal events — this platform allows you
+            By connecting travel with timing festivals, rituals, and seasonal events this platform allows you
             to experience culture in its most authentic form.
           </p>
 
