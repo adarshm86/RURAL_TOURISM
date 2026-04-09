@@ -53,6 +53,7 @@ const seasonalData = [
     desc: 'Celebrate village harvest traditions, folk music, and farm-to-table food experiences.',
     image:
       'https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=1200&q=80',
+    link:"https://pikme.org/activity/attractions/pongal-celebration-tumkur?srsltid=AfmBOop02LoMkxlsD_Z3tEytyE5SObC7XBHmjJ46rRQr0TDSxumribf3"
   },
   {
     month: 'August',
@@ -61,6 +62,7 @@ const seasonalData = [
     desc: 'Walk through misty forest villages, waterfalls, and traditional homestays in the Western Ghats.',
     image:
       'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80',
+    link:"https://www.travelmalnad.com/Blog/monsoon-in-malnad-region-and-things-to-do-during-this-season"
   },
   {
     month: 'October',
@@ -69,6 +71,7 @@ const seasonalData = [
     desc: 'Explore coastal shrines, craft markets, and local seafood festivals across rural shores.',
     image:
       'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80',
+    link:'https://5sensestours.com/between-the-arabian-sea-and-the-western-ghats-a-journey-through-karnatakas-sacred-landscapes/'
   },
 ]
 
@@ -118,6 +121,8 @@ export default function LandingPage() {
   const videoRef = useRef(null)
   const [scrollY, setScrollY] = useState(0)
   const [activeGalleryItem, setActiveGalleryItem] = useState(COLUMN_1_DATA[0])
+
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY)
@@ -297,10 +302,11 @@ export default function LandingPage() {
         </motion.div>
       </div>
 
+      
       {/* ── Teaser strip ── */}
-      <div className="h-[50vh] bg-gradient-to-b from-black to-deepgreen flex items-center justify-center">
+      <div className="h-[50vh] bg-black flex items-center justify-center">
         <motion.p
-          className="text-center text-white/50 font-display italic text-2xl max-w-lg px-4"
+          className="text-center font-display text-earth-300 italic text-2xl max-w-lg px-4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -310,7 +316,7 @@ export default function LandingPage() {
         </motion.p>
       </div>
 
-      <section className="bg-[#062c1d] pb-24 px-6">
+      {/* <section className="bg-black pb-24 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -360,7 +366,7 @@ export default function LandingPage() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
         {/* ── Moving Photo Cards Gallery (WITH UNIQUE IMAGES) ── */}
       <section className="relative h-[120vh] bg-black flex overflow-hidden border-y border-white/5">
@@ -407,7 +413,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── Seasonal Highlights Section ── */}
-      <section className="bg-[#062c1d] py-24 px-6">
+      <section className="bg-black py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-earth-300 font-kannada text-3xl mb-4">ಋತುಮಾನದ ಸಡಗರ</h2>
@@ -426,11 +432,11 @@ export default function LandingPage() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                 </div>
                 <div className="p-6">
-                  <span className="text-earth-500 text-xs font-bold tracking-[0.2em] uppercase">{item.month}</span>
+                  
                   <h4 className="text-2xl font-display font-bold text-white mt-1">{item.event}</h4>
                   <p className="font-kannada text-earth-300/80 text-sm mt-3 mb-4">{item.slogan}</p>
                   <p className="text-white/50 text-sm italic">"{item.desc}"</p>
-                  <button onClick={() => navigate('/calendar')} className="mt-6 text-earth-300 text-xs font-bold flex items-center gap-2 uppercase tracking-widest">Learn More →</button>
+                  <button onClick={() =>  window.open(item.link, '_blank', 'noopener,noreferrer')} className="mt-6 text-earth-300 text-xs font-bold flex items-center gap-2 uppercase tracking-widest">Learn More →</button>
                 </div>
               </motion.div>
             ))}
@@ -438,6 +444,77 @@ export default function LandingPage() {
         </div>
       </section>
       
+      <footer className="bg-black border-t border-white/10 pt-16 pb-8 px-6 font-body">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+          
+          {/* Brand Section */}
+          <div className="md:col-span-1">
+            <div className="text-white text-2xl font-display font-semibold mb-4">
+              <span className="font-kannada">ಕರ್ನಾಟಕ</span>{' '}
+              <span className="font-light text-earth-300">Rural</span>
+            </div>
+            <p className="text-white/50 text-sm leading-relaxed italic">
+              "Every village in Karnataka holds a story waiting to be discovered."
+            </p>
+          </div>
+
+          {/* Quick Links
+          <div>
+            <h4 className="text-earth-300 uppercase tracking-widest text-xs font-bold mb-6">Explore</h4>
+            <ul className="space-y-4 text-sm text-white/60">
+              <li><a href="/explore" className="hover:text-white transition">Hidden Temples</a></li>
+              <li><a href="/calendar" className="hover:text-white transition">Village Festivals</a></li>
+              <li><a href="/about" className="hover:text-white transition">Our Mission</a></li>
+            </ul>
+          </div> */}
+
+          {/* Seasonal Highlights (Reference to your data)
+          <div>
+            <h4 className="text-earth-300 uppercase tracking-widest text-xs font-bold mb-6">Seasonal</h4>
+            <ul className="space-y-4 text-sm text-white/60">
+              <li><span className="block text-[10px] text-earth-500 uppercase">January</span> Kichchu Hayisuvudu</li>
+              <li><span className="block text-[10px] text-earth-500 uppercase">May</span> Kodava Hockey</li>
+              <li><span className="block text-[10px] text-earth-500 uppercase">November</span> Hampi Utsav</li>
+            </ul>
+          </div> */}
+
+          {/* Newsletter / Contact */}
+          <div>
+            <h4 className="text-earth-300 uppercase tracking-widest text-xs font-bold mb-6">Connect</h4>
+            <div className="flex flex-col gap-4">
+              <p className="text-xs text-white/50">Subscribe for monthly rural travel guides.</p>
+              <div className="flex border-b border-white/20 pb-2">
+                <input 
+                  type="email" 
+                  placeholder="Email Address" 
+                  className="bg-transparent border-none text-sm text-white focus:outline-none w-full"
+                />
+                <button className="text-earth-300 hover:text-white transition">→</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="text-[10px] text-white/30 uppercase tracking-[0.2em]">
+            © {currentYear} Karnataka Rural Tourism. All Rights Reserved.
+          </div>
+          <div className="hidden md:block w-[1px] h-3 bg-white/10"></div>
+    <div className="text-[10px] text-earth-300/60 uppercase tracking-[0.2em]">
+      Built by <span className="text-earth-300 font-bold">Team BrainRot</span>
     </div>
+          <div className="flex gap-6">
+            <motion.a whileHover={{ y: -2 }} href="#" className="text-white/40 hover:text-white transition">Instagram</motion.a>
+            <motion.a whileHover={{ y: -2 }} href="#" className="text-white/40 hover:text-white transition">Twitter</motion.a>
+            <motion.a whileHover={{ y: -2 }} href="#" className="text-white/40 hover:text-white transition">Facebook</motion.a>
+          </div>
+        </div>
+      </div>
+    </footer>
+    </div>
+
+    
   )
 }

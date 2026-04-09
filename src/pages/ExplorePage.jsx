@@ -118,8 +118,26 @@ export default function ExplorePage() {
   }
 
   return (
-    <div className="h-screen w-full bg-[#080f08] text-white flex flex-col lg:flex-row overflow-hidden pt-[72px]">
+    <div className="h-screen bg-[#080f08] text-white flex flex-col overflow-hidden">
+     
+ 
+      <nav className="w-full py-4 px-6 border-b border-white/10 flex justify-between items-center bg-black z-20">
+              <motion.button
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                onClick={() => navigate('/')} // Navigates back to landing page
+                className="group flex items-center gap-2 px-5 py-2 border border-white/20 rounded-full text-stone-300 hover:border-[#e4c590] hover:text-[#e4c590] transition-all duration-300 backdrop-blur-sm"
+              >
+                <span className="group-hover:-translate-x-1 transition-transform duration-300">←</span>
+                <span className="text-sm font-medium tracking-wide">Back to Home</span>
+              </motion.button>
       
+              {/* Optional: Add your Logo/Title in the center or right */}
+              <div className="hidden md:block text-[#e4c590] font-serif text-lg tracking-widest uppercase opacity-80">
+                ಕರ್ನಾಟಕ Rural
+              </div>
+            </nav>
+      <main className="flex flex-1 overflow-hidden">
       {/* MAP AREA */}
       <div className="h-[45vh] lg:h-full w-full lg:w-[60%] relative z-0">
         <MapContainer center={[14.5, 75.5]} zoom={7} style={{ height: '100%', width: '100%' }} zoomControl={false}>
@@ -254,6 +272,7 @@ export default function ExplorePage() {
           </AnimatePresence>
         </div>
       </div>
+      </main>
     </div>
   )
 }
