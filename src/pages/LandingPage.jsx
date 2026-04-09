@@ -40,27 +40,27 @@ const seasonalData = [
     slogan: 'ಸೂರ್ಯನ ಬೆಳಕಲ್ಲಿ ಹಬ್ಬದ ಹೆಜ್ಜೆ',
     desc: 'Celebrate village harvest traditions, folk music, and farm-to-table food experiences.',
     image:
-      'https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=1200&q=80',
+      'https://images.slurrp.com/prodarticles/42s8x7ye2gx.webp',
     link:"https://pikme.org/activity/attractions/pongal-celebration-tumkur?srsltid=AfmBOop02LoMkxlsD_Z3tEytyE5SObC7XBHmjJ46rRQr0TDSxumribf3"
   },
+  {
+  month: 'December',
+  event: 'Spirit of the Coast',
+  slogan: 'ದೈವದ ಆಶೀರ್ವಾದ, ತುಳುನಾಡಿನ ಹೆಮ್ಮೆ',
+  desc: 'Witness the mystical Bhoota Kola—a sacred midnight ritual where ancient spirits come alive through dance and fire.',
+  image: 'https://miro.medium.com/v2/resize:fit:1200/1*_j7l2T6RDWMv9vNYXd2tgQ@2x.jpeg', // Suggest using a high-energy photo of a Kola performer
+  link: 'https://www.storiesbysoumya.com/coastal-karnataka-culture-guide/'
+},
   {
     month: 'August',
     event: 'Monsoon Malnad Escapes',
     slogan: 'ಮಳೆಯ ಮಂಜಿನಲ್ಲಿ ಹಸಿರಿನ ಹಾದಿ',
     desc: 'Walk through misty forest villages, waterfalls, and traditional homestays in the Western Ghats.',
     image:
-      'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80',
+      'https://www.travelmalnad.com/storage/blog_fi/01KM0KV697FEZSNVZWF18F5348.png',
     link:"https://www.travelmalnad.com/Blog/monsoon-in-malnad-region-and-things-to-do-during-this-season"
   },
-  {
-    month: 'October',
-    event: 'Coastal Temple Routes',
-    slogan: 'ಸಮುದ್ರದ ತೀರದಲ್ಲಿ ಸಂಸ್ಕೃತಿಯ ಸ್ಪರ್ಶ',
-    desc: 'Explore coastal shrines, craft markets, and local seafood festivals across rural shores.',
-    image:
-      'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1200&q=80',
-    link:'https://5sensestours.com/between-the-arabian-sea-and-the-western-ghats-a-journey-through-karnatakas-sacred-landscapes/'
-  },
+  
 ]
 
 function FallingLeaf({ left, delay, duration, emoji }) {
@@ -96,7 +96,7 @@ const ScrollingColumn = ({ images, reverse, onHover }) => (
           className="relative aspect-[3/4] w-full rounded-xl overflow-hidden cursor-pointer border border-white/10 group"
           whileHover={{ scale: 1.02, borderColor: "rgba(196, 160, 114, 0.5)", zIndex: 10 }}
         >
-          <img src={item.img} alt="Rural Karnataka" className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" />
+          <img src={item.img} alt="Rural Karnataka" className="w-full h-full object-cover  transition-all duration-700" />
           <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors" />
         </motion.div>
       ))}
@@ -416,7 +416,7 @@ export default function LandingPage() {
                 className="group relative rounded-2xl overflow-hidden bg-black/40 border border-white/10 shadow-2xl"
               >
                 <div className="h-72 overflow-hidden relative">
-                  <img src={item.image} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale group-hover:grayscale-0 opacity-60 group-hover:opacity-100" alt={item.event} />
+                  <img src={item.image} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-100" alt={item.event} />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                 </div>
                 <div className="p-6">
