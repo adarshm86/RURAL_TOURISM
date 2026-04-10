@@ -80,12 +80,30 @@ const HorizontalScrollRow = ({ images, reverse, speed }) => (
 export default function ExplorePage() {
   const navigate = useNavigate()
   
-  // STATE FOR INTRO OVERLAY
-  const [showIntro, setShowIntro] = useState(true)
+  // ====================================================
+  // ✅ FIX: Check Session Storage to see if they already watched the intro
+  // ====================================================
+  const [showIntro, setShowIntro] = useState(() => {
+    return sessionStorage.getItem('hasSeenExploreIntro') !== 'true';
+  })
   
+  const [showButton, setShowButton] = useState(false)
   const [selectedPlace, setSelectedPlace] = useState(null)
   const [filter, setFilter] = useState("all")
   const [userLocation, setUserLocation] = useState(null)
+
+  // This function hides the intro AND saves the memory to the browser
+  const handleCloseIntro = () => {
+    setShowIntro(false)
+    sessionStorage.setItem('hasSeenExploreIntro', 'true')
+  }
+
+  useEffect(() => {
+    if (showIntro) {
+      const timer = setTimeout(() => setShowButton(true), 3500)
+      return () => clearTimeout(timer)
+    }
+  }, [showIntro])
 
   useEffect(() => {
     if ("geolocation" in navigator) {
@@ -198,8 +216,9 @@ export default function ExplorePage() {
                 transition={{ duration: 1, delay: 3 }}
                 className="mt-12"
               >
+                {/* ✅ FIX: handleCloseIntro replaces setShowIntro(false) */}
                 <button
-                  onClick={() => setShowIntro(false)}
+                  onClick={handleCloseIntro}
                   className="px-10 py-4 border border-[#e4c590]/50 text-[#e4c590] rounded-full font-bold uppercase tracking-widest text-sm hover:bg-[#e4c590] hover:text-black transition-all duration-500 shadow-[0_0_20px_rgba(228,197,144,0.1)] hover:shadow-[0_0_30px_rgba(228,197,144,0.4)]"
                 >
                   Click to Explore

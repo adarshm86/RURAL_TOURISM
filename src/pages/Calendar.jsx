@@ -103,84 +103,117 @@ const calendarData = [
 
 const Calendar = () => {
   const navigate = useNavigate();
-  return (
-    <div className="min-h-screen bg-[#0d150d] text-stone-100 font-sans pb-20">
-      {/* Background Subtle Overlay */}
-      <div className="fixed inset-0 bg-[url('https://www.transparenttextures.com/patterns/dark-matter.png')] opacity-30 pointer-events-none"></div>
 
-        <nav className="relative z-20 flex justify-between items-center py-6 px-8 max-w-7xl mx-auto">
+  return (
+    <div className="min-h-screen bg-[#080f08] text-white font-sans overflow-x-hidden selection:bg-[#e4c590] selection:text-black">
+      
+      {/* NAVBAR */}
+      <nav className="fixed top-0 w-full z-50 flex justify-between items-center py-4 px-6 md:px-12 bg-black/60 backdrop-blur-md border-b border-white/5">
         <motion.button
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
-          onClick={() => navigate('/')} // Navigates back to landing page
-          className="group flex items-center gap-2 px-5 py-2 border border-white/20 rounded-full text-stone-300 hover:border-[#e4c590] hover:text-[#e4c590] transition-all duration-300 backdrop-blur-sm"
+          onClick={() => navigate('/')}
+          className="group flex items-center gap-2 px-5 py-2 border border-white/20 rounded-full text-stone-300 hover:border-[#e4c590] hover:text-[#e4c590] transition-all duration-300"
         >
           <span className="group-hover:-translate-x-1 transition-transform duration-300">←</span>
           <span className="text-sm font-medium tracking-wide">Back to Home</span>
         </motion.button>
-
-        {/* Optional: Add your Logo/Title in the center or right */}
         <div className="hidden md:block text-[#e4c590] font-serif text-lg tracking-widest uppercase opacity-80">
           ಕರ್ನಾಟಕ Rural
         </div>
       </nav>
 
-      <header className="relative pt-16 pb-12 text-center">
+      {/* HERO HEADER */}
+      <header className="relative pt-32 pb-20 text-center flex flex-col items-center">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#e4c590]/5 rounded-full blur-[100px] pointer-events-none" />
+        
         <motion.h1 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-5xl md:text-7xl font-serif text-[#e4c590] mb-4"
+          transition={{ duration: 0.8 }}
+          className="text-5xl md:text-7xl lg:text-8xl font-display font-bold text-[#e4c590] mb-4"
         >
-          Rural Chronicles
+          The Almanac
         </motion.h1>
-        <p className="text-stone-400 tracking-widest uppercase text-sm">A Seasonal Journey Through Karnataka</p>
+        <motion.p 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.3 }}
+          className="text-white/50 tracking-[0.3em] uppercase text-sm font-medium"
+        >
+          A Seasonal Journey Through Karnataka
+        </motion.p>
       </header>
 
-      <main className="relative z-10 max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {calendarData.map((item, index) => (
-            <motion.div
-              key={item.month}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              className="group relative overflow-hidden rounded-2xl bg-stone-900/50 border border-white/10 hover:border-[#e4c590]/50 transition-all duration-500"
-            >
-              {/* Image Container */}
-              <div className="h-64 overflow-hidden relative">
-                <img 
-                  src={item.image} 
-                  alt={item.event}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 grayscale-[30%] group-hover:grayscale-0"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-900 via-transparent to-transparent"></div>
-                
-                <div className="absolute top-4 left-4 bg-[#e4c590] text-stone-900 px-4 py-1 rounded-full text-sm font-bold shadow-xl">
-                  {item.month}
-                </div>
-              </div>
+      {/* THE VERTICAL TIMELINE */}
+      <main className="relative z-10 max-w-6xl mx-auto px-6 pb-32">
+        
+        {/* The Central Glowing Line */}
+        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/20 to-transparent -translate-x-1/2" />
 
-              {/* Content */}
-              <div className="p-6">
-                <h2 className="text-2xl font-serif text-[#e4c590] mb-1">{item.event}</h2>
-                <div className="flex items-center text-xs text-stone-400 mb-3 uppercase tracking-tighter">
-                  <svg className="w-4 h-4 mr-1 text-[#e4c590]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-                  {item.location}
-                </div>
-                <p className="text-stone-300 text-sm leading-relaxed mb-4 line-clamp-3 italic">
-                  "{item.description}"
-                </p>
+        <div className="space-y-24 md:space-y-32">
+          {calendarData.map((item, index) => {
+            const isEven = index % 2 === 0;
+            
+            return (
+              <div key={item.month} className={`relative flex flex-col md:flex-row items-center justify-between ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
                 
-                <div className="border-t border-white/5 pt-4 flex justify-between items-center">
-                  <span className="text-[10px] uppercase tracking-widest text-stone-500">Best Time to Visit</span>
-                  <span className="text-sm font-medium text-[#e4c590]">{item.best_time}</span>
-                </div>
+                {/* The Timeline Dot */}
+                <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-[#080f08] border-2 border-[#e4c590] -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(228,197,144,0.6)]" />
+
+                {/* Left/Right Invisible Spacer for alignment */}
+                <div className="hidden md:block w-5/12" />
+
+                {/* THE CARD CONTENT */}
+                <motion.div
+                  initial={{ opacity: 0, x: isEven ? -50 : 50, y: 20 }}
+                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+                  className={`w-full md:w-5/12 pl-12 md:pl-0 ${isEven ? 'md:pr-12 text-left md:text-right' : 'md:pl-12 text-left'}`}
+                >
+                  {/* The Cinematic Image */}
+                  <div className="group relative w-full aspect-video rounded-2xl overflow-hidden mb-6 border border-white/10 shadow-2xl">
+                    <img 
+                      src={item.image} 
+                      alt={item.event}
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
+                    
+                    {/* The Month Badge Floating on Image */}
+                    <div className={`absolute bottom-4 ${isEven ? 'right-4 md:left-4 md:right-auto' : 'right-4'} bg-[#e4c590] text-black px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-xl backdrop-blur-md`}>
+                      {item.month}
+                    </div>
+                  </div>
+
+                  {/* The Text Data */}
+                  <div className="space-y-3">
+                    <div className={`flex items-center gap-2 text-xs text-[#e4c590] uppercase tracking-widest font-bold ${isEven ? 'justify-start md:justify-end' : 'justify-start'}`}>
+                      <span className="w-8 h-[1px] bg-[#e4c590]/50" />
+                      {item.location}
+                    </div>
+                    
+                    <h2 className="text-3xl md:text-4xl font-display font-bold text-white drop-shadow-md">
+                      {item.event}
+                    </h2>
+                    
+                    <p className="text-white/60 text-base leading-relaxed font-body italic">
+                      "{item.description}"
+                    </p>
+                    
+                    <div className="inline-block border border-white/10 bg-white/5 px-4 py-2 rounded-lg text-xs tracking-widest text-white/50 mt-2">
+                      BEST TIME: <span className="text-white font-semibold ml-1">{item.best_time}</span>
+                    </div>
+                  </div>
+
+                </motion.div>
               </div>
-            </motion.div>
-          ))}
+            )
+          })}
         </div>
       </main>
+
     </div>
   );
 };
