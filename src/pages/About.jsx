@@ -1,11 +1,34 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 
 export default function About() {
   const navigate = useNavigate()
 
-  // Animation variants for smooth staggered reveals
+  // ==========================================
+  // CAROUSEL DATA & LOGIC
+  // ==========================================
+  const carouselImages = [
+    "https://images.pexels.com/photos/20281434/pexels-photo-20281434.jpeg", // Fiery festival
+    "https://images.pexels.com/photos/36492503/pexels-photo-36492503.jpeg", // Art
+    "https://images.pexels.com/photos/3838895/pexels-photo-3838895.jpeg", // Temple
+    "https://images.pexels.com/photos/34738142/pexels-photo-34738142.jpeg", // Rural portrait
+    "https://images.pexels.com/photos/12757989/pexels-photo-12757989.jpeg" // Kambala
+  ]
+
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  // Auto-rotate the images every 3 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveIndex((prevIndex) => (prevIndex + 1) % carouselImages.length)
+    }, 2000)
+    return () => clearInterval(timer)
+  }, [carouselImages.length])
+
+  // ==========================================
+  // ANIMATION VARIANTS
+  // ==========================================
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -58,7 +81,6 @@ export default function About() {
 
       {/* HERO SECTION */}
       <section className="relative pt-40 pb-20 px-6 md:px-12 lg:px-24 flex flex-col items-center text-center">
-        {/* Background ambient glow */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#e4c590]/5 rounded-full blur-[120px] pointer-events-none" />
 
         <motion.p 
@@ -76,26 +98,54 @@ export default function About() {
         </motion.h1>
       </section>
 
-      {/* THE STORY SECTION (Magazine Style) */}
-      <section className="px-6 md:px-12 lg:px-24 py-16 max-w-6xl mx-auto relative z-10">
+      {/* THE STORY SECTION WITH 3D LAYERED CAROUSEL */}
+      <section className="px-6 md:px-12 lg:px-24 py-16 max-w-7xl mx-auto relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1 }}
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center"
         >
-          <div className="relative">
-            <div className="aspect-[4/5] rounded-3xl overflow-hidden border border-white/10 shadow-2xl relative">
-              <img 
-                src="https://images.pexels.com/photos/20281434/pexels-photo-20281434.jpeg" 
-                alt="Rural Karnataka Culture" 
-                className="w-full h-full object-cover  transition-all duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#080f08] via-transparent to-transparent opacity-80" />
-            </div>
-            {/* Decorative element */}
-            <div className="absolute -bottom-8 -right-8 w-48 h-48 border border-[#e4c590]/30 rounded-full -z-10 animate-[spin_20s_linear_infinite] border-dashed" />
+          
+          {/* THE AUTOMATED LAYERED IMAGES */}
+          <div className="relative w-full h-[400px] md:h-[500px] flex justify-center items-center perspective-1000">
+            {carouselImages.map((img, index) => {
+              // Math to figure out if the image is center (0), right (1), or left (-1)
+              let offset = index - activeIndex;
+              if (offset < -2) offset += carouselImages.length;
+              if (offset > 2) offset -= carouselImages.length;
+
+              // We only want to show the center one, and the two immediately next to it.
+              const isVisible = Math.abs(offset) <= 1;
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={false}
+                  animate={{
+                    // Position: Center, pushed right, or pushed left
+                    x: offset === 0 ? "0%" : offset === 1 ? "55%" : offset === -1 ? "-55%" : "0%",
+                    // Scale: Center is 100%, side layers are 80%
+                    scale: offset === 0 ? 1 : 0.8,
+                    // Opacity: Center is bright, sides are faded, others are hidden
+                    opacity: isVisible ? (offset === 0 ? 1 : 0.3) : 0,
+                    // Z-Index: Center is on top
+                    zIndex: isVisible ? (offset === 0 ? 30 : 10) : 0,
+                  }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  className="absolute w-[65%] md:w-[60%] aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border border-white/10"
+                >
+                  <img src={img} alt="Rural Karnataka" className="w-full h-full object-cover" />
+                  {/* Subtle dark gradient over images so they blend with the background */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#080f08] via-transparent to-transparent opacity-60" />
+                </motion.div>
+              );
+            })}
+            
+            {/* Spinning decorative element behind the carousel */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] h-[90%] border border-[#e4c590]/10 rounded-full -z-10 animate-[spin_30s_linear_infinite] border-dashed" />
           </div>
 
-          <div className="space-y-6">
+          {/* TEXT CONTENT */}
+          <div className="space-y-6 lg:pl-8">
             <h2 className="text-3xl md:text-4xl font-display font-bold text-white">The Heart Behind the Code</h2>
             <p className="text-lg text-white/70 leading-relaxed font-body">
               This project didn't start in a sterile tech hub; it started on the ground. Spending time out in the field—working in community camps, sitting with local artisans, and witnessing the sheer scale of our rural heritage—sparked a realization. 
@@ -111,7 +161,7 @@ export default function About() {
       </section>
 
       {/* MISSION CARDS SECTION */}
-      <section className="px-6 md:px-12 lg:px-24 py-24 bg-black/40 relative border-y border-white/5">
+      <section className="px-6 md:px-12 lg:px-24 py-24 bg-black/40 relative border-y border-white/5 mt-12">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-display font-bold text-white">Our Mission</h2>
@@ -132,7 +182,6 @@ export default function About() {
                 whileHover={{ y: -10, scale: 1.02 }}
                 className="group p-8 rounded-3xl bg-gradient-to-b from-white/5 to-transparent border border-white/10 hover:border-[#e4c590]/40 transition-all duration-500 backdrop-blur-sm relative overflow-hidden"
               >
-                {/* Hover Glow Effect */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-gradient-to-b from-[#e4c590]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
                 
                 <div className="text-5xl mb-6 drop-shadow-lg">{card.icon}</div>
