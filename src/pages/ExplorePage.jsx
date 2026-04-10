@@ -180,7 +180,9 @@ export default function ExplorePage() {
             <div className="absolute inset-0 flex flex-col gap-6 justify-center -rotate-6 scale-125 z-0 pointer-events-none blur-[4px]">
               <HorizontalScrollRow images={places.slice(0, 10)} reverse={false} speed={40} />
               <HorizontalScrollRow images={places.slice(10, 20)} reverse={true} speed={35} />
-              <HorizontalScrollRow images={places.slice(20, 30)} reverse={false} speed={45} />
+              
+              {/* 👇 Fix: Reusing the first 10 images so the row doesn't go blank! */}
+              <HorizontalScrollRow images={places.slice(0, 10)} reverse={false} speed={45} />
             </div>
 
             {/* Dark Gray Overlay to make text readable */}
