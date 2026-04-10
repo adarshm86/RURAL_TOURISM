@@ -171,10 +171,10 @@ export default function LandingPage() {
             </button>
 
             <button
-              onClick={() => navigate('/explore')}
+              onClick={() => navigate('/planner')}
               className="px-5 py-2 border border-white/60 rounded-full text-sm hover:bg-white hover:text-black transition-all duration-300 tracking-wider font-body"
             >
-              Get Started
+              SmartPlanner
             </button>
           </motion.div>
         </nav>
