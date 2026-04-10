@@ -560,10 +560,10 @@ import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const TRIP_REGIONS = [
-  { id: 'coastal', name: 'Coastal Trails', kannada: 'ಕರಾವಳಿ ತೀರ', bg: 'https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=1200&q=80' },
-  { id: 'malnad', name: 'Malnad Mist', kannada: 'ಮಲೆನಾಡಿನ ಮಂಜು', bg: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80' },
-  { id: 'north', name: 'Northern Ruins', kannada: 'ಉತ್ತರ ಕರ್ನಾಟಕ', bg: 'https://images.unsplash.com/photo-1625316708582-7c3873423ade?q=80&w=600' },
-  { id: 'central', name: 'Central Heritage', kannada: 'ಮಧ್ಯ ಕರ್ನಾಟಕ', bg: 'https://images.unsplash.com/photo-1600132806608-231446b2e7af?q=80&w=600' },
+  { id: 'coastal', name: 'Coastal Trails', kannada: 'ಕರಾವಳಿ ತೀರ', bg: 'https://media.assettype.com/outlooktraveller/2024-09-05/dvtgxds3/shutterstock_2459133885.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100' },
+  { id: 'malnad', name: 'Malnad Mist', kannada: 'ಮಲೆನಾಡಿನ ಮಂಜು', bg: 'https://travelmalnad.com/storage/tag_fi/01JJTZ400N5NJ2C7SSV3YNAE5S.webp' },
+  { id: 'north', name: 'Northern Ruins', kannada: 'ಉತ್ತರ ಕರ್ನಾಟಕ', bg: 'https://www.tataneu.com/pages/travel/_next/image?url=https%3A%2F%2Fd1msew97rp2nin.cloudfront.net%2Fprodin%2Ftntravel%2Fblogimages%2F857c018a-3c74-44db-8160-4c37513eed96.webp&w=3840&q=75' },
+  { id: 'central', name: 'Central Heritage', kannada: 'ಮಧ್ಯ ಕರ್ನಾಟಕ', bg: 'https://wanderon-images.gumlet.io/blogs/new/2024/08/places-to-visit-in-madya.jpg' },
 ];
 
 export default function SmartPlanner() {
@@ -620,33 +620,39 @@ export default function SmartPlanner() {
   return (
     <div className="min-h-screen bg-black text-white selection:bg-earth-500 overflow-x-hidden font-body">
       
+      <nav className="relative z-20 flex justify-between items-center py-6 px-8 max-w-7xl mx-auto">
+              <motion.button
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                onClick={() => navigate('/')} // Navigates back to landing page
+                className="group flex items-center gap-2 px-5 py-2 border border-white/20 rounded-full text-stone-300 hover:border-[#e4c590] hover:text-[#e4c590] transition-all duration-300 backdrop-blur-sm"
+              >
+                <span className="group-hover:-translate-x-1 transition-transform duration-300">←</span>
+                <span className="text-sm font-medium tracking-wide">Back to Home</span>
+              </motion.button>
+      
+              {/* Optional: Add your Logo/Title in the center or right */}
+              <div className="hidden md:block text-[#e4c590] font-serif text-lg tracking-widest uppercase opacity-80">
+                ಕರ್ನಾಟಕ Rural
+              </div>
+            </nav>
+
       {/* ── STEP 1: HERO ── */}
       <AnimatePresence>
-        {plannerStep === 'hero' && (
-          <motion.section 
-            key="hero" exit={{ opacity: 0, scale: 1.1 }}
-            className="h-screen flex flex-col items-center justify-center text-center relative px-6"
-          >
-            <motion.div 
-              className="absolute w-[400px] h-[400px] md:w-[600px] md:h-[600px] rounded-full border border-earth-300/10"
-              animate={{ rotate: 360, scale: [1, 1.05, 1] }}
-              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-            />
-            <div className="relative z-10">
-              <p className="font-kannada text-earth-300 text-3xl mb-6">ಸಿದ್ಧರಿದ್ದೀರಾ?</p>
-              <h1 className="text-7xl md:text-9xl font-display font-bold mb-8 uppercase tracking-tighter">
-                Explore <br/><span className="text-earth-300 italic">Rural</span>
-              </h1>
-              <button 
-                onClick={() => setPlannerStep('carousel')}
-                className="px-12 py-5 bg-earth-500 text-white font-bold rounded-full uppercase tracking-[0.3em] text-xs hover:bg-earth-400 transition-all shadow-2xl shadow-earth-500/20"
-              >
-                Let's Wander
-              </button>
-            </div>
-          </motion.section>
+         {plannerStep === 'hero' && (
+         <motion.section 
+           key="hero" exit={{ opacity: 0, y: -100 }}
+           className="h-screen flex flex-col items-center justify-center text-center relative px-6"
+           >
+             <motion.div className="absolute w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full border-4 border-earth-300/20" animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.05, 0.2] }} transition={{ duration: 4, repeat: Infinity }} />
+             <div className="relative z-10">
+               <p className="font-kannada text-earth-300 text-2xl mb-4">ನೀವು ಸಿದ್ಧರಿದ್ದೀರಾ?</p>
+               <h1 className="text-6xl md:text-8xl font-display font-bold mb-6">Start Your <span className="text-earth-300 italic">Journey</span></h1>
+               <button onClick={() => setPlannerStep('carousel')} className="px-12 py-5 bg-earth-500 text-white font-bold rounded-full uppercase tracking-widest text-sm shadow-lg">Let's Wander</button>
+             </div>
+           </motion.section>
         )}
-      </AnimatePresence>
+       </AnimatePresence>
 
       {/* ── STEP 2: DRIBBBLE-STYLE CIRCULAR SLIDER ── */}
       <AnimatePresence>
@@ -689,7 +695,7 @@ export default function SmartPlanner() {
                     >
                       <img 
                         src={region.bg} 
-                        className={`w-full h-full object-cover transition-all duration-1000 ${isSelected ? 'scale-110 grayscale-0' : 'grayscale group-hover:grayscale-0'}`} 
+                        className={`w-full h-full object-cover transition-all duration-1000 `} 
                         alt={region.name}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
