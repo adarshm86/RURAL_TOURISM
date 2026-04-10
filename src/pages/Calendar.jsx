@@ -73,7 +73,7 @@ const calendarData = [
     location: "Melukote",
     description: "Witness the mystical midnight ritual where the ancient diamond crown is unveiled amidst soulful chanting and torchlit temple squares.",
     best_time: "August Peak",
-    image:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSjVPArLhXTbUba2jMKMlOzWh-BuiNZkkGusw&s"
+    image:"https://www.tirthayatra.org/wp-content/uploads/2026/03/chelu.jpg"
   },
   {
     month: "September",
