@@ -19,19 +19,19 @@ const TRIP_REGIONS = [
     id: 'malnad', 
     name: 'Malnad Mist', 
     kannada: 'ಮಲೆನಾಡಿನ ಮಂಜು', 
-    bg: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80'
+    bg: 'https://images.pexels.com/photos/35659936/pexels-photo-35659936.jpeg'
   },
   { 
     id: 'north', 
     name: 'Northern Ruins', 
     kannada: 'ಉತ್ತರ ಕರ್ನಾಟಕ', 
-    bg: 'https://images.unsplash.com/photo-1625316708582-7c3873423ade?auto=format&fit=crop&w=1600&q=80'
+    bg: 'https://images.pexels.com/photos/28616626/pexels-photo-28616626.jpeg'
   },
   { 
     id: 'central', 
     name: 'Central Heritage', 
     kannada: 'ಮಧ್ಯ ಕರ್ನಾಟಕ', 
-    bg: 'https://images.unsplash.com/photo-1600132806608-231446b2e7af?auto=format&fit=crop&w=1600&q=80'
+    bg: 'https://images.pexels.com/photos/28808380/pexels-photo-28808380.jpeg'
   },
 ];
 
