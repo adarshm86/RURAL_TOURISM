@@ -20,24 +20,27 @@ const festivalIcon = new L.Icon({
   iconAnchor: [15, 30],
 })
 
+const artIcon = new L.Icon({
+  iconUrl: "https://cdn-icons-png.flaticon.com/512/2970/2970785.png", 
+  iconSize: [30, 30],
+  iconAnchor: [15, 30],
+})
+
 const userIcon = new L.Icon({
-  iconUrl: "https://cdn-icons-png.flaticon.com/512/727/727606.png", // A distinct blue dot or person icon
+  iconUrl: "https://cdn-icons-png.flaticon.com/512/727/727606.png", 
   iconSize: [30, 30],
   iconAnchor: [15, 30],
 })
 
 // ==========================================
 // MATH: HAVERSINE FORMULA FOR DISTANCE
-// Calculates distance (in km) between two coordinates
 // ==========================================
 function calculateDistance(lat1, lon1, lat2, lon2) {
   if (!lat1 || !lon1 || !lat2 || !lon2) return null;
-  const R = 6371; // Radius of the Earth in km
+  const R = 6371; 
   const dLat = (lat2 - lat1) * (Math.PI / 180);
   const dLon = (lon2 - lon1) * (Math.PI / 180);
-  const a = 
-    Math.sin(dLat/2) * Math.sin(dLat/2) +
-    Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.sin(dLon/2) * Math.sin(dLon/2); 
+  const a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.sin(dLon/2) * Math.sin(dLon/2); 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
   return Math.round(R * c);
 }
@@ -55,32 +58,45 @@ function MapController({ selectedPlace }) {
   return null
 }
 
+// ==========================================
+// HORIZONTAL SCROLLING ROW (Blurry Background)
+// ==========================================
+const HorizontalScrollRow = ({ images, reverse, speed }) => (
+  <div className="flex w-full overflow-hidden opacity-40">
+    <motion.div
+      className="flex gap-4 w-max"
+      animate={{ x: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }}
+      transition={{ repeat: Infinity, duration: speed, ease: "linear" }}
+    >
+      {[...images, ...images, ...images].map((img, idx) => (
+        <div key={idx} className="w-72 h-48 shrink-0 rounded-xl overflow-hidden border border-white/5 shadow-xl">
+          <img src={img.image} alt="bg" className="w-full h-full object-cover" />
+        </div>
+      ))}
+    </motion.div>
+  </div>
+);
+
 export default function ExplorePage() {
   const navigate = useNavigate()
+  
+  // STATE FOR INTRO OVERLAY
+  const [showIntro, setShowIntro] = useState(true)
+  
   const [selectedPlace, setSelectedPlace] = useState(null)
   const [filter, setFilter] = useState("all")
-  
-  // STATE FOR USER LOCATION
   const [userLocation, setUserLocation] = useState(null)
 
-  // ASK FOR USER LOCATION ON LOAD
   useEffect(() => {
     if ("geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
-          setUserLocation({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude
-          });
-        },
-        (error) => {
-          console.log("User denied location or error occurred:", error);
-        }
+        (position) => setUserLocation({ lat: position.coords.latitude, lng: position.coords.longitude }),
+        (error) => console.log("Location error:", error)
       );
     }
   }, []);
 
-  // DATA (Now with Images!)
+  // DATA (Temples, Festivals, and Arts)
   const places = [
     // TEMPLES
     { id: 1, name: "Madhukeshwara Temple", coords: [14.5416, 74.8673], type: "temple", description: "Ancient Kadamba-era rural temple", image: "https://touringwithpk.com/wp-content/uploads/2021/06/Nov18-341a.jpg" },
@@ -104,7 +120,19 @@ export default function ExplorePage() {
     { id: 17, name: "Somana Kunita", coords: [14.30, 75.80], type: "festival", description: "Night spirit dance ritual", best_time: "Winter", image: "https://kstdc.co/wp-content/uploads/2021/08/somana.jpg" },
     { id: 18, name: "Hulivesha", coords: [13.34, 74.75], type: "festival", description: "Tiger dance (Udupi)", best_time: "August", image: "https://www.drkrishi.co.in/wp-content/uploads/Fire-Breathing-Tiger.jpg" },
     { id: 19, name: "Karaga Rural", coords: [13.20, 77.50], type: "festival", description: "Sacred overnight procession", best_time: "April", image: "https://utsav.gov.in/public/uploads/event_cover_image/event_420/1657273768657075168.jpg" },
-    { id: 20, name: "Village Jatre", coords: [15.20, 76.30], type: "festival", description: "Traditional temple fairs", best_time: "Varies", image: "https://media.assettype.com/deccanherald%2F2024-11-30%2Fcnsi1ny1%2Ffile7ya360h86hw19k5epca7.jpg?w=undefined&auto=format%2Ccompress&fit=max" }
+    { id: 20, name: "Village Jatre", coords: [15.20, 76.30], type: "festival", description: "Traditional temple fairs", best_time: "Varies", image: "https://media.assettype.com/deccanherald%2F2024-11-30%2Fcnsi1ny1%2Ffile7ya360h86hw19k5epca7.jpg?w=undefined&auto=format%2Ccompress&fit=max" },
+
+    // ARTS & CRAFTS
+    { id: 21, name: "Channapatna Toys", coords: [12.6518, 77.2089], type: "art", description: "GI-tagged wooden toys coloured with natural vegetable dyes.", best_time: "Year-round", image: "https://upload.wikimedia.org/wikipedia/commons/1/15/Channapatna_toys.jpg" },
+    { id: 22, name: "Bidriware Metalcraft", coords: [17.9104, 77.5199], type: "art", description: "Striking silver inlay artwork on blackened zinc and copper alloy.", best_time: "Year-round", image: "https://upload.wikimedia.org/wikipedia/commons/c/c3/Bidri_ware_of_Bidar.jpg" },
+    { id: 23, name: "Kinhal Wood Carving", coords: [15.4572, 76.2359], type: "art", description: "Vibrant, lightweight wooden sculptures from the Vijayanagara era.", best_time: "Year-round", image: "https://live.staticflickr.com/5613/15448332999_3a6a12b2e8_b.jpg" },
+    { id: 24, name: "Sandur Lambani Embroidery", coords: [15.0945, 76.5492], type: "art", description: "Intricate mirror-work and tribal embroidery by the Banjara community.", best_time: "Year-round", image: "https://images.unsplash.com/photo-1605814561084-3860d5b12857?q=80&w=800" },
+    { id: 25, name: "Ilkal Sarees", coords: [15.9575, 76.1133], type: "art", description: "Traditional handloom weaving famous for its distinctive red 'Tope Teni' border.", best_time: "Year-round", image: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Ilkal_saree.jpg" },
+    { id: 26, name: "Chittara Murals", coords: [14.1751, 74.9643], type: "art", description: "Intricate wall paintings using rice paste and earth colors.", best_time: "Year-round", image: "https://images.unsplash.com/photo-1574513812739-930491cb88f2?q=80&w=800" },
+    { id: 27, name: "Kasuti Embroidery", coords: [15.4589, 75.0078], type: "art", description: "Dharwad folk embroidery featuring geometric motifs.", best_time: "Year-round", image: "https://upload.wikimedia.org/wikipedia/commons/9/91/Kasuti_embroidery.jpg" },
+    { id: 28, name: "Navalgund Durries", coords: [15.5562, 75.3496], type: "art", description: "Brightly colored, geometrically patterned woven floor rugs.", best_time: "Year-round", image: "https://images.unsplash.com/photo-1600166898405-da9535204843?q=80&w=800" },
+    { id: 29, name: "Sagara Sandalwood Carving", coords: [14.1670, 75.0298], type: "art", description: "Exquisite, highly detailed sandalwood carvings.", best_time: "Year-round", image: "https://images.unsplash.com/photo-1590483864016-5c58eeaa6042?q=80&w=800" },
+    { id: 30, name: "Nagamangala Metal Craft", coords: [12.8236, 76.7570], type: "art", description: "Ancient technique of bronze and brass casting.", best_time: "Year-round", image: "https://images.unsplash.com/photo-1550989047-b352b21edc72?q=80&w=800" }
   ]
 
   const filteredPlaces = places.filter((p) => filter === "all" || p.type === filter)
@@ -118,160 +146,223 @@ export default function ExplorePage() {
   }
 
   return (
-    <div className="h-screen bg-[#080f08] text-white flex flex-col overflow-hidden">
-     
- 
-      <nav className="w-full py-4 px-6 border-b border-white/10 flex justify-between items-center bg-black z-20">
-              <motion.button
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                onClick={() => navigate('/')} // Navigates back to landing page
-                className="group flex items-center gap-2 px-5 py-2 border border-white/20 rounded-full text-stone-300 hover:border-[#e4c590] hover:text-[#e4c590] transition-all duration-300 backdrop-blur-sm"
-              >
-                <span className="group-hover:-translate-x-1 transition-transform duration-300">←</span>
-                <span className="text-sm font-medium tracking-wide">Back to Home</span>
-              </motion.button>
+    <div className="h-screen bg-[#080f08] text-white flex flex-col overflow-hidden relative">
       
-              {/* Optional: Add your Logo/Title in the center or right */}
-              <div className="hidden md:block text-[#e4c590] font-serif text-lg tracking-widest uppercase opacity-80">
-                ಕರ್ನಾಟಕ Rural
-              </div>
-            </nav>
-      <main className="flex flex-1 overflow-hidden">
-      {/* MAP AREA */}
-      <div className="h-[45vh] lg:h-full w-full lg:w-[60%] relative z-0">
-        <MapContainer center={[14.5, 75.5]} zoom={7} style={{ height: '100%', width: '100%' }} zoomControl={false}>
-          <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
-          
-          <MapController selectedPlace={selectedPlace} />
+      {/* ==========================================
+          CINEMATIC TITLE INTRO SEQUENCE
+          ========================================== */}
+      <AnimatePresence>
+        {showIntro && (
+          <motion.div 
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, filter: "blur(10px)", transition: { duration: 0.8 } }}
+            className="absolute inset-0 z-50 flex flex-col items-center justify-center overflow-hidden bg-black"
+          >
+            {/* Blurry Moving Background */}
+            <div className="absolute inset-0 flex flex-col gap-6 justify-center -rotate-6 scale-125 z-0 pointer-events-none blur-[4px]">
+              <HorizontalScrollRow images={places.slice(0, 10)} reverse={false} speed={40} />
+              <HorizontalScrollRow images={places.slice(10, 20)} reverse={true} speed={35} />
+              <HorizontalScrollRow images={places.slice(20, 30)} reverse={false} speed={45} />
+            </div>
 
-          {/* Place Markers */}
-          {filteredPlaces.map((place) => (
-            <Marker key={place.id} position={place.coords} icon={place.type === "temple" ? templeIcon : festivalIcon} eventHandlers={{ click: () => handleSelectPlace(place) }} />
-          ))}
+            {/* Dark Gray Overlay to make text readable */}
+            <div className="absolute inset-0 bg-[#080f08]/70 z-10" />
 
-          {/* User Location Marker */}
-          {userLocation && (
-            <Marker position={[userLocation.lat, userLocation.lng]} icon={userIcon}>
-              <Popup>You are here!</Popup>
-            </Marker>
-          )}
-        </MapContainer>
-        <div className="absolute top-0 bottom-0 right-0 w-12 bg-gradient-to-l from-[#080f08] to-transparent pointer-events-none hidden lg:block z-[400]" />
-      </div>
-
-      {/* SIDEBAR AREA */}
-      <div className="h-[55vh] lg:h-full w-full lg:w-[40%] flex flex-col bg-[#080f08] z-10 border-l border-white/5">
-        
-        <div className="p-6 pb-4 border-b border-white/10 shrink-0">
-          <h1 className="text-3xl font-display font-bold text-earth-300">Explore</h1>
-          <p className="text-white/50 text-sm mt-1 mb-5">
-            Discover {filteredPlaces.length} hidden temples & village festivals
-          </p>
-
-          <div className="flex gap-2 overflow-x-auto pb-2 custom-scrollbar">
-            {['all', 'temple', 'festival'].map((type) => (
-              <button
-                key={type}
-                onClick={() => { setFilter(type); setSelectedPlace(null); }}
-                className={`px-5 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap ${
-                  filter === type 
-                    ? type === 'festival' ? 'bg-orange-500 text-white' : 'bg-green-600 text-white'
-                    : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white'
-                }`}
-              >
-                {type === 'all' ? 'All Places' : type === 'temple' ? '🛕 Temples' : '🎉 Festivals'}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="flex-1 overflow-y-auto p-6 space-y-4 pb-24 scroll-smooth">
-          <AnimatePresence>
-            {filteredPlaces.map((place) => {
-              const isSelected = selectedPlace?.id === place.id;
+            {/* Content: Appears little by little */}
+            <div className="relative z-20 flex flex-col items-center text-center">
               
-              // CALCULATE DISTANCE IF USER GRANTED LOCATION
-              let distanceText = "";
-              if (userLocation) {
-                const dist = calculateDistance(userLocation.lat, userLocation.lng, place.coords[0], place.coords[1]);
-                if (dist !== null) distanceText = `${dist} km away`;
-              }
+              {/* Title: Fades in after 0.5s */}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 2, delay: 0.5, ease: "easeOut" }}
+                className="text-7xl md:text-9xl font-display font-bold text-[#e4c590] drop-shadow-2xl"
+              >
+                ಕರ್ನಾಟಕ
+              </motion.h1>
 
-              return (
-                <motion.div
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.95 }}
-                  key={place.id}
-                  id={`place-card-${place.id}`}
-                  onClick={() => handleSelectPlace(place)}
-                  className={`relative p-4 rounded-2xl cursor-pointer transition-all duration-300 border backdrop-blur-md overflow-hidden ${
-                    isSelected
-                      ? 'border-green-500/50 bg-green-900/20 shadow-[0_8px_32px_rgba(34,197,94,0.15)] scale-[1.02]'
-                      : 'border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20'
-                  }`}
+              {/* Subtitle: Fades in after 1.5s */}
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 2, delay: 1.5, ease: "easeOut" }}
+                className="text-white/80 text-xl md:text-2xl mt-6 font-medium tracking-[0.3em] uppercase"
+              >
+                Rural Karnataka
+              </motion.p>
+
+              {/* Button: Fades in after 3s */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, delay: 3 }}
+                className="mt-12"
+              >
+                <button
+                  onClick={() => setShowIntro(false)}
+                  className="px-10 py-4 border border-[#e4c590]/50 text-[#e4c590] rounded-full font-bold uppercase tracking-widest text-sm hover:bg-[#e4c590] hover:text-black transition-all duration-500 shadow-[0_0_20px_rgba(228,197,144,0.1)] hover:shadow-[0_0_30px_rgba(228,197,144,0.4)]"
                 >
-                  <div className="flex gap-4">
-                    {/* THUMBNAIL IMAGE */}
-                    <div className="w-24 h-24 shrink-0 overflow-hidden rounded-xl border border-white/10">
-                      <img src={place.image} alt={place.name} className="w-full h-full object-cover" />
-                    </div>
+                  Click to Explore
+                </button>
+              </motion.div>
 
-                    {/* TEXT CONTENT */}
-                    <div className="flex-1 min-w-0 py-1">
-                      <span className="text-[10px] font-bold uppercase tracking-widest text-white/40 block mb-1">
-                        {place.type}
-                      </span>
-                      
-                      <h3 className={`text-lg font-bold truncate transition-colors ${isSelected ? 'text-green-400' : 'text-white'}`}>
-                        {place.name}
-                      </h3>
-                      
-                      <p className="text-white/60 text-sm line-clamp-2 mt-1">
-                        {place.description}
-                      </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-                      <div className="flex items-center gap-3 mt-2 text-xs font-medium">
-                        {distanceText && (
-                          <span className="text-blue-300 flex items-center gap-1">
-                            📍 {distanceText}
-                          </span>
-                        )}
-                        {place.best_time && (
-                          <span className="text-orange-400/80">
-                            🗓️ {place.best_time}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
+      {/* ==========================================
+          THE ACTUAL MAP & SIDEBAR UI
+          ========================================== */}
+      {/* NAVBAR */}
+      <nav className="w-full py-4 px-6 border-b border-white/10 flex justify-between items-center bg-black z-20">
+        <motion.button
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          onClick={() => navigate('/')} 
+          className="group flex items-center gap-2 px-5 py-2 border border-white/20 rounded-full text-stone-300 hover:border-[#e4c590] hover:text-[#e4c590] transition-all duration-300 backdrop-blur-sm"
+        >
+          <span className="group-hover:-translate-x-1 transition-transform duration-300">←</span>
+          <span className="text-sm font-medium tracking-wide">Back to Home</span>
+        </motion.button>
+        
+        <div className="hidden md:block text-[#e4c590] font-serif text-lg tracking-widest uppercase opacity-80">
+          ಕರ್ನಾಟಕ Rural
+        </div>
+      </nav>
 
-                  {/* EXPANDABLE BUTTON */}
-                  <AnimatePresence>
-                    {isSelected && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        className="pt-4 overflow-hidden"
-                      >
-                        <button
-                          onClick={(e) => { e.stopPropagation(); navigate(`/district/${place.id}`); }}
-                          className="w-full py-2.5 bg-green-600 hover:bg-green-500 text-white rounded-xl text-sm font-medium tracking-wide transition-colors flex items-center justify-center gap-2"
-                        >
-                          Explore Full Details <span>→</span>
-                        </button>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </motion.div>
+      {/* MAIN CONTENT */}
+      <main className="flex flex-1 overflow-hidden">
+        
+        {/* MAP AREA */}
+        <div className="h-[45vh] lg:h-full w-full lg:w-[60%] relative z-0">
+          <MapContainer center={[14.5, 75.5]} zoom={7} style={{ height: '100%', width: '100%' }} zoomControl={false}>
+            <TileLayer url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" />
+            
+            <MapController selectedPlace={selectedPlace} />
+
+            {/* Place Markers */}
+            {filteredPlaces.map((place) => {
+              let iconType = place.type === "temple" ? templeIcon : place.type === "festival" ? festivalIcon : artIcon;
+              return (
+                <Marker key={place.id} position={place.coords} icon={iconType} eventHandlers={{ click: () => handleSelectPlace(place) }} />
               )
             })}
-          </AnimatePresence>
+
+            {/* User Location Marker */}
+            {userLocation && (
+              <Marker position={[userLocation.lat, userLocation.lng]} icon={userIcon}>
+                <Popup>You are here!</Popup>
+              </Marker>
+            )}
+          </MapContainer>
+          
+          <div className="absolute top-0 bottom-0 right-0 w-12 bg-gradient-to-l from-[#080f08] to-transparent pointer-events-none hidden lg:block z-[400]" />
         </div>
-      </div>
+
+        {/* CLEAN MINIMALIST SIDEBAR AREA */}
+        <div className="h-[55vh] lg:h-full w-full lg:w-[40%] flex flex-col bg-[#080f08] z-10 border-l border-white/5 shadow-[-20px_0_50px_rgba(0,0,0,0.5)]">
+          
+          <div className="p-6 pb-4 border-b border-white/10 shrink-0 bg-gradient-to-b from-black/80 to-[#080f08] backdrop-blur-md">
+            <h1 className="text-3xl font-display font-bold text-earth-300 drop-shadow-md">Explore</h1>
+            <p className="text-white/50 text-sm mt-1 mb-5">
+              Discover {filteredPlaces.length} hidden temples, festivals & arts
+            </p>
+
+            <div className="flex gap-2 overflow-x-auto pb-2 custom-scrollbar">
+              {['all', 'temple', 'festival', 'art'].map((type) => (
+                <button
+                  key={type}
+                  onClick={() => { setFilter(type); setSelectedPlace(null); }}
+                  className={`px-5 py-2 rounded-full text-sm font-medium transition-all duration-300 whitespace-nowrap border border-transparent ${
+                    filter === type 
+                      ? type === 'festival' ? 'bg-orange-500 text-white' : type === 'art' ? 'bg-purple-500 text-white' : 'bg-green-600 text-white'
+                      : 'bg-white/5 text-white/60 hover:bg-white/10 hover:border-white/20 hover:text-white'
+                  }`}
+                >
+                  {type === 'all' ? 'All Places' : type === 'temple' ? '🛕 Temples' : type === 'festival' ? '🎉 Festivals' : '🎨 Arts & Crafts'}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="flex-1 overflow-y-auto p-6 space-y-4 pb-24 scroll-smooth">
+            <AnimatePresence>
+              {filteredPlaces.map((place) => {
+                const isSelected = selectedPlace?.id === place.id;
+                
+                let distanceText = "";
+                if (userLocation) {
+                  const dist = calculateDistance(userLocation.lat, userLocation.lng, place.coords[0], place.coords[1]);
+                  if (dist !== null) distanceText = `${dist} km away`;
+                }
+
+                return (
+                  <motion.div
+                    layout
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    key={place.id}
+                    id={`place-card-${place.id}`}
+                    onClick={() => handleSelectPlace(place)}
+                    className={`relative p-4 rounded-2xl cursor-pointer transition-all duration-300 border backdrop-blur-md overflow-hidden ${
+                      isSelected
+                        ? 'border-white/30 bg-white/10 scale-[1.02]'
+                        : 'border-white/10 bg-white/5 hover:bg-white/10 hover:border-white/20'
+                    }`}
+                  >
+                    <div className="flex gap-4">
+                      {/* THUMBNAIL */}
+                      <div className="w-24 h-24 shrink-0 overflow-hidden rounded-xl border border-white/10">
+                        <img src={place.image} alt={place.name} className="w-full h-full object-cover" />
+                      </div>
+
+                      {/* TEXT */}
+                      <div className="flex-1 min-w-0 py-1">
+                        <span className="text-[10px] font-bold uppercase tracking-widest text-white/40 block mb-1">
+                          {place.type}
+                        </span>
+                        
+                        <h3 className={`text-lg font-bold truncate transition-colors ${isSelected ? 'text-white' : 'text-white/90'}`}>
+                          {place.name}
+                        </h3>
+                        
+                        <p className="text-white/60 text-sm line-clamp-2 mt-1">
+                          {place.description}
+                        </p>
+
+                        <div className="flex items-center gap-3 mt-2 text-xs font-medium">
+                          {distanceText && <span className="text-blue-300 flex items-center gap-1">📍 {distanceText}</span>}
+                          {place.best_time && <span className="text-orange-400/80">🗓️ {place.best_time}</span>}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* EXPANDABLE BUTTON */}
+                    <AnimatePresence>
+                      {isSelected && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: 'auto', opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          className="pt-4 overflow-hidden"
+                        >
+                          <button
+                            onClick={(e) => { e.stopPropagation(); navigate(`/district/${place.id}`); }}
+                            className="w-full py-2.5 bg-earth-600 hover:bg-earth-500 text-white rounded-xl text-sm font-medium tracking-wide transition-colors flex items-center justify-center gap-2"
+                          >
+                            Explore Full Details <span>→</span>
+                          </button>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                )
+              })}
+            </AnimatePresence>
+          </div>
+        </div>
       </main>
     </div>
   )
