@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 const calendarData = [
   {
     month: "January",
+    short: "JAN",
     event: "Kichchu Hayisuvudu",
     location: "Mandya & Ramanagara",
     description: "Witness decorated bulls leaping through sacred hay fires in a breathtaking harvest ritual of purification.",
@@ -13,6 +14,7 @@ const calendarData = [
   },
   {
     month: "February",
+    short: "FEB",
     event: "Banashankari Jatre",
     location: "Badami",
     description: "A vibrant ancient fair famous for artisanal wooden toys, hand-woven fabrics, and rustic temple chariot processions.",
@@ -21,6 +23,7 @@ const calendarData = [
   },
   {
     month: "March",
+    short: "MAR",
     event: "Bedara Vesha",
     location: "Sirsi",
     description: "The 'Hunter’s Dance' comes alive with solo performers in magnificent tribal costumes dancing to hypnotic folk beats.",
@@ -29,6 +32,7 @@ const calendarData = [
   },
   {
     month: "April",
+    short: "APR",
     event: "Mylara Karnika",
     location: "Mylara, Haveri",
     description: "Stand among a million devotees to hear the sacred Oracle deliver a cryptic prophecy for the coming year.",
@@ -37,6 +41,7 @@ const calendarData = [
   },
   {
     month: "May",
+    short: "MAY",
     event: "Kodava Hockey Festival",
     location: "Coorg",
     description: "Experience the world's largest family hockey tournament set amidst the misty coffee plantations of the hills.",
@@ -45,6 +50,7 @@ const calendarData = [
   },
   {
     month: "June",
+    short: "JUN",
     event: "Kambala",
     location: "Coastal Karnataka",
     description: "The thunder of racing buffaloes through slushy paddy fields marks the arrival of the coastal monsoons.",
@@ -53,6 +59,7 @@ const calendarData = [
   },
   {
     month: "July",
+    short: "JUL",
     event: "Bhoomi Hunnime",
     location: "North Karnataka",
     description: "A soulful 'Earth Festival' where farming communities offer prayers to Mother Earth for a bountiful season.",
@@ -61,6 +68,7 @@ const calendarData = [
   },
   {
     month: "August",
+    short: "AUG",
     event: "Vairamudi Brahmotsava",
     location: "Melukote",
     description: "Witness the mystical midnight ritual where the ancient diamond crown is unveiled amidst soulful chanting and torchlit temple squares.",
@@ -69,6 +77,7 @@ const calendarData = [
   },
   {
     month: "September",
+    short: "SEP",
     event: "Karaga Festival",
     location: "Bangalore Rural",
     description: "A mystical midnight procession where a floral pyramid is balanced in a divine dance of balance and faith.",
@@ -77,6 +86,7 @@ const calendarData = [
   },
   {
     month: "October",
+    short: "OCT",
     event: "Rural Dasara",
     location: "Mysuru Villages",
     description: "Beyond the palace, experience authentic village wrestling, folk music, and traditional weapon worship.",
@@ -85,6 +95,7 @@ const calendarData = [
   },
   {
     month: "November",
+    short: "NOV",
     event: "Hampi Utsav",
     location: "Hampi",
     description: "A grand revival of the Vijayanagara Empire with classical music and dance under the starlit ruins.",
@@ -93,6 +104,7 @@ const calendarData = [
   },
   {
     month: "December",
+    short: "DEC",
     event: "Nagarahole Wildlife",
     location: "Kabini/Nagarahole",
     description: "The best time for a winter safari to spot the elusive black panther and massive herds of wild elephants.",
@@ -145,69 +157,112 @@ const Calendar = () => {
         </motion.p>
       </header>
 
-      {/* THE VERTICAL TIMELINE */}
-      <main className="relative z-10 max-w-6xl mx-auto px-6 pb-32">
+      {/* THE VERTICAL SPLIT TIMELINE */}
+      <main className="relative z-10 max-w-7xl mx-auto px-6 pb-32 mt-12">
         
-        {/* The Central Glowing Line */}
-        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/20 to-transparent -translate-x-1/2" />
+        {/* The Central Glowing Line (Hidden on Mobile) */}
+        <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-white/10 to-transparent -translate-x-1/2" />
 
-        <div className="space-y-24 md:space-y-32">
+        <div className="space-y-32">
           {calendarData.map((item, index) => {
+            // Determine if the layout should be Image-Left/Text-Right or Text-Left/Image-Right
             const isEven = index % 2 === 0;
             
             return (
-              <div key={item.month} className={`relative flex flex-col md:flex-row items-center justify-between ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+              <div key={item.month} className="relative flex flex-col md:flex-row items-center w-full group">
                 
-                {/* The Timeline Dot */}
-                <div className="absolute left-4 md:left-1/2 w-4 h-4 rounded-full bg-[#080f08] border-2 border-[#e4c590] -translate-x-1/2 z-10 shadow-[0_0_15px_rgba(228,197,144,0.6)]" />
+                {/* The Timeline Dot (Center) */}
+                <div className="hidden md:block absolute left-1/2 w-4 h-4 rounded-full bg-[#080f08] border-2 border-[#e4c590] -translate-x-1/2 z-20 shadow-[0_0_15px_rgba(228,197,144,0.6)]" />
 
-                {/* Left/Right Invisible Spacer for alignment */}
-                <div className="hidden md:block w-5/12" />
-
-                {/* THE CARD CONTENT */}
+                {/* ==========================================
+                    LEFT COLUMN
+                    ========================================== */}
                 <motion.div
-                  initial={{ opacity: 0, x: isEven ? -50 : 50, y: 20 }}
-                  whileInView={{ opacity: 1, x: 0, y: 0 }}
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, margin: "-100px" }}
                   transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-                  className={`w-full md:w-5/12 pl-12 md:pl-0 ${isEven ? 'md:pr-12 text-left md:text-right' : 'md:pl-12 text-left'}`}
+                  className={`w-full md:w-1/2 flex flex-col justify-center ${isEven ? 'md:pr-16 lg:pr-24' : 'md:pr-16 lg:pr-24 md:text-right items-start md:items-end'}`}
                 >
-                  {/* The Cinematic Image */}
-                  <div className="group relative w-full aspect-video rounded-2xl overflow-hidden mb-6 border border-white/10 shadow-2xl">
-                    <img 
-                      src={item.image} 
-                      alt={item.event}
-                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
-                    
-                    {/* The Month Badge Floating on Image */}
-                    <div className={`absolute bottom-4 ${isEven ? 'right-4 md:left-4 md:right-auto' : 'right-4'} bg-[#e4c590] text-black px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-xl backdrop-blur-md`}>
-                      {item.month}
+                  {isEven ? (
+                    // IF EVEN: Left side is the IMAGE
+                    <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-white/10 mb-8 md:mb-0">
+                      <img src={item.image} alt={item.event} className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#080f08] via-transparent to-transparent opacity-60" />
+                      <div className="absolute top-4 left-4 bg-[#e4c590] text-black px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+                        {item.month}
+                      </div>
                     </div>
-                  </div>
-
-                  {/* The Text Data */}
-                  <div className="space-y-3">
-                    <div className={`flex items-center gap-2 text-xs text-[#e4c590] uppercase tracking-widest font-bold ${isEven ? 'justify-start md:justify-end' : 'justify-start'}`}>
-                      <span className="w-8 h-[1px] bg-[#e4c590]/50" />
-                      {item.location}
+                  ) : (
+                    // IF ODD: Left side is the TEXT
+                    <div className="relative w-full z-10 py-4 mb-8 md:mb-0">
+                      {/* Giant Watermark Text behind the content */}
+                      <span className="absolute top-1/2 -translate-y-1/2 right-0 text-[10rem] font-display font-bold text-white/5 select-none -z-10 pointer-events-none">
+                        {item.short}
+                      </span>
+                      
+                      <div className="flex items-center gap-2 text-xs text-[#e4c590] uppercase tracking-widest font-bold mb-3 md:justify-end">
+                        <span className="md:hidden w-8 h-[1px] bg-[#e4c590]/50" />
+                        {item.location}
+                        <span className="hidden md:block w-8 h-[1px] bg-[#e4c590]/50" />
+                      </div>
+                      <h2 className="text-3xl md:text-5xl font-display font-bold text-white drop-shadow-md mb-4">
+                        {item.event}
+                      </h2>
+                      <p className="text-white/60 text-lg leading-relaxed font-body italic mb-6">
+                        "{item.description}"
+                      </p>
+                      <div className="inline-block border border-white/10 bg-white/5 px-5 py-2 rounded-lg text-xs tracking-widest text-white/50 backdrop-blur-sm">
+                        BEST TIME: <span className="text-white font-semibold ml-1">{item.best_time}</span>
+                      </div>
                     </div>
-                    
-                    <h2 className="text-3xl md:text-4xl font-display font-bold text-white drop-shadow-md">
-                      {item.event}
-                    </h2>
-                    
-                    <p className="text-white/60 text-base leading-relaxed font-body italic">
-                      "{item.description}"
-                    </p>
-                    
-                    <div className="inline-block border border-white/10 bg-white/5 px-4 py-2 rounded-lg text-xs tracking-widest text-white/50 mt-2">
-                      BEST TIME: <span className="text-white font-semibold ml-1">{item.best_time}</span>
-                    </div>
-                  </div>
-
+                  )}
                 </motion.div>
+
+                {/* ==========================================
+                    RIGHT COLUMN
+                    ========================================== */}
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
+                  className={`w-full md:w-1/2 flex flex-col justify-center ${isEven ? 'md:pl-16 lg:pl-24 items-start' : 'md:pl-16 lg:pl-24'}`}
+                >
+                  {isEven ? (
+                    // IF EVEN: Right side is the TEXT
+                    <div className="relative w-full z-10 py-4">
+                      {/* Giant Watermark Text behind the content */}
+                      <span className="absolute top-1/2 -translate-y-1/2 left-0 text-[10rem] font-display font-bold text-white/5 select-none -z-10 pointer-events-none">
+                        {item.short}
+                      </span>
+
+                      <div className="flex items-center gap-2 text-xs text-[#e4c590] uppercase tracking-widest font-bold mb-3">
+                        <span className="w-8 h-[1px] bg-[#e4c590]/50" />
+                        {item.location}
+                      </div>
+                      <h2 className="text-3xl md:text-5xl font-display font-bold text-white drop-shadow-md mb-4">
+                        {item.event}
+                      </h2>
+                      <p className="text-white/60 text-lg leading-relaxed font-body italic mb-6">
+                        "{item.description}"
+                      </p>
+                      <div className="inline-block border border-white/10 bg-white/5 px-5 py-2 rounded-lg text-xs tracking-widest text-white/50 backdrop-blur-sm">
+                        BEST TIME: <span className="text-white font-semibold ml-1">{item.best_time}</span>
+                      </div>
+                    </div>
+                  ) : (
+                    // IF ODD: Right side is the IMAGE
+                    <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-white/10 mt-8 md:mt-0">
+                      <img src={item.image} alt={item.event} className="w-full h-full object-cover transition-transform duration-700 hover:scale-110" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#080f08] via-transparent to-transparent opacity-60" />
+                      <div className="absolute top-4 right-4 bg-[#e4c590] text-black px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest">
+                        {item.month}
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
+
               </div>
             )
           })}
