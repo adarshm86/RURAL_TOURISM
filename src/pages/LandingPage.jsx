@@ -287,7 +287,7 @@ export default function LandingPage() {
 
       
       {/* ── Teaser strip ── */}
-      <div className="h-[50vh] bg-black flex items-center justify-center">
+      <div className="h-[50vh] bg-[#080f08] flex items-center justify-center">
         <motion.p
           className="text-center font-display text-earth-300 italic text-2xl max-w-lg px-4"
           initial={{ opacity: 0 }}
@@ -352,9 +352,9 @@ export default function LandingPage() {
       </section> */}
 
         {/* ── Moving Photo Cards Gallery (WITH UNIQUE IMAGES) ── */}
-      <section className="relative h-[120vh] bg-black flex overflow-hidden border-y border-white/5">
+      <section className="relative h-[120vh] bg-[#080f08] flex overflow-hidden border-y border-white/5">
         {/* Left Panel: Branding */}
-        <div className="hidden lg:flex w-1/4 flex-col justify-center px-12 z-20 bg-black">
+        <div className="hidden lg:flex w-1/4 flex-col justify-center px-12 z-20 bg-[#080f08]">
           <h2 className="text-white text-3xl font-display font-semibold tracking-wide">
             <span className="font-kannada block text-earth-300 text-6xl mb-4 leading-tight">ಕರ್ನಾಟಕ</span>
             <span className="font-light opacity-60 text-xl tracking-[0.3em] uppercase">Rural Heritage</span>
@@ -363,14 +363,14 @@ export default function LandingPage() {
         </div>
 
         {/* Center: Moving Columns with UNIQUE DATA */}
-        <div className="flex-1 grid grid-cols-3 gap-6 h-full px-6 py-12">
+        <div className="flex-1 grid  grid-cols-3 gap-6 h-full px-6 py-12">
           <ScrollingColumn images={COLUMN_1_DATA} reverse={true} onHover={setActiveGalleryItem} />
           <ScrollingColumn images={COLUMN_2_DATA} reverse={false} onHover={setActiveGalleryItem} />
           <ScrollingColumn images={COLUMN_3_DATA} reverse={true} onHover={setActiveGalleryItem} />
         </div>
 
         {/* Right Panel: Dynamic Slogans */}
-        <div className="w-1/3 lg:w-1/4 flex flex-col justify-center px-8 lg:px-12 z-20 bg-black/80 backdrop-blur-lg border-l border-white/5 shadow-2xl">
+        <div className="w-1/3 lg:w-1/4 flex flex-col justify-center px-8 lg:px-12 z-20 bg-[#080f08] backdrop-blur-lg border-l border-white/5 shadow-2xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeGalleryItem.id}
@@ -396,7 +396,7 @@ export default function LandingPage() {
       </section>
 
       {/* ── Seasonal Highlights Section ── */}
-      <section className="bg-black py-24 px-6">
+      <section className="bg-[#080f08] py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-earth-300 font-kannada text-3xl mb-4">ಋತುಮಾನದ ಸಡಗರ</h2>
