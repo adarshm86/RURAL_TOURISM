@@ -149,12 +149,7 @@ export default function LandingPage() {
             className="flex items-center space-x-6 text-white"
           >
             {/* Swapped <a> for <button> to use React Router */}
-            <button 
-              onClick={() => navigate('/explore')} 
-              className="hover:text-earth-300 transition font-body text-sm tracking-widest uppercase"
-            >
-              Explore
-            </button>
+            
             <button 
               onClick={() => navigate('/about')} 
               className="hover:text-earth-300 transition font-body text-sm tracking-widest uppercase"

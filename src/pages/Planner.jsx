@@ -557,6 +557,7 @@
 // }
 
 import React, { useState, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const TRIP_REGIONS = [
@@ -567,6 +568,7 @@ const TRIP_REGIONS = [
 ];
 
 export default function SmartPlanner() {
+  const navigate = useNavigate();
   const [plannerStep, setPlannerStep] = useState('hero');
   const [loading, setLoading] = useState(false);
   const [selectedRegion, setSelectedRegion] = useState(null);
@@ -593,25 +595,70 @@ export default function SmartPlanner() {
       // Shortest path rotation
       const move = diff > 2 ? 1 : diff < -2 ? -1 : diff;
       setRotation(prev => prev + (move * 90));
+      setSelectedRegion(region);
+      setTimeout(() => {
+        detailsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 600); // match animation timing
+    } else {
+      // Already in front -> select immediately
+      setSelectedRegion(region);
+      setTimeout(() => {
+        detailsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 200);
     }
-
-    setSelectedRegion(region);
-    setTimeout(() => {
-      detailsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }, 200);
   };
 
   const handleGenerate = () => {
     setLoading(true);
     setPlannerStep('results');
+
+    const regionalMasterData = {
+      coastal: [
+        { day: 1, spot: "Udupi Heritage", activity: "Traditional 'Hasiru' welcome and an evening witnessing a ritualistic Kola performance." },
+        { day: 2, spot: "Blue Waters", activity: "Backwater kayaking in the Mulki mangroves and exploring the 1000-pillar Saavira Kambada Basadi." },
+        { day: 3, spot: "The Coastline", activity: "A seafood culinary workshop followed by sunset at the unique Maravanthe beach-river divide." },
+        { day: 4, spot: "Island Life", activity: "Boat expedition to St. Mary’s Island and exploring the lighthouse at Kapu beach." },
+        { day: 5, spot: "Temple Architecture", activity: "Visiting the world's second-tallest Shiva statue at Murudeshwara and beach trekking in Gokarna." },
+        { day: 6, spot: "Craft & Shells", activity: "Hands-on session with local shell artisans and visiting the Mirjan Fort ruins." },
+        { day: 7, spot: "Departure", activity: "Morning yoga on the beach followed by a traditional 'Gadi' departure ceremony." }
+      ],
+      malnad: [
+        { day: 1, spot: "Estate Arrival", activity: "Guided walk through organic coffee plantations and a traditional 'Akki Rotti' cooking session." },
+        { day: 2, spot: "Cloud Forests", activity: "Trek to the Kavaledurga Fort ruins and observing King Cobra conservation in Agumbe." },
+        { day: 3, spot: "Hidden Falls", activity: "Morning dip in the Sirimane falls and a spiritual visit to the ancient Sringeri Sharada Peetham." },
+        { day: 4, spot: "Peak Expedition", activity: "Early morning 4x4 drive to Mullayanagiri peak followed by a visit to Bababudangiri caves." },
+        { day: 5, spot: "Wildlife & Tea", activity: "Safari at Bhadra Wildlife Sanctuary and a sunset tea-tasting at a 100-year-old estate." },
+        { day: 6, spot: "Riverside Peace", activity: "Coracle riding in the Tunga river and exploring the elephant camp at Sakrebyle." },
+        { day: 7, spot: "Mist Farewell", activity: "Morning bird watching followed by a traditional Malnad harvest feast (Bharani Oota)." }
+      ],
+      north: [
+        { day: 1, spot: "Empire of Stone", activity: "A boulder-climbing session in Hampi followed by a sunset coracle ride across the Tungabhadra." },
+        { day: 2, spot: "Cave Architecture", activity: "Exploring the rock-cut temples of Badami and the museum at Agastya Lake." },
+        { day: 3, spot: "Deccan Flavors", activity: "A rustic 'Jolada Rotti' lunch with a local weaver community in the historic village of Ilkal." },
+        { day: 4, spot: "Lost Kingdom", activity: "Full day exploration of the UNESCO world heritage sites at Pattadakal and Aihole." },
+        { day: 5, spot: "Islamic Heritage", activity: "Visit the massive Gol Gumbaz in Bijapur and the intricate Ibrahim Rauza." },
+        { day: 6, spot: "Local Craft", activity: "Workshop on traditional Lambani embroidery and exploring the red-stone fort of Badami." },
+        { day: 7, spot: "Heritage Goodbye", activity: "Morning prayer at Banashankari temple and a local bazaar shopping for Ilkal sarees." }
+      ],
+      central: [
+        { day: 1, spot: "Royal Traditions", activity: "A curated heritage walk through the Mysuru artisan markets and the palace illumination." },
+        { day: 2, spot: "Temple Town", activity: "Ascending the steps of Melukote for the view and learning about the history of the Iyengar community." },
+        { day: 3, spot: "Riverine History", activity: "Exploring the island fort of Srirangapatna and a serene riverside meditation at the Kaveri banks." },
+        { day: 4, spot: "Jungle Safari", activity: "Deep forest safari in Bandipur National Park looking for wild tigers and elephants." },
+        { day: 5, spot: "Sandalwood & Silk", activity: "Visit to a traditional silk weaving factory and a government sandalwood oil distillery." },
+        { day: 6, spot: "Stone Wonders", activity: "Day trip to the Hoysala temples of Belur and Halebidu, famous for intricate soapstone carvings." },
+        { day: 7, spot: "Royal Farewell", activity: "Mysore style breakfast (Mylari Dosa) and a visit to Chamundi Hills for a city-wide view." }
+      ]
+    };
+
     setTimeout(() => {
+      // Logic: Take the master list and slice it according to the number of days selected (3, 5, or 7)
+      const fullItinerary = regionalMasterData[selectedRegion.id] || regionalMasterData['coastal'];
+      const slicedItinerary = fullItinerary.slice(0, days);
+
       setPlan({
         title: `${selectedRegion.name} Expedition`,
-        itinerary: [
-          { day: 1, spot: "Village Welcome", activity: "Traditional welcome rituals and sunset paddy field walk." },
-          { day: 2, spot: "Culture immersion", activity: "Pottery workshop and local folk performance." },
-          { day: 3, spot: "The Grand Feast", activity: "Community harvest dinner and spiritual temple visit." }
-        ]
+        itinerary: slicedItinerary
       });
       setLoading(false);
     }, 2500);
