@@ -1,612 +1,59 @@
-
-// // import React, { useState } from 'react';
-// // import { motion, AnimatePresence } from 'framer-motion';
-
-// // const REGIONS = [
-// //   { id: 'coastal', name: 'Coastal Karnataka', icon: '🌊', color: '#10b981' },
-// //   { id: 'malnad', name: 'Malnad Highlands', icon: '⛰️', color: '#059669' },
-// //   { id: 'north', name: 'Northern Plains', icon: '🏛️', color: '#34d399' },
-// //   { id: 'south', name: 'Southern Heritage', icon: '🏰', color: '#6ee7b7' },
-// // ];
-
-// // export default function SmartPlanner() {
-// //   const [step, setStep] = useState(1);
-// //   const [loading, setLoading] = useState(false);
-// //   const [plan, setPlan] = useState(null);
-// //   const [selection, setSelection] = useState({ region: '', days: 3 });
-
-// //   const handleGenerate = () => {
-// //     setLoading(true);
-// //     setStep(3);
-// //     // Simulate AI generation delay
-// //     setTimeout(() => {
-// //       setPlan({
-// //         title: `Your ${selection.region} Discovery`,
-// //         itinerary: [
-// //           { day: 1, activity: "Arrive in village, welcome drink (Neer Majjige).", spot: "Local Homestay" },
-// //           { day: 2, activity: "Morning trek followed by village artisan workshop.", spot: "Handicraft Center" },
-// //           { day: 3, activity: "Local festival celebration & traditional feast.", spot: "Village Temple Square" }
-// //         ]
-// //       });
-// //       setLoading(false);
-// //     }, 2500);
-// //   };
-
-// //   return (
-// //     <div className="min-h-screen bg-black text-white pt-4 pb-20 px-6 font-body">
-// //         <nav className="relative z-20 flex justify-between items-center py-6 px-8 max-w-7xl mx-auto">
-// //         <motion.button
-// //           initial={{ opacity: 0, x: -20 }}
-// //           animate={{ opacity: 1, x: 0 }}
-// //           onClick={() => navigate('/')} // Navigates back to landing page
-// //           className="group flex items-center gap-2 px-5 py-2 border border-white/20 rounded-full text-stone-300 hover:border-[#e4c590] hover:text-[#e4c590] transition-all duration-300 backdrop-blur-sm"
-// //         >
-// //           <span className="group-hover:-translate-x-1 transition-transform duration-300">←</span>
-// //           <span className="text-sm font-medium tracking-wide">Back to Home</span>
-// //         </motion.button>
-
-// //         {/* Optional: Add your Logo/Title in the center or right */}
-// //         <div className="hidden md:block text-[#e4c590] font-serif text-lg tracking-widest uppercase opacity-80">
-// //           ಕರ್ನಾಟಕ Rural
-// //         </div>
-// //       </nav>
-// //       <div className="max-w-4xl mx-auto mt-16">
-        
-// //         {/* Header */}
-// //         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center mb-12">
-// //           <h2 className="text-earth-300 font-kannada text-2xl mb-2">ನಿಮ್ಮ ಪ್ರಯಾಣ, ನಿಮ್ಮ ಆಯ್ಕೆ</h2>
-// //           <h1 className="text-4xl md:text-6xl font-display font-bold">Smart Trip Planner</h1>
-// //         </motion.div>
-
-// //         <div className="relative bg-white/5 border border-white/10 p-8 md:p-12 rounded-3xl backdrop-blur-xl overflow-hidden">
-          
-// //           <AnimatePresence mode="wait">
-// //             {/* STEP 1: Region Selection */}
-// //             {step === 1 && (
-// //               <motion.div key="s1" initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -20, opacity: 0 }}>
-// //                 <h3 className="text-2xl font-display mb-8">Where do you want to wander?</h3>
-// //                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-// //                   {REGIONS.map((r) => (
-// //                     <button
-// //                       key={r.id}
-// //                       onClick={() => { setSelection({ ...selection, region: r.name }); setStep(2); }}
-// //                       className="group p-6 border border-white/10 rounded-2xl hover:bg-white/10 transition-all text-left flex items-center justify-between"
-// //                     >
-// //                       <div>
-// //                         <span className="text-3xl block mb-2">{r.icon}</span>
-// //                         <span className="text-lg font-bold">{r.name}</span>
-// //                       </div>
-// //                       <span className="opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-// //                     </button>
-// //                   ))}
-// //                 </div>
-// //               </motion.div>
-// //             )}
-
-// //             {/* STEP 2: Duration Selection */}
-// //             {step === 2 && (
-// //               <motion.div key="s2" initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} exit={{ x: -20, opacity: 0 }}>
-// //                 <button onClick={() => setStep(1)} className="text-earth-300 text-sm mb-6 flex items-center gap-2">← Back to regions</button>
-// //                 <h3 className="text-2xl font-display mb-8">How many days is your escape?</h3>
-// //                 <div className="flex flex-wrap gap-4 mb-12">
-// //                   {[2, 3, 5, 7].map(d => (
-// //                     <button 
-// //                       key={d} 
-// //                       onClick={() => setSelection({...selection, days: d})}
-// //                       className={`px-8 py-4 rounded-full border transition-all ${selection.days === d ? 'bg-earth-500 border-earth-500' : 'border-white/20 hover:border-white'}`}
-// //                     >
-// //                       {d} Days
-// //                     </button>
-// //                   ))}
-// //                 </div>
-// //                 <button 
-// //                   onClick={handleGenerate}
-// //                   className="w-full py-5 bg-white text-black font-bold rounded-2xl hover:bg-earth-300 transition-colors uppercase tracking-widest"
-// //                 >
-// //                   Generate My Rural Path
-// //                 </button>
-// //               </motion.div>
-// //             )}
-
-// //             {/* STEP 3: Results / Loading */}
-// //             {step === 3 && (
-// //               <motion.div key="s3" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center">
-// //                 {loading ? (
-// //                   <div className="py-20">
-// //                     <div className="w-16 h-16 border-4 border-earth-300 border-t-transparent rounded-full animate-spin mx-auto mb-6" />
-// //                     <p className="font-kannada text-earth-300 text-xl animate-pulse">ಗ್ರಾಮೀಣ ಹಾದಿಗಳನ್ನು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ...</p>
-// //                   </div>
-// //                 ) : (
-// //                   <div className="text-left">
-// //                     <div className="flex justify-between items-center mb-10 border-b border-white/10 pb-6">
-// //                       <h3 className="text-3xl font-display font-bold">{plan.title}</h3>
-// //                       <button onClick={() => setStep(1)} className="text-xs uppercase tracking-tighter border border-white/20 px-4 py-2 rounded-full hover:bg-white hover:text-black">Reset</button>
-// //                     </div>
-// //                     <div className="space-y-8">
-// //                       {plan.itinerary.map((item, idx) => (
-// //                         <div key={idx} className="flex gap-6 relative">
-// //                           <div className="flex flex-col items-center">
-// //                             <div className="w-10 h-10 rounded-full bg-earth-500 flex items-center justify-center font-bold">{item.day}</div>
-// //                             {idx !== plan.itinerary.length - 1 && <div className="w-1 h-full bg-white/10 mt-2" />}
-// //                           </div>
-// //                           <div className="pb-8">
-// //                             <h4 className="text-earth-300 text-sm font-bold uppercase tracking-widest mb-1">{item.spot}</h4>
-// //                             <p className="text-xl text-white/80">{item.activity}</p>
-// //                           </div>
-// //                         </div>
-// //                       ))}
-// //                     </div>
-// //                   </div>
-// //                 )}
-// //               </motion.div>
-// //             )}
-// //           </AnimatePresence>
-// //         </div>
-// //       </div>
-// //     </div>
-// //   );
-// // }
-
-// // import React, { useState, useRef } from 'react';
-// // import { motion, AnimatePresence, useMotionValue, useTransform } from 'framer-motion';
-
-// // const TRIP_REGIONS = [
-// //   { id: 'coastal', name: 'Coastal Trails', kannada: 'ಕರಾವಳಿ ತೀರ', icon: '🌊', bg: 'https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=1200&q=80' },
-// //   { id: 'malnad', name: 'Malnad Mist', kannada: 'ಮಲೆನಾಡಿನ ಮಂಜು', icon: '⛰️', bg: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80' },
-// //   { id: 'north', name: 'Northern Ruins', kannada: 'ಉತ್ತರ ಕರ್ನಾಟಕ', icon: '🏛️', bg: 'https://images.unsplash.com/photo-1625316708582-7c3873423ade?q=80&w=600' },
-// //   { id: 'central', name: 'Central Heritage', kannada: 'ಮಧ್ಯ ಕರ್ನಾಟಕ', icon: '🏰', bg: 'https://images.unsplash.com/photo-1600132806608-231446b2e7af?q=80&w=600' },
-// // ];
-
-// // export default function SmartPlanner() {
-// //   const [plannerStep, setPlannerStep] = useState('hero');
-// //   const [loading, setLoading] = useState(false);
-// //   const [selectedRegion, setSelectedRegion] = useState(null);
-// //   const [days, setDays] = useState(3);
-// //   const [plan, setPlan] = useState(null);
-// //   const [rotation, setRotation] = useState(0);
-  
-// //   const detailsRef = useRef(null);
-
-// //   const rotateCarousel = (direction) => {
-// //     setRotation(prev => prev + (direction * 90));
-// //   };
-
-// //   const handleCardClick = (region) => {
-// //     setSelectedRegion(region);
-// //     setTimeout(() => {
-// //       detailsRef.current?.scrollIntoView({ behavior: 'smooth' });
-// //     }, 100);
-// //   };
-
-// //   const handleGenerate = () => {
-// //     setLoading(true);
-// //     setPlannerStep('results');
-// //     setTimeout(() => {
-// //       setPlan({
-// //         title: `${selectedRegion.name} Expedition`,
-// //         itinerary: [
-// //           { day: 1, spot: "Village Welcome", activity: "Traditional welcome rituals followed by a slow sunset walk through paddy fields." },
-// //           { day: 2, spot: "Deep Culture", activity: "Hands-on pottery workshop with local artisans and a midnight spirit ritual witness." },
-// //           { day: 3, spot: "The Gathering", activity: "Community harvest feast (Oota) and interactive folk music session." }
-// //         ]
-// //       });
-// //       setLoading(false);
-// //     }, 2500);
-// //   };
-
-// //   return (
-// //     <div className="min-h-screen bg-black text-white selection:bg-earth-500 overflow-x-hidden">
-      
-// //       {/* STEP 1: HERO */}
-// //       <AnimatePresence>
-// //         {plannerStep === 'hero' && (
-// //           <motion.section 
-// //             key="hero" exit={{ opacity: 0, y: -100 }}
-// //             className="h-screen flex flex-col items-center justify-center text-center relative px-6"
-// //           >
-// //             <motion.div 
-// //               className="absolute w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full border border-earth-300/20"
-// //               animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.05, 0.2] }}
-// //               transition={{ duration: 4, repeat: Infinity }}
-// //             />
-// //             <div className="relative z-10">
-// //               <p className="font-kannada text-earth-300 text-2xl mb-4">ನೀವು ಸಿದ್ಧರಿದ್ದೀರಾ?</p>
-// //               <h1 className="text-6xl md:text-8xl font-display font-bold mb-6">Start Your <span className="text-earth-300 italic">Journey</span></h1>
-// //               <button 
-// //                 onClick={() => setPlannerStep('carousel')}
-// //                 className="px-12 py-5 bg-earth-500 text-white font-bold rounded-full uppercase tracking-widest text-sm shadow-lg shadow-earth-900/50"
-// //               >
-// //                 Let's Wander
-// //               </button>
-// //             </div>
-// //           </motion.section>
-// //         )}
-// //       </AnimatePresence>
-
-// //       {/* STEP 2: CIRCULAR CAROUSEL & DETAILS */}
-// //       <AnimatePresence>
-// //         {plannerStep === 'carousel' && (
-// //           <motion.section key="carousel" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-// //             <div className="pt-32 pb-10 text-center">
-// //               <h2 className="text-4xl font-display font-bold mb-2 uppercase tracking-tighter">Select Your Realm</h2>
-// //               <p className="text-earth-300/60 font-kannada text-lg">ಯಾವ ಭಾಗವನ್ನು ಅನ್ವೇಷಿಸಲು ಬಯಸುತ್ತೀರಿ?</p>
-// //             </div>
-
-// //             {/* ── Circular 3D Carousel ── */}
-// //             <div className="relative h-[600px] w-full flex items-center justify-center overflow-hidden perspective-1000">
-              
-// //               {/* Navigation Controls */}
-// //               <button onClick={() => rotateCarousel(1)} className="absolute left-10 z-50 p-4 border border-white/10 rounded-full hover:bg-earth-500 transition-all group">
-// //                 <span className="block transform rotate-180 group-active:scale-90">→</span>
-// //               </button>
-// //               <button onClick={() => rotateCarousel(-1)} className="absolute right-10 z-50 p-4 border border-white/10 rounded-full hover:bg-earth-500 transition-all group">
-// //                 <span className="block group-active:scale-90">→</span>
-// //               </button>
-
-// //               <motion.div 
-// //                 className="relative w-[300px] h-[400px] transition-all duration-1000 preserve-3d"
-// //                 animate={{ rotateY: rotation }}
-// //                 transition={{ type: "spring", stiffness: 120, damping: 14,duration: 0.5 }}
-// //               >
-// //                 {TRIP_REGIONS.map((region, idx) => {
-// //                   const angle = idx * 90; // Spacing 4 cards evenly in a 360 circle
-// //                   return (
-// //                     <motion.div 
-// //                       key={region.id}
-// //                       onClick={() => handleCardClick(region)}
-// //                       className={`absolute inset-0 rounded-3xl overflow-hidden cursor-pointer border-2 transition-all duration-700 shadow-2xl backface-hidden ${
-// //                         selectedRegion?.id === region.id ? 'border-earth-300 scale-110 z-30' : 'border-white/10 opacity-80 scale-100'
-// //                       }`}
-// //                       style={{
-// //                         transform: `rotateY(${angle}deg) translateZ(450px)`, // Curving the slider
-// //                       }}
-// //                     >
-// //                       <img 
-// //                         src={region.bg} 
-// //                         className={`w-full h-full object-cover transition-all duration-700 ${selectedRegion?.id === region.id ? 'grayscale-0' : 'grayscale'}`} 
-// //                         alt={region.name}
-// //                       />
-// //                       <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-// //                       <div className="absolute bottom-8 left-8 right-8">
-// //                         <p className="font-kannada text-earth-300 text-xl mb-1">{region.kannada}</p>
-// //                         <h3 className="text-3xl font-display font-bold leading-tight">{region.name}</h3>
-// //                       </div>
-// //                     </motion.div>
-// //                   );
-// //                 })}
-// //               </motion.div>
-// //             </div>
-
-// //             {/* Duration Section */}
-// //             <div ref={detailsRef} className="min-h-[50vh]">
-// //               <AnimatePresence>
-// //                 {selectedRegion && (
-// //                   <motion.div 
-// //                     initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }}
-// //                     className="max-w-4xl mx-auto px-6 py-20 border-t border-white/5 mt-10"
-// //                   >
-// //                     <div className="grid md:grid-cols-2 gap-12 items-center">
-// //                       <div className="p-10 rounded-[2rem] bg-gradient-to-br from-white/10 to-transparent border border-white/10 backdrop-blur-xl">
-// //                         <h3 className="text-2xl font-display font-bold mb-8 uppercase tracking-widest">Plan Duration</h3>
-// //                         <div className="flex gap-6 mb-12">
-// //                           {[3, 5, 7].map(d => (
-// //                             <button 
-// //                               key={d} onClick={() => setDays(d)}
-// //                               className={`w-20 h-20 rounded-2xl border transition-all text-xl font-display ${days === d ? 'bg-earth-500 border-earth-300 shadow-lg shadow-earth-500/20' : 'border-white/10 hover:border-white/30'}`}
-// //                             >
-// //                               {d}
-// //                             </button>
-// //                           ))}
-// //                         </div>
-// //                         <button 
-// //                           onClick={handleGenerate}
-// //                           className="w-full py-6 bg-white text-black rounded-2xl font-bold uppercase tracking-[0.2em] hover:bg-earth-300 transition-colors"
-// //                         >
-// //                           Generate Itinerary
-// //                         </button>
-// //                       </div>
-// //                       <div className="lg:pl-10">
-// //                         <p className="text-earth-300 font-kannada text-3xl mb-4">{selectedRegion.kannada}</p>
-// //                         <h2 className="text-6xl font-display font-bold mb-6 tracking-tighter">{selectedRegion.name}</h2>
-// //                         <p className="text-white/50 leading-relaxed font-body text-lg italic">"We are weaving a path through {selectedRegion.name}'s hidden heritage, focusing on authentic village life and ancient traditions."</p>
-// //                       </div>
-// //                     </div>
-// //                   </motion.div>
-// //                 )}
-// //               </AnimatePresence>
-// //             </div>
-// //           </motion.section>
-// //         )}
-// //       </AnimatePresence>
-
-// //       {/* STEP 3: RESULTS (Loading + Timeline) */}
-// //       <AnimatePresence>
-// //         {plannerStep === 'results' && (
-// //           <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-4xl mx-auto pt-40 pb-20 px-6">
-// //             {loading ? (
-// //               <div className="text-center py-20">
-// //                 <motion.div 
-// //                   animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1.5, ease: "linear" }}
-// //                   className="w-20 h-20 border-t-2 border-earth-300 rounded-full mx-auto mb-8 shadow-[0_0_20px_rgba(196,160,114,0.3)]"
-// //                 />
-// //                 <p className="font-kannada text-earth-300 text-2xl animate-pulse tracking-widest">ಗ್ರಾಮೀಣ ಹಾದಿಗಳನ್ನು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ...</p>
-// //               </div>
-// //             ) : (
-// //               <div className="space-y-16">
-// //                 <div className="border-b border-white/10 pb-10 flex justify-between items-end">
-// //                    <h2 className="text-5xl font-display font-bold uppercase tracking-tighter">{plan?.title}</h2>
-// //                    <button onClick={() => setPlannerStep('hero')} className="text-xs uppercase tracking-[0.3em] text-white/30 hover:text-earth-300 transition-colors">Start Over</button>
-// //                 </div>
-// //                 {plan?.itinerary.map((item, idx) => (
-// //                   <motion.div key={idx} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.2 }} className="flex gap-10 group">
-// //                     <div className="flex flex-col items-center">
-// //                       <div className="w-16 h-16 rounded-full border border-earth-300/30 flex items-center justify-center font-display text-earth-300 text-xl group-hover:bg-earth-500 group-hover:text-white transition-all duration-500">0{item.day}</div>
-// //                       {idx !== plan.itinerary.length - 1 && <div className="w-[1px] h-32 bg-gradient-to-b from-earth-300/30 to-transparent mt-4" />}
-// //                     </div>
-// //                     <div className="pt-2">
-// //                       <h4 className="text-sm font-bold text-earth-300 uppercase tracking-[0.3em] mb-4">{item.spot}</h4>
-// //                       <p className="text-2xl text-white/80 font-body leading-relaxed max-w-2xl">{item.activity}</p>
-// //                     </div>
-// //                   </motion.div>
-// //                 ))}
-// //               </div>
-// //             )}
-// //           </motion.section>
-// //         )}
-// //       </AnimatePresence>
-
-// //       {/* Custom Styles for 3D Carousel */}
-// //       <style jsx>{`
-// //         .perspective-1000 { perspective: 1200px; }
-// //         .preserve-3d { transform-style: preserve-3d; }
-// //         .backface-hidden { backface-visibility: hidden; }
-// //       `}</style>
-// //     </div>
-// //   );
-// // }
-
-// import React, { useState, useRef } from 'react';
-// import { motion, AnimatePresence } from 'framer-motion';
-
-// const TRIP_REGIONS = [
-//   { id: 'coastal', name: 'Coastal Trails', kannada: 'ಕರಾವಳಿ ತೀರ', bg: 'https://images.unsplash.com/photo-1516253593875-bd7ba052fbc5?auto=format&fit=crop&w=1200&q=80' },
-//   { id: 'malnad', name: 'Malnad Mist', kannada: 'ಮಲೆನಾಡಿನ ಮಂಜು', bg: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1200&q=80' },
-//   { id: 'north', name: 'Northern Ruins', kannada: 'ಉತ್ತರ ಕರ್ನಾಟಕ', bg: 'https://images.unsplash.com/photo-1625316708582-7c3873423ade?q=80&w=600' },
-//   { id: 'central', name: 'Central Heritage', kannada: 'ಮಧ್ಯ ಕರ್ನಾಟಕ', bg: 'https://images.unsplash.com/photo-1600132806608-231446b2e7af?q=80&w=600' },
-// ];
-
-// export default function SmartPlanner() {
-//   const [plannerStep, setPlannerStep] = useState('hero');
-//   const [loading, setLoading] = useState(false);
-//   const [selectedRegion, setSelectedRegion] = useState(null);
-//   const [days, setDays] = useState(3);
-//   const [plan, setPlan] = useState(null);
-//   const [rotation, setRotation] = useState(0);
-  
-//   const detailsRef = useRef(null);
-
-//   // FIXED: Logic to find which card is currently "front-most" based on rotation
-//   const getActiveIndex = () => {
-//     const normalizedRotation = ((rotation % 360) + 360) % 360;
-//     return Math.round(normalizedRotation / 90) % 4;
-//   };
-
-//   const rotateCarousel = (direction) => {
-//     setRotation(prev => prev + (direction * 90));
-//   };
-
-//   const handleCardClick = (region) => {
-//     setSelectedRegion(region);
-//     // Ensure the UI updates before scrolling
-//     setTimeout(() => {
-//       detailsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-//     }, 150);
-//   };
-
-//   const handleGenerate = () => {
-//     setLoading(true);
-//     setPlannerStep('results');
-//     setTimeout(() => {
-//       setPlan({
-//         title: `${selectedRegion.name} Expedition`,
-//         itinerary: [
-//           { day: 1, spot: "Village Welcome", activity: "Traditional welcome rituals followed by a slow sunset walk." },
-//           { day: 2, spot: "Cultural Immersion", activity: "Hands-on workshop with local artisans." },
-//           { day: 3, spot: "The Gathering", activity: "Community harvest feast and interactive folk music." }
-//         ]
-//       });
-//       setLoading(false);
-//     }, 2500);
-//   };
-
-//   return (
-//     <div className="min-h-screen bg-black text-white selection:bg-earth-500 overflow-x-hidden">
-      
-//       {/* STEP 1: HERO */}
-//       <AnimatePresence>
-//         {plannerStep === 'hero' && (
-//           <motion.section 
-//             key="hero" exit={{ opacity: 0, y: -100 }}
-//             className="h-screen flex flex-col items-center justify-center text-center relative px-6"
-//           >
-//             <motion.div className="absolute w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full border border-earth-300/20" animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.05, 0.2] }} transition={{ duration: 4, repeat: Infinity }} />
-//             <div className="relative z-10">
-//               <p className="font-kannada text-earth-300 text-2xl mb-4">ನೀವು ಸಿದ್ಧರಿದ್ದೀರಾ?</p>
-//               <h1 className="text-6xl md:text-8xl font-display font-bold mb-6">Start Your <span className="text-earth-300 italic">Journey</span></h1>
-//               <button onClick={() => setPlannerStep('carousel')} className="px-12 py-5 bg-earth-500 text-white font-bold rounded-full uppercase tracking-widest text-sm shadow-lg">Let's Wander</button>
-//             </div>
-//           </motion.section>
-//         )}
-//       </AnimatePresence>
-
-//       {/* STEP 2: CIRCULAR CAROUSEL */}
-//       <AnimatePresence>
-//         {plannerStep === 'carousel' && (
-//           <motion.section key="carousel" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-32 pb-10">
-//             <div className="text-center mb-10">
-//               <h2 className="text-4xl font-display font-bold uppercase">Select Your Realm</h2>
-//               <p className="text-earth-300/60 font-kannada">ಯಾವ ಭಾಗವನ್ನು ಅನ್ವೇಷಿಸಲು ಬಯಸುತ್ತೀರಿ?</p>
-//             </div>
-
-//             <div className="relative h-[550px] w-full flex items-center justify-center perspective-1000">
-              
-//               {/* Navigation Arrows - Using z-50 to ensure they stay on top */}
-//               <button onClick={() => rotateCarousel(1)} className="absolute left-6 md:left-20 z-50 p-5 border border-white/10 rounded-full hover:bg-earth-500 transition-all">←</button>
-//               <button onClick={() => rotateCarousel(-1)} className="absolute right-6 md:right-20 z-50 p-5 border border-white/10 rounded-full hover:bg-earth-500 transition-all">→</button>
-
-//               <motion.div 
-//                 className="relative w-[300px] h-[400px] preserve-3d"
-//                 animate={{ rotateY: rotation }}
-//                 transition={{ type: "spring", stiffness: 120, damping: 14 }} // Increased speed as requested
-//               >
-//                 {TRIP_REGIONS.map((region, idx) => {
-//                   const angle = idx * 90;
-//                   return (
-//                     <motion.div 
-//                       key={region.id}
-//                       onClick={() => handleCardClick(region)}
-//                       className={`absolute inset-0 rounded-3xl overflow-hidden cursor-pointer border-2 transition-all duration-500 shadow-2xl backface-hidden flex-shrink-0 z-20 ${
-//                         selectedRegion?.id === region.id ? 'border-earth-300 scale-105' : 'border-white/10 opacity-70'
-//                       }`}
-//                       style={{
-//                         transform: `rotateY(${angle}deg) translateZ(400px)`, // Slightly reduced translateZ for better fit
-//                         pointerEvents: 'auto', // Force pointer events
-//                       }}
-//                     >
-//                       <img src={region.bg} className={`w-full h-full object-cover ${selectedRegion?.id === region.id ? 'grayscale-0' : 'grayscale'}`} alt={region.name} />
-//                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-//                       <div className="absolute bottom-6 left-6 right-6">
-//                         <p className="font-kannada text-earth-300 text-lg mb-1">{region.kannada}</p>
-//                         <h3 className="text-2xl font-display font-bold leading-tight">{region.name}</h3>
-//                       </div>
-//                     </motion.div>
-//                   );
-//                 })}
-//               </motion.div>
-//             </div>
-
-//             {/* Duration Section Reveal */}
-//             <div ref={detailsRef} className="scroll-mt-20">
-//               <AnimatePresence>
-//                 {selectedRegion && (
-//                   <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} className="max-w-4xl mx-auto px-6 py-20 border-t border-white/5 mt-10">
-//                     <div className="grid md:grid-cols-2 gap-12 items-center">
-//                       <div className="p-10 rounded-[2rem] bg-white/5 border border-white/10 backdrop-blur-xl">
-//                         <h3 className="text-xl font-display font-bold mb-6 uppercase tracking-widest">Plan Duration</h3>
-//                         <div className="flex gap-4 mb-10">
-//                           {[3, 5, 7].map(d => (
-//                             <button key={d} onClick={() => setDays(d)} className={`w-16 h-16 rounded-xl border transition-all ${days === d ? 'bg-earth-500 border-earth-300 shadow-lg shadow-earth-500/20' : 'border-white/10'}`}>{d}</button>
-//                           ))}
-//                         </div>
-//                         <button onClick={handleGenerate} className="w-full py-5 bg-white text-black rounded-xl font-bold uppercase tracking-widest hover:bg-earth-300 transition-all">Generate</button>
-//                       </div>
-//                       <div>
-//                         <p className="text-earth-300 font-kannada text-2xl mb-2">{selectedRegion.kannada}</p>
-//                         <h2 className="text-5xl font-display font-bold mb-6 tracking-tighter">{selectedRegion.name}</h2>
-//                         <p className="text-white/40 leading-relaxed font-body italic italic italic italic">"Crafting a path through {selectedRegion.name}'s hidden heart."</p>
-//                       </div>
-//                     </div>
-//                   </motion.div>
-//                 )}
-//               </AnimatePresence>
-//             </div>
-//           </motion.section>
-//         )}
-//       </AnimatePresence>
-
-//       {/* STEP 3: RESULTS */}
-//       <AnimatePresence>
-//         {plannerStep === 'results' && (
-//           <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-4xl mx-auto pt-40 pb-20 px-6">
-//             {loading ? (
-//               <div className="text-center py-20">
-//                 <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }} className="w-16 h-16 border-t-2 border-earth-300 rounded-full mx-auto mb-8" />
-//                 <p className="font-kannada text-earth-300 text-xl animate-pulse">ಗ್ರಾಮೀಣ ಹಾದಿಗಳನ್ನು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ...</p>
-//               </div>
-//             ) : (
-//               <div className="space-y-16">
-//                 <div className="border-b border-white/10 pb-10 flex justify-between items-end">
-//                    <h2 className="text-4xl font-display font-bold uppercase tracking-tighter">{plan?.title}</h2>
-//                    <button onClick={() => setPlannerStep('hero')} className="text-xs uppercase tracking-widest text-white/30 hover:text-white underline">Reset</button>
-//                 </div>
-//                 {plan?.itinerary.map((item, idx) => (
-//                   <motion.div key={idx} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.1 }} className="flex gap-10 group">
-//                     <div className="flex flex-col items-center">
-//                       <div className="w-12 h-12 rounded-full border border-earth-300/30 flex items-center justify-center text-earth-300 group-hover:bg-earth-300 group-hover:text-black transition-all">0{item.day}</div>
-//                       {idx !== plan.itinerary.length - 1 && <div className="w-[1px] h-24 bg-gradient-to-b from-earth-300/30 to-transparent mt-4" />}
-//                     </div>
-//                     <div>
-//                       <h4 className="text-xs font-bold text-earth-300 uppercase tracking-widest mb-2">{item.spot}</h4>
-//                       <p className="text-xl text-white/80 font-body leading-relaxed max-w-xl">{item.activity}</p>
-//                     </div>
-//                   </motion.div>
-//                 ))}
-//               </div>
-//             )}
-//           </motion.section>
-//         )}
-//       </AnimatePresence>
-
-//       <style jsx>{`
-//         .perspective-1000 { perspective: 1200px; }
-//         .preserve-3d { transform-style: preserve-3d; }
-//         .backface-hidden { backface-visibility: hidden; }
-//       `}</style>
-//     </div>
-//   );
-// }
-
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// ==========================================
+// DATA & MASTER BACKGROUND
+// ==========================================
+// The high-res background you provided
+const MASTER_BG = 'https://images.pexels.com/photos/31126276/pexels-photo-31126276.jpeg';
+
 const TRIP_REGIONS = [
-  { id: 'coastal', name: 'Coastal Trails', kannada: 'ಕರಾವಳಿ ತೀರ', bg: 'https://media.assettype.com/outlooktraveller/2024-09-05/dvtgxds3/shutterstock_2459133885.jpg?w=1200&ar=40%3A21&auto=format%2Ccompress&ogImage=true&mode=crop&enlarge=true&overlay=false&overlay_position=bottom&overlay_width=100' },
-  { id: 'malnad', name: 'Malnad Mist', kannada: 'ಮಲೆನಾಡಿನ ಮಂಜು', bg: 'https://travelmalnad.com/storage/tag_fi/01JJTZ400N5NJ2C7SSV3YNAE5S.webp' },
-  { id: 'north', name: 'Northern Ruins', kannada: 'ಉತ್ತರ ಕರ್ನಾಟಕ', bg: 'https://www.tataneu.com/pages/travel/_next/image?url=https%3A%2F%2Fd1msew97rp2nin.cloudfront.net%2Fprodin%2Ftntravel%2Fblogimages%2F857c018a-3c74-44db-8160-4c37513eed96.webp&w=3840&q=75' },
-  { id: 'central', name: 'Central Heritage', kannada: 'ಮಧ್ಯ ಕರ್ನಾಟಕ', bg: 'https://wanderon-images.gumlet.io/blogs/new/2024/08/places-to-visit-in-madya.jpg' },
+  { 
+    id: 'coastal', 
+    name: 'Coastal Trails', 
+    kannada: 'ಕರಾವಳಿ ತೀರ', 
+    bg: 'https://media.assettype.com/outlooktraveller/2024-09-05/dvtgxds3/shutterstock_2459133885.jpg?w=1600&q=80'
+  },
+  { 
+    id: 'malnad', 
+    name: 'Malnad Mist', 
+    kannada: 'ಮಲೆನಾಡಿನ ಮಂಜು', 
+    bg: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=80'
+  },
+  { 
+    id: 'north', 
+    name: 'Northern Ruins', 
+    kannada: 'ಉತ್ತರ ಕರ್ನಾಟಕ', 
+    bg: 'https://images.unsplash.com/photo-1625316708582-7c3873423ade?auto=format&fit=crop&w=1600&q=80'
+  },
+  { 
+    id: 'central', 
+    name: 'Central Heritage', 
+    kannada: 'ಮಧ್ಯ ಕರ್ನಾಟಕ', 
+    bg: 'https://images.unsplash.com/photo-1600132806608-231446b2e7af?auto=format&fit=crop&w=1600&q=80'
+  },
 ];
 
+// ==========================================
+// MAIN COMPONENT
+// ==========================================
 export default function SmartPlanner() {
   const navigate = useNavigate();
   const [plannerStep, setPlannerStep] = useState('hero');
   const [loading, setLoading] = useState(false);
+  const [hoveredRegion, setHoveredRegion] = useState(null);
   const [selectedRegion, setSelectedRegion] = useState(null);
   const [days, setDays] = useState(3);
   const [plan, setPlan] = useState(null);
-  
-  // Carousel State
-  const [rotation, setRotation] = useState(0);
-  const detailsRef = useRef(null);
 
-  // Helper to rotate the wheel
-  const rotateWheel = (direction) => {
-    setRotation(prev => prev + (direction * 90));
-  };
-
-  const handleCardClick = (region, index) => {
-    // Determine the current face of the wheel
-    const currentFace = (Math.round(rotation / 90) % 4 + 4) % 4;
-    const targetFace = index;
-    
-    // If user clicks a card not in front, rotate to it
-    if (currentFace !== targetFace) {
-      const diff = currentFace - targetFace;
-      // Shortest path rotation
-      const move = diff > 2 ? 1 : diff < -2 ? -1 : diff;
-      setRotation(prev => prev + (move * 90));
-      setSelectedRegion(region);
-      setTimeout(() => {
-        detailsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 600); // match animation timing
-    } else {
-      // Already in front -> select immediately
-      setSelectedRegion(region);
-      setTimeout(() => {
-        detailsRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 200);
-    }
-  };
+  // Logic to determine which background is currently active
+  let activeBg = MASTER_BG;
+  if (plannerStep === 'region_select' && hoveredRegion) {
+    activeBg = hoveredRegion.bg;
+  } else if ((plannerStep === 'duration_select' || plannerStep === 'results') && selectedRegion) {
+    activeBg = selectedRegion.bg;
+  }
 
   const handleGenerate = () => {
     setLoading(true);
@@ -652,221 +99,218 @@ export default function SmartPlanner() {
     };
 
     setTimeout(() => {
-      // Logic: Take the master list and slice it according to the number of days selected (3, 5, or 7)
       const fullItinerary = regionalMasterData[selectedRegion.id] || regionalMasterData['coastal'];
       const slicedItinerary = fullItinerary.slice(0, days);
-
       setPlan({
         title: `${selectedRegion.name} Expedition`,
         itinerary: slicedItinerary
       });
       setLoading(false);
-    }, 2500);
+    }, 1200); 
   };
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-earth-500 overflow-x-hidden font-body">
+    <div className="min-h-screen bg-black text-white selection:bg-[#e4c590] selection:text-black overflow-x-hidden font-body relative">
       
-      <nav className="relative z-20 flex justify-between items-center py-6 px-8 max-w-7xl mx-auto">
-              <motion.button
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                onClick={() => navigate('/')} // Navigates back to landing page
-                className="group flex items-center gap-2 px-5 py-2 border border-white/20 rounded-full text-stone-300 hover:border-[#e4c590] hover:text-[#e4c590] transition-all duration-300 backdrop-blur-sm"
+      {/* ==========================================
+          THE CROSSFADING BACKGROUND
+          ========================================== */}
+      <div className="fixed inset-0 z-0 bg-black pointer-events-none">
+        <AnimatePresence>
+          <motion.img
+            key={activeBg}
+            src={activeBg}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 0.5, scale: 1 }} // Opacity at 0.5 ensures text remains highly readable
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </AnimatePresence>
+        {/* Soft vignette gradient to darken the edges */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.8)_100%)]" />
+      </div>
+      
+      {/* NAVBAR */}
+      <nav className="fixed top-0 w-full z-50 flex justify-between items-center py-4 px-6 md:px-12 bg-black/10 backdrop-blur-sm border-b border-white/5">
+        <motion.button
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          onClick={() => navigate('/')} 
+          className="group flex items-center gap-2 px-5 py-2 border border-white/20 rounded-full text-stone-300 hover:border-[#e4c590] hover:text-[#e4c590] transition-all duration-300 bg-black/40"
+        >
+          <span className="group-hover:-translate-x-1 transition-transform duration-300">←</span>
+          <span className="text-sm font-medium tracking-wide">Back to Home</span>
+        </motion.button>
+        <div className="hidden md:block text-[#e4c590] font-serif text-lg tracking-widest uppercase opacity-80">
+          ಕರ್ನಾಟಕ Rural
+        </div>
+      </nav>
+
+      {/* FOREGROUND CONTENT */}
+      <div className="relative z-10 min-h-screen flex flex-col justify-center items-center px-6">
+        
+        {/* ── STEP 1: HERO ── */}
+        <AnimatePresence mode="wait">
+          {plannerStep === 'hero' && (
+            <motion.div 
+              key="hero" 
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -50, filter: 'blur(10px)' }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="text-center"
+            >
+              <p className="font-kannada text-[#e4c590] text-2xl md:text-3xl mb-4 drop-shadow-lg">ನಿಮ್ಮ ಪ್ರಯಾಣ ಪ್ರಾರಂಭಿಸಿ</p>
+              <h1 className="text-6xl md:text-8xl lg:text-9xl font-display font-bold mb-10 tracking-tight drop-shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+                Curate Your <span className="text-[#e4c590] italic block mt-2">Journey</span>
+              </h1>
+              <button 
+                onClick={() => setPlannerStep('region_select')} 
+                className="px-14 py-5 bg-[#e4c590] text-black font-bold rounded-full uppercase tracking-widest text-sm shadow-[0_0_40px_rgba(228,197,144,0.4)] hover:bg-white hover:scale-105 transition-all duration-300"
               >
-                <span className="group-hover:-translate-x-1 transition-transform duration-300">←</span>
-                <span className="text-sm font-medium tracking-wide">Back to Home</span>
-              </motion.button>
-      
-              {/* Optional: Add your Logo/Title in the center or right */}
-              <div className="hidden md:block text-[#e4c590] font-serif text-lg tracking-widest uppercase opacity-80">
-                ಕರ್ನಾಟಕ Rural
-              </div>
-            </nav>
+                Let's Wander
+              </button>
+            </motion.div>
+          )}
 
-      {/* ── STEP 1: HERO ── */}
-      <AnimatePresence>
-         {plannerStep === 'hero' && (
-         <motion.section 
-           key="hero" exit={{ opacity: 0, y: -100 }}
-           className="h-screen flex flex-col items-center justify-center text-center relative px-6"
-           >
-             <motion.div className="absolute w-[300px] h-[300px] md:w-[500px] md:h-[500px] rounded-full border-4 border-earth-300/20" animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.05, 0.2] }} transition={{ duration: 4, repeat: Infinity }} />
-             <div className="relative z-10">
-               <p className="font-kannada text-earth-300 text-2xl mb-4">ನೀವು ಸಿದ್ಧರಿದ್ದೀರಾ?</p>
-               <h1 className="text-6xl md:text-8xl font-display font-bold mb-6">Start Your <span className="text-earth-300 italic">Journey</span></h1>
-               <button onClick={() => setPlannerStep('carousel')} className="px-12 py-5 bg-earth-500 text-white font-bold rounded-full uppercase tracking-widest text-sm shadow-lg">Let's Wander</button>
-             </div>
-           </motion.section>
-        )}
-       </AnimatePresence>
-
-      {/* ── STEP 2: DRIBBBLE-STYLE CIRCULAR SLIDER ── */}
-      <AnimatePresence>
-        {plannerStep === 'carousel' && (
-          <motion.section key="carousel" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="pt-32 pb-20">
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-display font-bold mb-2 uppercase tracking-widest">Select Your Destination</h2>
-              <p className="text-earth-300/60 font-kannada text-xl">ಯಾವ ಭಾಗವನ್ನು ಅನ್ವೇಷಿಸಲು ಬಯಸುತ್ತೀರಿ?</p>
-            </div>
-
-            {/* Carousel Container */}
-            <div className="relative h-[600px] w-full flex items-center justify-center perspective-[2000px]">
+          {/* ── STEP 2: REGION SELECTION (Giant Typography) ── */}
+          {plannerStep === 'region_select' && (
+            <motion.div 
+              key="select" 
+              initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 1.05 }}
+              transition={{ duration: 0.4 }}
+              className="w-full max-w-5xl flex flex-col gap-2 py-32"
+            >
+              <p className="text-center text-white/60 tracking-[0.3em] uppercase text-sm mb-12 drop-shadow-md">Select Your Destination</p>
               
-              {/* Navigation Arrows */}
-              <div className="absolute inset-0 flex items-center justify-between px-10 md:px-40 z-50 pointer-events-none">
-                <button onClick={() => rotateWheel(1)} className="p-6 rounded-full border border-white/10 bg-black/50 backdrop-blur-md text-white pointer-events-auto hover:bg-earth-500 transition-all active:scale-90">←</button>
-                <button onClick={() => rotateWheel(-1)} className="p-6 rounded-full border border-white/10 bg-black/50 backdrop-blur-md text-white pointer-events-auto hover:bg-earth-500 transition-all active:scale-90">→</button>
-              </div>
+              {TRIP_REGIONS.map((region) => (
+                <motion.div 
+                  key={region.id}
+                  onMouseEnter={() => setHoveredRegion(region)}
+                  onMouseLeave={() => setHoveredRegion(null)}
+                  onClick={() => { setSelectedRegion(region); setPlannerStep('duration_select'); }}
+                  className="group flex flex-col items-center justify-center py-4 cursor-pointer relative"
+                >
+                  <span className="text-[#e4c590] font-kannada text-lg md:text-xl mb-1 opacity-0 group-hover:opacity-100 transition-all -translate-y-4 group-hover:translate-y-0 duration-300 drop-shadow-lg">
+                    {region.kannada}
+                  </span>
+                  <h2 className="text-5xl md:text-7xl lg:text-[7rem] leading-none font-display font-bold uppercase transition-all duration-500 text-white/30 group-hover:text-white hover:scale-105 drop-shadow-[0_0_40px_rgba(0,0,0,0.8)]">
+                    {region.name}
+                  </h2>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
 
-              {/* The 3D Wheel */}
-              <motion.div 
-                className="relative w-[320px] h-[450px] preserve-3d"
-                animate={{ rotateY: rotation }}
-                transition={{ type: "spring", stiffness: 80, damping: 18 }}
-              >
-                {TRIP_REGIONS.map((region, idx) => {
-                  const angle = idx * 90;
-                  const isSelected = selectedRegion?.id === region.id;
-                  
-                  return (
-                    <motion.div 
-                      key={region.id}
-                      onClick={() => handleCardClick(region, idx)}
-                      className={`absolute inset-0 rounded-[2.5rem] overflow-hidden cursor-pointer border-2 transition-all duration-700 shadow-[0_20px_50px_rgba(0,0,0,0.5)] backface-hidden ${
-                        isSelected ? 'border-earth-300' : 'border-white/5 opacity-40 hover:opacity-80'
-                      }`}
-                      style={{
-                        transform: `rotateY(${angle}deg) translateZ(450px)`,
-                      }}
-                    >
-                      <img 
-                        src={region.bg} 
-                        className={`w-full h-full object-cover transition-all duration-1000 `} 
-                        alt={region.name}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-                      
-                      <div className="absolute bottom-10 left-10 right-10">
-                        <motion.p 
-                          animate={{ y: isSelected ? 0 : 20, opacity: isSelected ? 1 : 0 }}
-                          className="font-kannada text-earth-300 text-2xl mb-2"
-                        >
-                          {region.kannada}
-                        </motion.p>
-                        <h3 className="text-4xl font-display font-bold leading-tight uppercase">{region.name}</h3>
-                      </div>
-                    </motion.div>
-                  );
-                })}
-              </motion.div>
-            </div>
+          {/* ── STEP 3: DURATION SELECTION ── */}
+          {plannerStep === 'duration_select' && selectedRegion && (
+            <motion.div 
+              key="duration" 
+              initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="w-full max-w-2xl bg-black/50 backdrop-blur-2xl p-10 md:p-16 rounded-[3rem] border border-white/10 text-center shadow-[0_30px_80px_rgba(0,0,0,0.8)]"
+            >
+              <p className="text-[#e4c590] font-kannada text-2xl mb-2 drop-shadow-md">{selectedRegion.kannada}</p>
+              <h2 className="text-5xl md:text-7xl font-display font-bold uppercase mb-8 drop-shadow-lg">{selectedRegion.name}</h2>
+              <p className="text-white/80 text-lg font-body italic mb-12">
+                "Experience the soul of {selectedRegion.name}. How many days would you like to wander?"
+              </p>
 
-            {/* DETAILS REVEAL SECTION */}
-            <div ref={detailsRef} className="scroll-mt-24">
-              <AnimatePresence>
-                {selectedRegion && (
-                  <motion.div 
-                    initial={{ opacity: 0, y: 100 }} animate={{ opacity: 1, y: 0 }}
-                    className="max-w-6xl mx-auto px-6 py-20 mt-10"
+              <div className="flex gap-4 md:gap-8 mb-12 justify-center">
+                {[3, 5, 7].map(d => (
+                  <button 
+                    key={d} onClick={() => setDays(d)}
+                    className={`w-24 h-24 md:w-32 md:h-32 rounded-3xl border transition-all flex flex-col items-center justify-center font-display ${days === d ? 'bg-[#e4c590] border-[#e4c590] shadow-[0_0_40px_rgba(228,197,144,0.5)] text-black scale-105' : 'bg-black/40 border-white/20 text-white/60 hover:border-white/60 hover:bg-white/10'}`}
                   >
-                    <div className="grid lg:grid-cols-2 gap-16 items-center">
-                      <div className="space-y-8">
-                        <div>
-                          <p className="text-earth-300 font-kannada text-4xl mb-4">{selectedRegion.kannada}</p>
-                          <h2 className="text-7xl font-display font-bold tracking-tighter uppercase">{selectedRegion.name}</h2>
-                        </div>
-                        <p className="text-white/40 text-xl font-body leading-relaxed max-w-lg italic">
-                          "Experience the soul of {selectedRegion.name}. We connect you with local families, hidden rituals, and the authentic pulse of the village."
-                        </p>
-                      </div>
+                    <span className="text-4xl md:text-5xl font-bold">{d}</span>
+                    <span className="text-xs uppercase tracking-widest mt-1 opacity-70 font-sans">Days</span>
+                  </button>
+                ))}
+              </div>
+              
+              <div className="flex gap-4">
+                <button 
+                  onClick={() => setPlannerStep('region_select')}
+                  className="px-6 py-5 border border-white/20 rounded-2xl text-white/70 hover:text-white transition-all uppercase tracking-widest text-xs hover:bg-white/10 bg-black/40"
+                >
+                  Back
+                </button>
+                <button 
+                  onClick={handleGenerate}
+                  className="flex-1 py-5 bg-white text-black rounded-2xl font-bold uppercase tracking-[0.3em] text-sm hover:bg-[#e4c590] transition-all active:scale-95 shadow-xl"
+                >
+                  Generate Plan
+                </button>
+              </div>
+            </motion.div>
+          )}
 
-                      <div className="p-12 rounded-[3rem] bg-gradient-to-br from-white/10 to-transparent border border-white/10 backdrop-blur-2xl shadow-2xl">
-                        <h3 className="text-xs uppercase tracking-[0.4em] text-earth-300 mb-8">Trip Duration</h3>
-                        <div className="flex gap-4 mb-12">
-                          {[3, 5, 7].map(d => (
-                            <button 
-                              key={d} onClick={() => setDays(d)}
-                              className={`flex-1 py-6 rounded-2xl border transition-all text-2xl font-display ${days === d ? 'bg-earth-500 border-earth-300 shadow-xl shadow-earth-500/40 text-white' : 'border-white/10 text-white/40 hover:border-white'}`}
-                            >
-                              {d} <span className="text-sm block opacity-50">Days</span>
-                            </button>
-                          ))}
-                        </div>
-                        <button 
-                          onClick={handleGenerate}
-                          className="w-full py-7 bg-white text-black rounded-2xl font-bold uppercase tracking-[0.3em] text-sm hover:bg-earth-300 transition-all active:scale-95"
+          {/* ── STEP 4: RESULTS (Timeline) ── */}
+          {plannerStep === 'results' && (
+            <motion.div 
+              key="results" 
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} 
+              className="w-full max-w-4xl pt-20 pb-40"
+            >
+              {loading ? (
+                <div className="text-center py-32 bg-black/50 backdrop-blur-2xl rounded-[3rem] border border-white/10 shadow-2xl">
+                  <div className="relative w-24 h-24 mx-auto mb-12">
+                    <motion.div 
+                      animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
+                      className="absolute inset-0 border-t-2 border-[#e4c590] rounded-full"
+                    />
+                    <motion.div 
+                      animate={{ rotate: -360 }} transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
+                      className="absolute inset-4 border-b-2 border-[#e4c590]/20 rounded-full" 
+                    />
+                  </div>
+                  <p className="font-kannada text-[#e4c590] text-3xl animate-pulse tracking-widest">ಮಾರ್ಗವನ್ನು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ...</p>
+                  <p className="text-white/60 mt-4 tracking-widest text-sm uppercase">Curating authentic experiences</p>
+                </div>
+              ) : (
+                <div className="bg-black/60 backdrop-blur-3xl p-8 md:p-16 rounded-[3rem] border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.8)]">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-end gap-6 border-b border-white/10 pb-12 mb-16">
+                     <div>
+                      <h2 className="text-5xl md:text-6xl font-display font-bold uppercase tracking-tighter">{plan?.title}</h2>
+                      <p className="text-[#e4c590] mt-2 tracking-widest text-xs uppercase opacity-90 drop-shadow-md">Personalized Rural Route • {days} Days</p>
+                     </div>
+                     <button onClick={() => { setPlannerStep('hero'); setHoveredRegion(null); }} className="text-xs uppercase tracking-[0.3em] text-white/50 hover:text-[#e4c590] transition-colors border border-white/20 px-6 py-3 rounded-full hover:bg-white/10">
+                       Start Over
+                     </button>
+                  </div>
+
+                  <div className="relative">
+                     <div className="absolute left-[27px] md:left-[35px] top-0 bottom-0 w-[1px] bg-gradient-to-b from-[#e4c590]/50 via-white/20 to-transparent" />
+                     
+                     <div className="space-y-16">
+                      {plan?.itinerary.map((item, idx) => (
+                        <motion.div 
+                          key={idx} initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.15, type: "spring" }}
+                          className="flex gap-8 md:gap-12 group relative"
                         >
-                          Generate My Path
-                        </button>
-                      </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-          </motion.section>
-        )}
-      </AnimatePresence>
-
-      {/* ── STEP 3: RESULTS ── */}
-      <AnimatePresence>
-        {plannerStep === 'results' && (
-          <motion.section initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-4xl mx-auto pt-40 pb-40 px-6">
-            {loading ? (
-              <div className="text-center py-20">
-                <div className="relative w-24 h-24 mx-auto mb-12">
-                  <motion.div 
-                    animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1, ease: "linear" }}
-                    className="absolute inset-0 border-t-2 border-earth-300 rounded-full"
-                  />
-                  <div className="absolute inset-4 border-b-2 border-earth-300/20 rounded-full animate-reverse-spin" />
+                          <div className="w-14 h-14 md:w-16 md:h-16 shrink-0 rounded-full border border-[#e4c590]/40 bg-black/80 backdrop-blur-md flex items-center justify-center font-display text-[#e4c590] group-hover:bg-[#e4c590] group-hover:text-black group-hover:scale-110 transition-all duration-300 z-10 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+                            0{item.day}
+                          </div>
+                          <div className="pt-2">
+                            <h4 className="text-xs md:text-sm font-bold text-[#e4c590] uppercase tracking-[0.4em] mb-3 opacity-80 flex items-center gap-3">
+                              <span className="w-6 h-[1px] bg-[#e4c590]/50" />
+                              {item.spot}
+                            </h4>
+                            <p className="text-2xl md:text-3xl text-white/90 font-display leading-relaxed max-w-2xl group-hover:text-white transition-colors">
+                              {item.activity}
+                            </p>
+                          </div>
+                        </motion.div>
+                      ))}
+                     </div>
+                  </div>
                 </div>
-                <p className="font-kannada text-earth-300 text-3xl animate-pulse tracking-widest">ಮಾರ್ಗವನ್ನು ಸಿದ್ಧಪಡಿಸಲಾಗುತ್ತಿದೆ...</p>
-              </div>
-            ) : (
-              <div className="space-y-24">
-                <div className="flex justify-between items-end border-b border-white/10 pb-12">
-                   <div>
-                    <h2 className="text-6xl font-display font-bold uppercase tracking-tighter">{plan?.title}</h2>
-                    <p className="text-earth-300 mt-2 tracking-widest text-xs uppercase opacity-60">Personalized Rural Route</p>
-                   </div>
-                   <button onClick={() => setPlannerStep('hero')} className="text-[10px] uppercase tracking-[0.3em] text-white/20 hover:text-white border-b border-white/10 pb-1">Reset Trip</button>
-                </div>
-
-                <div className="relative">
-                   {/* Vertical Line */}
-                   <div className="absolute left-[27px] top-0 bottom-0 w-[1px] bg-white/5" />
-                   
-                   <div className="space-y-20">
-                    {plan?.itinerary.map((item, idx) => (
-                      <motion.div 
-                        key={idx} initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: idx * 0.2 }}
-                        className="flex gap-12 group relative"
-                      >
-                        <div className="w-14 h-14 rounded-full border border-earth-300/30 bg-black flex items-center justify-center font-display text-earth-300 group-hover:bg-earth-500 group-hover:text-white transition-all z-10">
-                          0{item.day}
-                        </div>
-                        <div className="pt-2">
-                          <h4 className="text-xs font-bold text-earth-300 uppercase tracking-[0.4em] mb-4 opacity-50">{item.spot}</h4>
-                          <p className="text-3xl text-white/90 font-display leading-tight max-w-2xl group-hover:text-white transition-colors">{item.activity}</p>
-                        </div>
-                      </motion.div>
-                    ))}
-                   </div>
-                </div>
-              </div>
-            )}
-          </motion.section>
-        )}
-      </AnimatePresence>
-
-      <style jsx>{`
-        .preserve-3d { transform-style: preserve-3d; }
-        .backface-hidden { backface-visibility: hidden; }
-        @keyframes reverse-spin { from { transform: rotate(360deg); } to { transform: rotate(0deg); } }
-        .animate-reverse-spin { animation: reverse-spin 2s linear infinite; }
-      `}</style>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
