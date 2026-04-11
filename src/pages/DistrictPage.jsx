@@ -37,9 +37,9 @@ export default function DistrictPage() {
         "Despite facing fierce competition from cheap plastic imports, the Channapatna craft has seen a massive revival. Modern designers are now collaborating with rural artisans to create educational puzzles, sleek home decor, and mathematical games, proving that this 200-year-old rural craft can adapt and thrive in the modern world."
       ],
       images: [
-        "https://upload.wikimedia.org/wikipedia/commons/1/15/Channapatna_toys.jpg",
-        "https://images.pexels.com/photos/10180491/pexels-photo-10180491.jpeg?auto=compress&cs=tinysrgb&w=1200", // Pexels high-res woodcraft
-        "https://images.unsplash.com/photo-1618605369018-97a1f5ce0b22?q=80&w=1200&auto=format&fit=crop"
+        "https://storeassets.im-cdn.com/media-manager/channapatnatoysin/280eU8ASIK3BTw3yHkER_channapatna%20toys%20banner%2015_621x375_webp.jpg",
+        "https://s7ap1.scene7.com/is/image/incredibleindia/channapatna-toys-and-dolls-Karnataka-1-craft-hero?qlt=82&ts=1726641410733", // Pexels high-res woodcraft
+        "https://m.media-amazon.com/images/I/71n42AejLaL.jpg"
       ]
     },
     "22": {
@@ -51,9 +51,9 @@ export default function DistrictPage() {
         "Bidriware designs are heavily influenced by Persian and Islamic art, featuring intricate geometric patterns, creeping vines, and poppy flowers. Today, rural artisans in Bidar create everything from traditional hookahs and paan boxes to sleek modern vases, pen drives, and jewelry, keeping this mesmerizing royal craft alive."
       ],
       images: [
-        "https://upload.wikimedia.org/wikipedia/commons/c/c3/Bidri_ware_of_Bidar.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Bidri_art.jpg/1024px-Bidri_art.jpg",
-        "https://images.unsplash.com/photo-1600166898405-da9535204843?q=80&w=1200&auto=format&fit=crop" // Artistic metal texture
+        "https://s7ap1.scene7.com/is/image/incredibleindia/bidriware-bidar-karnataka-craft-hero?qlt=82&ts=1726641338177",
+        "https://s3.ap-southeast-1.amazonaws.com/gounesco.com/wp-content/uploads/2017/03/09214910/BIDRIWARE-ARTISTS-AN-EXQUISITE-PIECE-OF-VASE.jpg",
+        "https://d35l77wxi0xou3.cloudfront.net/collab/craft1582795978Bidri-Banner.jpg" // Artistic metal texture
       ]
     },
     "23": {
@@ -65,9 +65,9 @@ export default function DistrictPage() {
         "The most famous Kinhal creations are the 'Gowri' headpieces used in local festivals, alongside magnificent idols of village deities (Grama Devatas), Garuda, and Kamadhenu. Watching a Kinhal artisan at work is like looking through a window into the 15th century, preserving the exact artistic soul that once decorated the greatest empire in southern India."
       ],
       images: [
-        "https://live.staticflickr.com/5613/15448332999_3a6a12b2e8_b.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/a/ad/Kinhal_Craft_Display.jpg",
-        "https://images.pexels.com/photos/15926684/pexels-photo-15926684.jpeg?auto=compress&cs=tinysrgb&w=1200" // Vibrant paint/wood proxy
+        "https://kstdc.co/wp-content/uploads/2021/08/kinhal.jpg",
+        "https://kinnaltoys.com/assets/img/gallery/26.jpg",
+        "https://s3.ap-south-1.amazonaws.com/media.thesouthfirst.com/wp-content/uploads/2024/09/WhatsApp-Image-2024-09-12-at-2.54.04-PM.jpeg" // Vibrant paint/wood proxy
       ]
     },
     "24": {
@@ -79,9 +79,10 @@ export default function DistrictPage() {
         "Today, the Kushal Kala Kendra in Sandur has empowered hundreds of Lambani women, turning their traditional attire into a globally recognized sustainable fashion statement. The craft has moved beyond tribal garments to bags, cushion covers, and modern apparel, providing crucial financial independence to the women of this rural community."
       ],
       images: [
-        "https://images.unsplash.com/photo-1605814561084-3860d5b12857?q=80&w=1200&auto=format&fit=crop",
-        "https://images.pexels.com/photos/18274026/pexels-photo-18274026.jpeg?auto=compress&cs=tinysrgb&w=1200", // Pexels intricate fabric detail
-        "https://upload.wikimedia.org/wikipedia/commons/6/65/Lambani_embroidery_detail.jpg"
+        "https://th-i.thgim.com/public/migration_catalog/article15892085.ece/alternates/LANDSCAPE_1200/craft",
+        "https://cultureandheritage.org/wp-content/uploads/2021/10/image-17.jpeg", // Pexels intricate fabric detail
+        "https://cdn.vastrashilpakosh.in//vol2/Cultural_AIP_Record/nift_del/cfp/nift_del-172-cfp/nift_del-172-cfp_main/Image/JPEG/nift_del-172-cfp-1p.jpeg"
+        
       ]
     },
     "25": {
@@ -93,9 +94,9 @@ export default function DistrictPage() {
         "Despite the rise of power looms, true Ilkal sarees are still woven in the courtyards of rural homes using pit looms. The vibrant checks, stripes, and the signature 'Chikki Paras' border make these sarees timeless. Purchasing an authentic handwoven Ilkal is a direct investment in the livelihoods of generational weaving families who are fighting to keep this intricate art alive."
       ],
       images: [
-        "https://upload.wikimedia.org/wikipedia/commons/4/4b/Ilkal_saree.jpg",
-        "https://images.pexels.com/photos/6097510/pexels-photo-6097510.jpeg?auto=compress&cs=tinysrgb&w=1200", // Pexels loom/weaving atmospheric
-        "https://images.unsplash.com/photo-1606555190998-0520a2e55716?q=80&w=1200&auto=format&fit=crop"
+        "https://img-cdn.thepublive.com/filters:format(webp)/local-samosal/media/media_files/o3oQuuRwd1soGnkBAg5M.png",
+        "https://img-cdn.thepublive.com/filters:format(webp)/local-samosal/media/media_files/uOb0Mle8AxFRA6gR0vpI.png", // Pexels loom/weaving atmospheric
+        "https://img-cdn.thepublive.com/filters:format(webp)/local-samosal/media/media_files/u526X8aJ14QiHh46FqnA.png"
       ]
     },
     "26": {
@@ -107,9 +108,9 @@ export default function DistrictPage() {
         "Traditionally, Chittara murals were painted exclusively during weddings, harvests, and religious ceremonies to invoke the blessings of the gods. Today, recognizing the fragility of this ancient tribal art, artisans have begun translating these magnificent murals onto handmade paper, canvases, and pottery, sharing the sacred geometry of the Deevaru people with the world."
       ],
       images: [
-        "https://images.unsplash.com/photo-1574513812739-930491cb88f2?q=80&w=1200&auto=format&fit=crop", 
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Chittara_Art.jpg/1024px-Chittara_Art.jpg",
-        "https://images.pexels.com/photos/3860010/pexels-photo-3860010.jpeg?auto=compress&cs=tinysrgb&w=1200" // Pexels textured paint/art process
+        "https://th-i.thgim.com/public/incoming/9pid2z/article69893492.ece/alternates/FREE_1200/HoovinaMane-_DSC6431.jpg", 
+        "https://handicrafts.nic.in/crafts/All_Crafts/Craft_Categories/Miscellaneous/Folk_Painting/Hase_chittara_painting/Image_Gallery/chi_i01.jpg",
+        "https://caleidoscope.in/wp-content/uploads/2010/04/chittara-folk-art-of-karnataka-3.jpg" // Pexels textured paint/art process
       ]
     },
     "27": {
@@ -121,9 +122,9 @@ export default function DistrictPage() {
         "The motifs used in Kasuti are deeply inspired by temple architecture and rural life. Common designs include temple chariots (Ratha), lotus flowers, elephants, and palanquins. Originally confined to sarees and blouses, Kasuti has now found its way onto modern kurtas, stoles, and home decor, allowing rural women to earn a sustainable living through their impeccable craftsmanship."
       ],
       images: [
-        "https://upload.wikimedia.org/wikipedia/commons/9/91/Kasuti_embroidery.jpg",
-        "https://images.pexels.com/photos/4602996/pexels-photo-4602996.jpeg?auto=compress&cs=tinysrgb&w=1200", // Pexels intense threadwork detail
-        "https://images.unsplash.com/photo-1605810731664-5ceb292c3008?q=80&w=1200&auto=format&fit=crop"
+        "https://www.azafashions.com/blog/wp-content/uploads/2025/12/Featured-Iamge-10.jpg",
+        "https://handicrafts.nic.in/crafts/All_Crafts/Craft_Categories/Textile/Embroidery/Kasuti_Embroidery/Image_Gallery/kas_i02.png", // Pexels intense threadwork detail
+        "https://uploads.knightlab.com/storymapjs/d1b5f53d4ed838094cdd17edab783ed9/textiles-of-south-india/_images/PS-38574_DesignCloseup_Default_1_1024x1024.jpg"
       ]
     },
     "28": {
@@ -135,9 +136,9 @@ export default function DistrictPage() {
         "These durries were historically used by royalty and in grand temple halls. Sadly, the craft is currently endangered, with only a few dozen families left in Navalgund who possess the skill to weave the authentic, complex patterns. Purchasing a Navalgund Jamkhana is not just buying a rug; it is preserving a crucial piece of Karnataka's woven architectural history."
       ],
       images: [
-        "https://images.unsplash.com/photo-1600166898405-da9535204843?q=80&w=1200&auto=format&fit=crop",
-        "https://upload.wikimedia.org/wikipedia/commons/f/fc/Navalgund_Durrie.jpg",
-        "https://images.pexels.com/photos/3705539/pexels-photo-3705539.jpeg?auto=compress&cs=tinysrgb&w=1200" // Pexels carpet weaving texture
+        "https://i.pinimg.com/1200x/5f/8f/83/5f8f83c594b54049b47aa47273ba446c.jpg",
+        "https://media.assettype.com/deccanherald%2Fimport%2Fsites%2Fdh%2Ffiles%2Farticle_images%2F2018%2F07%2F01%2Ffile70sk89g6o34u9vp82661530392.jpg?w=undefined&auto=format%2Ccompress&fit=max",
+        "https://kstdc.co/wp-content/uploads/2021/12/durrie.jpg" // Pexels carpet weaving texture
       ]
     },
     "29": {
@@ -149,9 +150,9 @@ export default function DistrictPage() {
         "Due to the extreme scarcity and high government regulation of real sandalwood, this craft is highly prized and highly expensive. The workshops in Sagara are filled with the intoxicating, sweet aroma of the wood. The patience required for this craft is unimaginable, with a single, highly detailed piece sometimes taking an artisan over a year to complete."
       ],
       images: [
-        "https://images.unsplash.com/photo-1590483864016-5c58eeaa6042?q=80&w=1200&auto=format&fit=crop",
-        "https://upload.wikimedia.org/wikipedia/commons/5/52/Sandalwood_Carving.jpg",
-        "https://images.pexels.com/photos/6306206/pexels-photo-6306206.jpeg?auto=compress&cs=tinysrgb&w=1200" // Pexels artisan hands carving
+        "https://cauverycrafts.com/wp-content/uploads/2021/02/Sirsi2.jpg",
+        "https://i.pinimg.com/1200x/40/91/38/4091388f50706fbbbcaf494562ac6756.jpg",
+        "https://i.pinimg.com/1200x/92/52/f7/9252f78c3abe2adbe5095ce841ba5610.jpg" // Pexels artisan hands carving
       ]
     },
     "30": {
@@ -163,9 +164,8 @@ export default function DistrictPage() {
         "The hallmarks of Nagamangala statues are their anatomical perfection, serene facial expressions, and highly intricate jewelry detailing. Whether it is a towering Nataraja or a small, household Ganesha, the craftsmanship honors the strict iconographic rules laid down in ancient Hindu texts (Shilpa Shastras), keeping the divine art of the Hoysalas alive in the modern era."
       ],
       images: [
-        "https://images.unsplash.com/photo-1550989047-b352b21edc72?q=80&w=1200&auto=format&fit=crop",
-        "https://upload.wikimedia.org/wikipedia/commons/e/ea/Bronze_Nataraja.jpg",
-        "https://images.pexels.com/photos/10321303/pexels-photo-10321303.jpeg?auto=compress&cs=tinysrgb&w=1200" // Pexels bronze/metal statue detail
+        "https://cdn.shopify.com/s/files/1/0686/9437/6495/files/karnataka-bronze-ware-the-ancient-metal-art-that-shaped-human-forms-make-an-images-about-this-topic.png?v=1769074999",
+        "https://cdn.shopify.com/s/files/1/0686/9437/6495/files/karnataka-bronze-ware-the-ancient-metal-art-that-shaped-human-forms-create-a-image-about-this-topic.png?v=1769074930"
       ]
     }
   }
