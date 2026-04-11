@@ -46,7 +46,7 @@ export default function AboutUs() {
       {/* ── HIGH-RES BACKGROUND ── */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <img 
-          src="https://images.pexels.com/photos/35988680/pexels-photo-35988680.jpeg" 
+          src="https://images.pexels.com/photos/28710291/pexels-photo-28710291.jpeg" 
           alt="Background" 
           className="w-full h-full object-cover opacity-60"
         />
