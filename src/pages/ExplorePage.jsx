@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet'
 import { motion, AnimatePresence } from 'framer-motion'
 import 'leaflet/dist/leaflet.css'
@@ -79,12 +79,14 @@ const HorizontalScrollRow = ({ images, reverse, speed }) => (
 
 export default function ExplorePage() {
   const navigate = useNavigate()
+  const location = useLocation()
   
   // ====================================================
-  // ✅ FIX: Check Session Storage to see if they already watched the intro
+  // ✅ PERFECT FIX: Use React Router's memory instead of SessionStorage
+  // It checks if THIS specific visit to the page has seen the intro.
   // ====================================================
   const [showIntro, setShowIntro] = useState(() => {
-    return sessionStorage.getItem('hasSeenExploreIntro') !== 'true';
+    return !location.state?.introSeen;
   })
   
   const [showButton, setShowButton] = useState(false)
@@ -92,10 +94,10 @@ export default function ExplorePage() {
   const [filter, setFilter] = useState("all")
   const [userLocation, setUserLocation] = useState(null)
 
-  // This function hides the intro AND saves the memory to the browser
   const handleCloseIntro = () => {
     setShowIntro(false)
-    sessionStorage.setItem('hasSeenExploreIntro', 'true')
+    // Silently updates the URL's history state so if you go back here from DistrictPage, it remembers!
+    navigate(location.pathname, { replace: true, state: { ...location.state, introSeen: true } })
   }
 
   useEffect(() => {
@@ -180,8 +182,6 @@ export default function ExplorePage() {
             <div className="absolute inset-0 flex flex-col gap-6 justify-center -rotate-6 scale-125 z-0 pointer-events-none blur-[4px]">
               <HorizontalScrollRow images={places.slice(0, 10)} reverse={false} speed={40} />
               <HorizontalScrollRow images={places.slice(10, 20)} reverse={true} speed={35} />
-              
-              {/* 👇 Fix: Reusing the first 10 images so the row doesn't go blank! */}
               <HorizontalScrollRow images={places.slice(0, 10)} reverse={false} speed={45} />
             </div>
 
@@ -218,7 +218,7 @@ export default function ExplorePage() {
                 transition={{ duration: 1, delay: 3 }}
                 className="mt-12"
               >
-                {/* ✅ FIX: handleCloseIntro replaces setShowIntro(false) */}
+                {/* Calls the new function to hide intro and save router state */}
                 <button
                   onClick={handleCloseIntro}
                   className="px-10 py-4 border border-[#e4c590]/50 text-[#e4c590] rounded-full font-bold uppercase tracking-widest text-sm hover:bg-[#e4c590] hover:text-black transition-all duration-500 shadow-[0_0_20px_rgba(228,197,144,0.1)] hover:shadow-[0_0_30px_rgba(228,197,144,0.4)]"
