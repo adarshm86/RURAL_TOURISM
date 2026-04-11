@@ -26,36 +26,35 @@ export default function AboutUs() {
     },
   ];
 
-  // Animation variants for staggering the cards
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.2 }
+      transition: { staggerChildren: 0.15 }
     }
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { opacity: 0, y: 30 },
     show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 20 } }
   };
 
   return (
-    <div className="min-h-screen bg-[#080f08] text-white selection:bg-[#e4c590] selection:text-black overflow-x-hidden font-body relative">
+    // Locked to exactly 1 screen height, no scrolling allowed
+    <div className="h-screen bg-[#080f08] text-white selection:bg-[#e4c590] selection:text-black overflow-hidden font-body relative flex flex-col">
       
-      {/* ── CINEMATIC BACKGROUND ── */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      {/* ── HIGH-RES BACKGROUND ── */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <img 
-          src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1920&q=80" 
+          src="https://images.pexels.com/photos/35988680/pexels-photo-35988680.jpeg" 
           alt="Background" 
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full object-cover opacity-60"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#080f08]/90 via-black/70 to-[#080f08] z-10" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,#080f08_100%)] z-20" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(8,15,8,0.4)_0%,rgba(8,15,8,0.95)_100%)] z-10" />
       </div>
 
       {/* ── NAVBAR ── */}
-      <nav className="fixed top-0 w-full z-50 flex justify-between items-center py-4 px-6 md:px-12 bg-black/20 backdrop-blur-md border-b border-white/5">
+      <nav className="absolute top-0 w-full z-50 flex justify-between items-center py-4 px-6 md:px-12 bg-black/20 backdrop-blur-md border-b border-white/5">
         <motion.button
           initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
           onClick={() => navigate('/')} 
@@ -70,18 +69,18 @@ export default function AboutUs() {
       </nav>
 
       {/* ── MAIN CONTENT ── */}
-      <div className="relative z-30 min-h-screen flex flex-col justify-center items-center px-6 pt-32 pb-20">
+      <div className="relative z-30 flex-1 flex flex-col justify-center items-center px-4 md:px-6 pt-20 pb-8">
         
-        {/* Hero Headers */}
+        {/* Hero Headers - Scaled down and margins reduced */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-8 md:mb-12"
         >
-          <p className="font-kannada text-[#e4c590] text-2xl md:text-3xl mb-4 drop-shadow-md">ನಮ್ಮ ತಂಡ</p>
-          <h1 className="text-6xl md:text-8xl font-display font-bold uppercase tracking-tighter drop-shadow-2xl">
+          <p className="font-kannada text-[#e4c590] text-xl md:text-2xl mb-2 drop-shadow-md">ನಮ್ಮ ತಂಡ</p>
+          <h1 className="text-5xl md:text-7xl font-display font-bold uppercase tracking-tighter drop-shadow-2xl">
             The <span className="text-[#e4c590] italic">Creators</span>
           </h1>
-          <p className="text-white/50 tracking-[0.3em] uppercase text-sm mt-6 font-medium">
+          <p className="text-white/70 tracking-[0.3em] uppercase text-[10px] md:text-xs mt-4 font-medium bg-black/30 px-4 py-1.5 rounded-full backdrop-blur-sm inline-block">
             Team BrainRot • Building the Future of Heritage
           </p>
         </motion.div>
@@ -91,60 +90,59 @@ export default function AboutUs() {
           variants={containerVariants}
           initial="hidden"
           animate="show"
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 w-full max-w-7xl"
+          // Reduced gap to fit nicely on one screen
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl"
         >
           {teamMembers.map((member, index) => (
             <motion.div 
               key={index}
               variants={cardVariants}
-              whileHover={{ y: -15 }}
-              className="group relative bg-black/40 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] p-10 flex flex-col items-center text-center shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-colors duration-500 hover:border-[#e4c590]/50"
+              whileHover={{ y: -10 }}
+              // Reduced padding (p-6) and border radius slightly
+              className="group relative bg-black/40 backdrop-blur-xl border border-white/10 rounded-[2rem] p-6 md:p-8 flex flex-col items-center text-center shadow-[0_20px_50px_rgba(0,0,0,0.5)] transition-colors duration-500 "
             >
-              {/* Glowing Background Blob on Hover */}
-              <div className="absolute inset-0 bg-[#e4c590]/0 group-hover:bg-[#e4c590]/5 rounded-[2.5rem] transition-colors duration-500 pointer-events-none" />
+              <div className="absolute inset-0 bg-[#10b981]/0 group-hover:bg-[#10b981]/5 rounded-[2rem] transition-colors duration-500 pointer-events-none" />
 
-              {/* Avatar Circle */}
-              <div className="relative w-24 h-24 mb-6 flex items-center justify-center">
+              {/* Avatar Circle - Scaled down slightly */}
+              <div className="relative w-20 h-20 mb-5 flex items-center justify-center">
                 <div className="absolute inset-0 rounded-full border-2 border-dashed border-[#e4c590]/30 group-hover:border-[#e4c590] group-hover:animate-[spin_10s_linear_infinite] transition-colors duration-500" />
-                <div className="w-20 h-20 rounded-full bg-[#080f08] border border-white/10 flex items-center justify-center shadow-inner z-10 group-hover:shadow-[0_0_20px_rgba(228,197,144,0.4)] transition-shadow duration-500">
-                  <span className="text-3xl font-display font-bold text-[#e4c590]">
+                <div className="w-16 h-16 rounded-full bg-[#080f08] border border-white/10 flex items-center justify-center shadow-inner z-10 group-hover:shadow-[0_0_20px_rgba(228,197,144,0.4)] transition-shadow duration-500">
+                  <span className="text-2xl font-display font-bold text-[#e4c590]">
                     {member.name.charAt(0)}
                   </span>
                 </div>
               </div>
 
-              {/* Text Details */}
-              <h3 className="text-3xl font-display font-bold text-white mb-1 group-hover:text-[#e4c590] transition-colors duration-300">
+              {/* Text Details - Tighter spacing */}
+              <h3 className="text-2xl font-display font-bold text-white mb-1 group-hover:text-[#10b981] transition-colors duration-300">
                 {member.name}
               </h3>
               
-              <p className="text-sm font-body text-white/60 italic mb-4">
+              <p className="text-xs font-body text-white/60 italic mb-3">
                 {member.role}
               </p>
               
-              <div className="w-8 h-[1px] bg-white/20 mb-6 group-hover:bg-[#e4c590]/50 transition-colors" />
+              <div className="w-8 h-[1px] bg-white/20 mb-4 group-hover:bg-[#10b981]/50 transition-colors" />
               
-              {/* ID & Email block - Neatly placed inside the card! */}
-              <div className="mb-8">
-                <p className="text-xs uppercase tracking-[0.4em] text-white/50 mb-2 font-bold">
+              <div className="mb-6">
+                <p className="text-[10px] uppercase tracking-[0.4em] text-white/50 mb-1.5 font-bold">
                   {member.id}
                 </p>
-                <p className="text-[11px] tracking-widest text-[#e4c590]/80 font-body">
+                <p className="text-[10px] tracking-widest text-[#e4c590]/80 font-body">
                   {member.email}
                 </p>
               </div>
 
-              {/* Action Button */}
+              {/* Action Button - Scaled down for compactness */}
               <a 
                 href={`mailto:${member.email}`}
-                className="mt-auto px-8 py-3 border border-white/20 rounded-full text-sm font-body text-white/70 tracking-widest hover:bg-[#e4c590] hover:text-black hover:border-[#e4c590] transition-all duration-300 z-10 shadow-lg"
+                className="mt-auto px-6 py-2.5 border border-white/20 rounded-full text-xs font-body text-white/70 tracking-widest hover:bg-[#10b981] hover:text-black hover:border-[#10b981] transition-all duration-300 z-10 shadow-lg"
               >
                 Say Hello
               </a>
             </motion.div>
           ))}
         </motion.div>
-
       </div>
     </div>
   );
