@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
-// ✅ Import your new Footer component here (Adjust the path if it's in a components folder!)
 import Footer from './Footer' 
 
 // Leaf configurations
